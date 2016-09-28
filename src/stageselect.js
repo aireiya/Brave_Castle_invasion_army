@@ -1,5 +1,5 @@
-//gameover.js
-var gameover = cc.Layer.extend({
+//stageselect.js
+var select = cc.Layer.extend({
     ctor: function() {
         this._super();
         var size = cc.director.getWinSize();
@@ -61,7 +61,7 @@ var gameover = cc.Layer.extend({
       },
 });
 
-var GameOverScene = cc.Scene.extend({
+var StageSelectScene = cc.Scene.extend({
     onEnter: function() {
         this._super();
 
@@ -69,7 +69,7 @@ var GameOverScene = cc.Scene.extend({
         var backgroundLayer = new cc.LayerColor(new cc.Color(140, 200, 140, 128));
         this.addChild(backgroundLayer);
 
-        var layer1 = new gameover();
+        var layer1 = new select();
         this.addChild(layer1);
     }
 });

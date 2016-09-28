@@ -42,6 +42,7 @@ var game = cc.Layer.extend({
     background.setPosition(cc.p(size.width / 2.0, size.height / 2.0));
     var backgroundLayer = cc.Layer.create();
     backgroundLayer.addChild(background);
+    background.setScale(2);
     this.addChild(backgroundLayer);
 
     //レーン画像
@@ -49,31 +50,7 @@ var game = cc.Layer.extend({
     this.addChild(unitrane01);
     cart = cc.Sprite.create(res.unit_rane_png );
     unitrane01.addChild(cart, 0);
-    cart.setPosition(250, 70);
-
-    unitrane02 = cc.Layer.create();
-    this.addChild(unitrane02);
-    cart = cc.Sprite.create(res.unit_rane_png );
-    unitrane02.addChild(cart, 0);
-    cart.setPosition(250, 120);
-
-    unitrane03 = cc.Layer.create();
-    this.addChild(unitrane03);
-    cart = cc.Sprite.create(res.unit_rane_png );
-    unitrane03.addChild(cart, 0);
     cart.setPosition(250, 170);
-
-    unitrane04 = cc.Layer.create();
-    this.addChild(unitrane04);
-    cart = cc.Sprite.create(res.unit_rane_png );
-    unitrane04.addChild(cart, 0);
-    cart.setPosition(250, 220);
-
-    unitrane05 = cc.Layer.create();
-    this.addChild(unitrane05);
-    cart = cc.Sprite.create(res.unit_rane_png );
-    unitrane05.addChild(cart, 0);
-    cart.setPosition(250, 270);
 
     //城画像
     shiro01 = cc.Layer.create();
@@ -84,21 +61,19 @@ var game = cc.Layer.extend({
     cart.setPosition(1300, 250);
 
     //壁画像
-    kabe01 = cc.Layer.create();
+    /*kabe01 = cc.Layer.create();
     this.addChild(kabe01);
     cart = cc.Sprite.create(res.kabe01_jpg );
     kabe01.addChild(cart, 0);
-    kabe01.setScale(0.4);
-    cart.setPosition(600, 190);
+    //kabe01.setScale(0.4);
+    cart.setPosition(200, 190);*/
 
     //前衛キャンプ
-    //壁画像
     camp01 = cc.Layer.create();
     this.addChild(camp01);
     cart = cc.Sprite.create(res.camp_png);
     camp01.addChild(cart, 0);
-    camp01.setScale(0.2);
-    cart.setPosition(-700, 250);
+    cart.setPosition(0, 150);
 
     //ユニットボックス
     unitbox01 = cc.Layer.create();
@@ -115,18 +90,43 @@ var game = cc.Layer.extend({
     brave_otomo01.addChild(cart, 0);
     cart.setPosition(240, 170);
 
+    brave_otomo01 = cc.Layer.create();
+    this.addChild(brave_otomo01);
+    cart = cc.Sprite.create(res.brave_otomo01_01 );
+    brave_otomo01.addChild(cart, 0);
+    cart.setPosition(250, 120);
+
     brave_otomo02 = cc.Layer.create();
     this.addChild(brave_otomo02);
     cart = cc.Sprite.create(res.brave_otomo02_01 );
     brave_otomo02.addChild(cart, 0);
-    cart.setPosition(200, 70);
+    cart.setPosition(210, 70);
+
+    brave_otomo03 = cc.Layer.create();
+    this.addChild(brave_otomo03);
+    cart = cc.Sprite.create(res.brave_otomo02_01 );
+    brave_otomo03.addChild(cart, 0);
+    cart.setPosition(300, 120);
+
 
     //モンスター画像
     maou_otomo01 = cc.Layer.create();
     this.addChild(maou_otomo01);
     cart = cc.Sprite.create(res.maou_otomo01_01 );
     maou_otomo01.addChild(cart, 0);
-    cart.setPosition(180, 70);
+    cart.setPosition(170, 70);
+
+    maou_otomo01 = cc.Layer.create();
+    this.addChild(maou_otomo01);
+    cart = cc.Sprite.create(res.maou_otomo01_01 );
+    maou_otomo01.addChild(cart, 0);
+    cart.setPosition(300, 280);
+
+    maou_otomo02 = cc.Layer.create();
+    this.addChild(maou_otomo02);
+    cart = cc.Sprite.create(res.maou_otomo02_01 );
+    maou_otomo02.addChild(cart, 0);
+    cart.setPosition(250, 230);
 
     maou_otomo02 = cc.Layer.create();
     this.addChild(maou_otomo02);
@@ -134,6 +134,13 @@ var game = cc.Layer.extend({
     maou_otomo02.addChild(cart, 0);
     cart.setPosition(200, 170);
 
+    kemuri = cc.Layer.create();
+    this.addChild(kemuri);
+    cart = cc.Sprite.create(res.kemuri_png );
+    kemuri.addChild(cart, 0);
+    cart.setPosition(190, 70);
+
+//-----------隠してるやつ
     maou_otomo03 = cc.Layer.create();
     this.addChild(maou_otomo03);
     otomo03 = cc.Sprite.create(res.maou_otomo02_01 );

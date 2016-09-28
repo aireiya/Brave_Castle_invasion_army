@@ -1,5 +1,5 @@
-//gameover.js
-var gameover = cc.Layer.extend({
+//title.js
+var title = cc.Layer.extend({
     ctor: function() {
         this._super();
         var size = cc.director.getWinSize();
@@ -9,31 +9,25 @@ var gameover = cc.Layer.extend({
         //this.addChild(label, 1);
 
         //ゲームオーバー
-        label01 = cc.LabelTTF.create("GAME OVER", "Arial", 40);
+        label01 = cc.LabelTTF.create("勇者城侵攻軍！モックアップ", "Arial", 35);
         label01.setColor(255,255,255);
         this.addChild(label01); //文字つける時はこっち*/
         label01.setPosition(size.width / 2,size.height * 0.8, 15);
 
         //リトライ？
-        label02 = cc.LabelTTF.create("リトライ？", "Arial", 40);
+        label02 = cc.LabelTTF.create("～魔王の息子のウサ晴らし～", "Arial", 35);
         label02.setColor(255,255,255);
         this.addChild(label02); //文字つける時はこっち*/
         label02.setPosition(size.width / 2,size.height * 0.6, 15);
 
-        //YES NO
-        label03 = cc.LabelTTF.create("YES        NO", "Arial", 40);
+        //スタート
+        label03 = cc.LabelTTF.create("<クリックでスタート", "Arial", 30);
         label03.setColor(255,255,255);
         this.addChild(label03); //文字つける時はこっち*/
-        label03.setPosition(size.width / 2,size.height * 0.4, 15);
-
-        //ランダムでしゃべるやつ
-        label03 = cc.LabelTTF.create("<撤退もまた戦略", "Arial", 30);
-        label03.setColor(255,255,255);
-        this.addChild(label03); //文字つける時はこっち*/
-        label03.setPosition(size.width / 2,size.height * 0.2, 15);
+        label03.setPosition(size.width / 2,size.height * 0.3, 15);
 
         var drop01 = cc.Sprite.create(res.kodomo_png);　
-        drop01.setPosition(size.width / 5, size.height * 0.15);
+        drop01.setPosition(size.width / 5, size.height * 0.25);
         this.addChild(drop01);
 
         /*var drop02 = cc.Sprite.create(res.replay_png);　
@@ -61,7 +55,7 @@ var gameover = cc.Layer.extend({
       },
 });
 
-var GameOverScene = cc.Scene.extend({
+var TitleScene = cc.Scene.extend({
     onEnter: function() {
         this._super();
 
@@ -69,7 +63,7 @@ var GameOverScene = cc.Scene.extend({
         var backgroundLayer = new cc.LayerColor(new cc.Color(140, 200, 140, 128));
         this.addChild(backgroundLayer);
 
-        var layer1 = new gameover();
+        var layer1 = new title();
         this.addChild(layer1);
     }
 });
