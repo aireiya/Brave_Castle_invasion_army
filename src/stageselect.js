@@ -1,4 +1,9 @@
 //stageselect.js
+
+var color = cc.color(100, 50, 50, 128);
+var color02 = cc.color(255, 0, 255, 128);
+var color03 = cc.color(100, 100, 100, 50);
+
 var select = cc.Layer.extend({
     ctor: function() {
         this._super();
@@ -8,26 +13,53 @@ var select = cc.Layer.extend({
         //label.setPosition(size.width / 2, size.height / 2);
         //this.addChild(label, 1);
 
-        //ゲームオーバー
-        label01 = cc.LabelTTF.create("GAME OVER", "Arial", 40);
+        //森の背景
+        var background = new cc.Sprite(res.background09_png);
+        var size = cc.director.getWinSize();
+        background.setPosition(cc.p(size.width / 2.0, size.height / 2.0));
+        var backgroundLayer = cc.Layer.create();
+        backgroundLayer.addChild(background);
+        background.setScale(2);
+        this.addChild(backgroundLayer);
+
+        //ステージ選択
+        label01 = cc.LabelTTF.create("ステージ選択", "Arial", 40);
         label01.setColor(255,255,255);
         this.addChild(label01); //文字つける時はこっち*/
-        label01.setPosition(size.width / 2,size.height * 0.8, 15);
+        label01.setPosition(size.width * 0.5,size.height * 0.8, 15);
 
-        //リトライ？
-        label02 = cc.LabelTTF.create("リトライ？", "Arial", 40);
-        label02.setColor(255,255,255);
-        this.addChild(label02); //文字つける時はこっち*/
-        label02.setPosition(size.width / 2,size.height * 0.6, 15);
+        //ステージ１
+        stage01 = cc.LabelTTF.create("ステージ1", "Arial", 30);
+        stage01.setColor(255,255,255);
+        this.addChild(stage01); //文字つける時はこっち*/
+        stage01.setPosition(size.width * 0.2,size.height * 0.6, 15);
 
-        //YES NO
-        label03 = cc.LabelTTF.create("YES        NO", "Arial", 40);
-        label03.setColor(255,255,255);
-        this.addChild(label03); //文字つける時はこっち*/
-        label03.setPosition(size.width / 2,size.height * 0.4, 15);
+        //ステージ2
+        stage02 = cc.LabelTTF.create("ステージ2", "Arial", 30);
+        stage02.setColor(color);
+        this.addChild(stage02); //文字つける時はこっち*/
+        stage02.setPosition(size.width * 0.5,size.height * 0.6, 15);
 
-        //ランダムでしゃべるやつ
-        label03 = cc.LabelTTF.create("<撤退もまた戦略", "Arial", 30);
+        //ステージ3
+        stage03 = cc.LabelTTF.create("ステージ3", "Arial", 30);
+        stage03.setColor(color03);
+        this.addChild(stage03); //文字つける時はこっち*/
+        stage03.setPosition(size.width * 0.8,size.height * 0.6, 15);
+
+        //ステージ4
+        stage04 = cc.LabelTTF.create("ステージ4", "Arial", 30);
+        stage04.setColor(color03);
+        this.addChild(stage04); //文字つける時はこっち*/
+        stage04.setPosition(size.width * 0.4,size.height * 0.4, 15);
+
+        //ステージ5
+        stage05 = cc.LabelTTF.create("ステージ5", "Arial", 30);
+        stage05.setColor(color03);
+        this.addChild(stage05); //文字つける時はこっち*/
+        stage05.setPosition(size.width * 0.7,size.height * 0.4, 15);
+
+        //ステージ選んで
+        label03 = cc.LabelTTF.create("<ステージを選ぶのです", "Arial", 25);
         label03.setColor(255,255,255);
         this.addChild(label03); //文字つける時はこっち*/
         label03.setPosition(size.width / 2,size.height * 0.2, 15);
@@ -35,6 +67,12 @@ var select = cc.Layer.extend({
         var drop01 = cc.Sprite.create(res.kodomo_png);　
         drop01.setPosition(size.width / 5, size.height * 0.15);
         this.addChild(drop01);
+
+        //ステージ5
+        unit = cc.LabelTTF.create("ユニット強化へ", "Arial", 30);
+        unit.setColor(color02);
+        this.addChild(unit); //文字つける時はこっち*/
+        unit.setPosition(size.width * 0.8,size.height * 0.1, 15);
 
         /*var drop02 = cc.Sprite.create(res.replay_png);　
         drop02.setPosition(size.width / 2, size.height * 0.2);　
@@ -57,7 +95,7 @@ var select = cc.Layer.extend({
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new gameScene());
+        cc.director.runScene(new PowerSelectScene());
       },
 });
 

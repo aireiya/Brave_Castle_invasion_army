@@ -21,6 +21,10 @@ var rane05;
 var otomoset03;
 var otomo03x = 275;
 
+var color = cc.color(255, 0, 0, 128);
+var color02 = cc.color(255, 0, 255, 128);
+var color03 = cc.color(0, 255, 0, 128);
+
 var gameScene = cc.Scene.extend({
   onEnter: function() {
     this._super();
@@ -134,6 +138,38 @@ var game = cc.Layer.extend({
     maou_otomo02.addChild(cart, 0);
     cart.setPosition(200, 170);
 
+//--------リストのユニット
+    maou_list01 = cc.Layer.create();
+    this.addChild(maou_list01);
+    cart = cc.Sprite.create(res.maou_otomo01_01 );
+    maou_list01.addChild(cart, 0);
+    cart.setPosition(80, 20);
+
+    maou_list02 = cc.Layer.create();
+    this.addChild(maou_list02);
+    cart = cc.Sprite.create(res.maou_otomo02_01 );
+    maou_list02.addChild(cart, 0);
+    cart.setPosition(160, 20);
+
+    maou_list03 = cc.Layer.create();
+    this.addChild(maou_list03);
+    cart = cc.Sprite.create(res.maou_otomo03_01 );
+    maou_list03.addChild(cart, 0);
+    cart.setPosition(250, 20);
+
+    maou_list04 = cc.Layer.create();
+    this.addChild(maou_list04);
+    cart = cc.Sprite.create(res.maou_otomo04_01 );
+    maou_list04.addChild(cart, 0);
+    cart.setPosition(330, 20);
+
+    maou_list05 = cc.Layer.create();
+    this.addChild(maou_list05);
+    cart = cc.Sprite.create(res.maou_otomo05_01 );
+    maou_list05.addChild(cart, 0);
+    cart.setPosition(420, 20);
+
+//----------戦闘エフェクト
     kemuri = cc.Layer.create();
     this.addChild(kemuri);
     cart = cc.Sprite.create(res.kemuri_png );
@@ -143,7 +179,7 @@ var game = cc.Layer.extend({
 //-----------隠してるやつ
     maou_otomo03 = cc.Layer.create();
     this.addChild(maou_otomo03);
-    otomo03 = cc.Sprite.create(res.maou_otomo02_01 );
+    otomo03 = cc.Sprite.create(res.maou_otomo05_01 );
     maou_otomo03.addChild(otomo03, 0);
     otomo03.setPosition(80, otomo03x);
     maou_otomo03.setVisible(false);
@@ -177,7 +213,7 @@ var game = cc.Layer.extend({
         console.log("たっちセカンド" + touch.getLocation().x +" " + touch.getLocation().y);
         unit05 = 1;
       }
-      //cc.director.runScene(new GameHintScene());
+      cc.director.runScene(new ResultScene());
 
     return true;
   },

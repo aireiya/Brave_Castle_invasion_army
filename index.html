@@ -10,6 +10,7 @@
     <script type="text/javascript" src="src/title.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/stageselect.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/result.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/kyouka.js" charset="UTF-8"></script>
 </head>
 <body>
     <canvas id="gameCanvas" ></canvas>
@@ -24,7 +25,7 @@
                   // 表示領域がリサイズされた場合、自動的にプログラムの画面をリサイズさせる
                   cc.view.resizeWithBrowserSize(true);
                   cc.LoaderScene.preload(g_resources, function () {
-                       cc.director.runScene(new ResultScene());
+                       cc.director.runScene(new TitleScene());
                   }, this);
               };
               cc.game.run("gameCanvas");

@@ -8,6 +8,15 @@ var gameover = cc.Layer.extend({
         //label.setPosition(size.width / 2, size.height / 2);
         //this.addChild(label, 1);
 
+        //背景
+        var background = new cc.Sprite(res.background05_png);
+        var size = cc.director.getWinSize();
+        background.setPosition(cc.p(size.width * 0.8, size.height * 0.2));
+        var backgroundLayer = cc.Layer.create();
+        backgroundLayer.addChild(background);
+        background.setScale(0.3);
+        this.addChild(backgroundLayer);
+
         //ゲームオーバー
         label01 = cc.LabelTTF.create("GAME OVER", "Arial", 40);
         label01.setColor(255,255,255);
@@ -57,7 +66,7 @@ var gameover = cc.Layer.extend({
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new gameScene());
+        cc.director.runScene(new TitleScene());
       },
 });
 
@@ -66,7 +75,7 @@ var GameOverScene = cc.Scene.extend({
         this._super();
 
         // 背景レイヤーをその場で作る
-        var backgroundLayer = new cc.LayerColor(new cc.Color(140, 200, 140, 128));
+        var backgroundLayer = new cc.LayerColor(new cc.Color(20, 50, 20, 128));
         this.addChild(backgroundLayer);
 
         var layer1 = new gameover();

@@ -1,4 +1,10 @@
 //title.js
+
+var color = cc.color(255, 0, 0, 128);
+var color02 = cc.color(255, 0, 255, 128);
+var color04 = cc.color(230, 100, 0, 128);
+var color05 = cc.color(255, 30, 30, 128);
+
 var title = cc.Layer.extend({
     ctor: function() {
         this._super();
@@ -8,21 +14,30 @@ var title = cc.Layer.extend({
         //label.setPosition(size.width / 2, size.height / 2);
         //this.addChild(label, 1);
 
+        //森の背景
+        var background = new cc.Sprite(res.background10_png);
+        var size = cc.director.getWinSize();
+        background.setPosition(cc.p(size.width / 2.0, size.height / 2.0));
+        var backgroundLayer = cc.Layer.create();
+        backgroundLayer.addChild(background);
+        background.setScale(1);
+        this.addChild(backgroundLayer);
+
         //ゲームオーバー
         label01 = cc.LabelTTF.create("勇者城侵攻軍！モックアップ", "Arial", 35);
-        label01.setColor(255,255,255);
+        label01.setColor(color04);
         this.addChild(label01); //文字つける時はこっち*/
         label01.setPosition(size.width / 2,size.height * 0.8, 15);
 
         //リトライ？
         label02 = cc.LabelTTF.create("～魔王の息子のウサ晴らし～", "Arial", 35);
-        label02.setColor(255,255,255);
+        label02.setColor(color04);
         this.addChild(label02); //文字つける時はこっち*/
         label02.setPosition(size.width / 2,size.height * 0.6, 15);
 
         //スタート
         label03 = cc.LabelTTF.create("<クリックでスタート", "Arial", 30);
-        label03.setColor(255,255,255);
+        label03.setColor(color05);
         this.addChild(label03); //文字つける時はこっち*/
         label03.setPosition(size.width / 2,size.height * 0.3, 15);
 
@@ -51,7 +66,7 @@ var title = cc.Layer.extend({
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new gameScene());
+        cc.director.runScene(new StageSelectScene());
       },
 });
 
