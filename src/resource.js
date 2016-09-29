@@ -38,6 +38,9 @@ var res = {
     kyouka04_png : "res/kyouka04.png",
     kyouka05_png : "res/kyouka05.png",
 
+    seni01_png : "res/seni.png",
+    zenkai01_png : "res/zenkai.png",
+
 
 };
 

@@ -66,7 +66,7 @@ var title = cc.Layer.extend({
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new StageSelectScene());
+        cc.director.runScene(new ZenkaiScene());
       },
 });
 
