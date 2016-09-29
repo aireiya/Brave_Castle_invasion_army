@@ -90,12 +90,19 @@ var select = cc.Layer.extend({
         return true;
     },
       onTouchBegan: function(touch, event) {
-        return true;
+        if(touch.getLocation().x < 300 && touch.getLocation().y < 200 && touch.getLocation().x > 175 && touch.getLocation().y > 180 ){
+          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+          cc.director.runScene(new gameScene());
+        }
+        if(touch.getLocation().x < 500 && touch.getLocation().y < 50 && touch.getLocation().x > 290 && touch.getLocation().y > 20 ){
+          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+          cc.director.runScene(new PowerSelectScene());
+        }
       },
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new PowerSelectScene());
+        //cc.director.runScene(new PowerSelectScene());
       },
 });
 

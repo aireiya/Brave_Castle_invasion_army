@@ -19,7 +19,7 @@ var res = {
 
     kabe01_jpg : "res/purezen/Wall02.jpg",
     unit_box_png : "res/unit_box.png",
-    unit_rane_png : "res/rane04.png",
+    unit_rane_png : "res/rane.png",
     camp_png : "res/purezen/camp011.png",
 
     maou_otomo01_01 : "res/maou_otomo01_01.png",
@@ -40,6 +40,32 @@ var res = {
 
     seni01_png : "res/seni.png",
     zenkai01_png : "res/zenkai.png",
+    zenkai02_png : "res/zenkai02.png",
+    zenkai03_png : "res/zenkai03.png",
+
+    powgauge01_png : "res/powbox01.png",
+    powgauge02_png : "res/powbox02.png",
+    powgauge03_png : "res/powbox03.png",
+    powgauge04_png : "res/powbox04.png",
+    powgauge05_png : "res/powbox05.png",
+    powgauge06_png : "res/powbox06.png",
+    powgauge07_png : "res/powbox07.png",
+    powgauge08_png : "res/powbox08.png",
+    powgauge09_png : "res/powbox09.png",
+    powgauge10_png : "res/powbox10.png",
+
+    hpgauge01_png : "res/hpbox01.png",
+    hpgauge02_png : "res/hpbox02.png",
+    hpgauge03_png : "res/hpbox03.png",
+    hpgauge04_png : "res/hpbox04.png",
+    hpgauge05_png : "res/hpbox05.png",
+    hpgauge06_png : "res/hpbox06.png",
+    hpgauge07_png : "res/hpbox07.png",
+    hpgauge08_png : "res/hpbox08.png",
+    hpgauge09_png : "res/hpbox09.png",
+    hpgauge010_png : "res/hpbox10.png",
+
+    caslebar_png : "res/caslebar.png",
 
 
 };

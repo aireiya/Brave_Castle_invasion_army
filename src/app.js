@@ -54,7 +54,7 @@ var game = cc.Layer.extend({
     this.addChild(unitrane01);
     cart = cc.Sprite.create(res.unit_rane_png );
     unitrane01.addChild(cart, 0);
-    cart.setPosition(250, 170);
+    cart.setPosition(250, 150);
 
     //城画像
     shiro01 = cc.Layer.create();
@@ -87,18 +87,26 @@ var game = cc.Layer.extend({
     unitbox01.setScale(1);
     cart.setPosition(250, 20);
 
+    //拠点ゲージ
+    csbar = cc.Layer.create();
+    this.addChild(csbar);
+    cart = cc.Sprite.create(res.caslebar_png );
+    csbar.addChild(cart, 0);
+    csbar.setScale(0.8);
+    cart.setPosition(250, 310);
+
     //人画像
     brave_otomo01 = cc.Layer.create();
     this.addChild(brave_otomo01);
     cart = cc.Sprite.create(res.brave_otomo01_01 );
     brave_otomo01.addChild(cart, 0);
-    cart.setPosition(240, 170);
+    cart.setPosition(240, 150);
 
     brave_otomo01 = cc.Layer.create();
     this.addChild(brave_otomo01);
     cart = cc.Sprite.create(res.brave_otomo01_01 );
     brave_otomo01.addChild(cart, 0);
-    cart.setPosition(250, 120);
+    cart.setPosition(250, 110);
 
     brave_otomo02 = cc.Layer.create();
     this.addChild(brave_otomo02);
@@ -110,7 +118,7 @@ var game = cc.Layer.extend({
     this.addChild(brave_otomo03);
     cart = cc.Sprite.create(res.brave_otomo02_01 );
     brave_otomo03.addChild(cart, 0);
-    cart.setPosition(300, 120);
+    cart.setPosition(300, 110);
 
 
     //モンスター画像
@@ -124,7 +132,7 @@ var game = cc.Layer.extend({
     this.addChild(maou_otomo01);
     cart = cc.Sprite.create(res.maou_otomo01_01 );
     maou_otomo01.addChild(cart, 0);
-    cart.setPosition(300, 280);
+    cart.setPosition(300, 190);
 
     maou_otomo02 = cc.Layer.create();
     this.addChild(maou_otomo02);
@@ -136,7 +144,7 @@ var game = cc.Layer.extend({
     this.addChild(maou_otomo02);
     cart = cc.Sprite.create(res.maou_otomo02_01 );
     maou_otomo02.addChild(cart, 0);
-    cart.setPosition(200, 170);
+    cart.setPosition(200, 150);
 
 //--------リストのユニット
     maou_list01 = cc.Layer.create();
@@ -183,6 +191,17 @@ var game = cc.Layer.extend({
     maou_otomo03.addChild(otomo03, 0);
     otomo03.setPosition(80, otomo03x);
     maou_otomo03.setVisible(false);
+
+//-----------コスト
+cost01 = cc.LabelTTF.create("10     20       30      40      50", "Arial", 30);
+cost01.setColor(color);
+this.addChild(cost01); //文字つける時はこっち*/
+cost01.setPosition(size.width * 0.57,size.height * 0.05, 15);
+
+cost01 = cc.LabelTTF.create("所持コスト:110", "Arial", 30);
+cost01.setColor(color06);
+this.addChild(cost01); //文字つける時はこっち*/
+cost01.setPosition(size.width * 0.25,size.height * 0.8, 15);
 
 
     // タップイベントリスナーを登録する

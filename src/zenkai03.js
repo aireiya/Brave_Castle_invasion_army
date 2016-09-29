@@ -1,20 +1,20 @@
-//zenkai.js
+//zenkai03.js
 
 var color = cc.color(255, 0, 0, 128);
 var color02 = cc.color(255, 0, 255, 128);
 
-var zenkai = cc.Layer.extend({
+var zenkai03 = cc.Layer.extend({
     ctor: function() {
         this._super();
         var size = cc.director.getWinSize();
 
-        var drop01 = cc.Sprite.create(res.zenkai01_png);　
+        var drop01 = cc.Sprite.create(res.zenkai03_png);　
         drop01.setScale(0.5);
         drop01.setPosition(size.width * 0.5, size.height * 0.4);
         this.addChild(drop01);
 
         //遷移見出し
-        label01 = cc.LabelTTF.create("前回のプレゼン", "Arial", 40);
+        label01 = cc.LabelTTF.create("前回のプレゼン3", "Arial", 40);
         label01.setColor(255,255,255);
         this.addChild(label01); //文字つける時はこっち*/
         label01.setPosition(size.width * 0.5,size.height * 0.9, 15);
@@ -36,11 +36,11 @@ var zenkai = cc.Layer.extend({
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new ZenkaiScene02());
+        cc.director.runScene(new SeniScene());
       },
 });
 
-var ZenkaiScene = cc.Scene.extend({
+var ZenkaiScene03 = cc.Scene.extend({
     onEnter: function() {
         this._super();
 
@@ -48,7 +48,7 @@ var ZenkaiScene = cc.Scene.extend({
         var backgroundLayer = new cc.LayerColor(new cc.Color(140, 200, 140, 128));
         this.addChild(backgroundLayer);
 
-        var layer1 = new zenkai();
+        var layer1 = new zenkai03();
         this.addChild(layer1);
     }
 });

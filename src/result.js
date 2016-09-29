@@ -28,25 +28,25 @@ var result = cc.Layer.extend({
         label01.setPosition(size.width / 2,size.height * 0.8, 15);
 
         //攻略時間
-        var label02 = cc.LabelTTF.create("攻略時間：○○秒", "Arial", 30);
+        var label02 = cc.LabelTTF.create("攻略時間：110秒", "Arial", 30);
         label02.setColor(255,255,255);
         this.addChild(label02); //文字つける時はこっち*/
         label02.setPosition(size.width / 2,size.height * 0.6, 15);
 
         //YES NO
-        var label03 = cc.LabelTTF.create("敵撃破数：○○体", "Arial", 30);
+        var label03 = cc.LabelTTF.create("敵撃破数：52体", "Arial", 30);
         label03.setColor(255,255,255);
         this.addChild(label03); //文字つける時はこっち*/
         label03.setPosition(size.width / 2,size.height * 0.5, 15);
 
         //YES NO
-        var label04 = cc.LabelTTF.create("残存拠点HP：○○％", "Arial", 30);
+        var label04 = cc.LabelTTF.create("残存拠点HP：80％", "Arial", 30);
         label04.setColor(255,255,255);
         this.addChild(label04); //文字つける時はこっち*/
         label04.setPosition(size.width / 2,size.height * 0.4, 15);
 
         //YES NO
-        var label05 = cc.LabelTTF.create("ランク○！", "Arial", 30);
+        var label05 = cc.LabelTTF.create("ランク:A！", "Arial", 30);
         label05.setColor(color);
         this.addChild(label05); //文字つける時はこっち*/
         label05.setPosition(size.width * 0.7,size.height * 0.3, 15);

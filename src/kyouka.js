@@ -26,6 +26,12 @@ var power = cc.Layer.extend({
         this.addChild(label01); //文字つける時はこっち*/
         label01.setPosition(size.width * 0.5,size.height * 0.9, 15);
 
+        //ユニット強化
+        label02 = cc.LabelTTF.create("攻撃力\n体力", "Arial", 25);
+        label02.setColor(color);
+        this.addChild(label02); //文字つける時はこっち*/
+        label02.setPosition(size.width * 0.57,size.height * 0.75, 15);
+
         //ユニット1強化
         maou_unit01 = cc.Layer.create();
         this.addChild(maou_unit01);
@@ -35,9 +41,17 @@ var power = cc.Layer.extend({
 
         hosi01 = cc.Layer.create();
         this.addChild(hosi01);
-        cart = cc.Sprite.create(res.kyouka00_png );
+        cart = cc.Sprite.create(res.powgauge02_png );
+        hosi01.setScale(0.7);
         hosi01.addChild(cart, 0);
-        cart.setPosition(size.width * 0.4,size.height * 0.75, 15);
+        cart.setPosition(size.width * 0.25,size.height * 0.92, 15);
+
+        hp01 = cc.Layer.create();
+        this.addChild(hp01);
+        cart = cc.Sprite.create(res.hpgauge01_png );
+        hp01.setScale(0.7);
+        hp01.addChild(cart, 0);
+        cart.setPosition(size.width * 0.25,size.height * 0.82, 15);
 
         //ユニット2強化
         maou_unit02 = cc.Layer.create();
@@ -48,9 +62,17 @@ var power = cc.Layer.extend({
 
         hosi02 = cc.Layer.create();
         this.addChild(hosi02);
-        cart = cc.Sprite.create(res.kyouka02_png );
+        cart = cc.Sprite.create(res.powgauge03_png );
         hosi02.addChild(cart, 0);
-        cart.setPosition(size.width * 0.4,size.height * 0.6, 15);
+        hosi02.setScale(0.7);
+        cart.setPosition(size.width * 0.25,size.height * 0.7, 15);
+
+        hp02 = cc.Layer.create();
+        this.addChild(hp02);
+        cart = cc.Sprite.create(res.hpgauge04_png );
+        hp02.addChild(cart, 0);
+        hp02.setScale(0.7);
+        cart.setPosition(size.width * 0.25,size.height * 0.6, 15);
 
         //ユニット3
         maou_unit03 = cc.Layer.create();
@@ -61,9 +83,17 @@ var power = cc.Layer.extend({
 
         hosi03 = cc.Layer.create();
         this.addChild(hosi03);
-        cart = cc.Sprite.create(res.kyouka04_png );
+        cart = cc.Sprite.create(res.powgauge05_png );
         hosi03.addChild(cart, 0);
-        cart.setPosition(size.width * 0.4,size.height * 0.45, 15);
+        hosi03.setScale(0.7);
+        cart.setPosition(size.width * 0.25,size.height * 0.48, 15);
+
+        hp03 = cc.Layer.create();
+        this.addChild(hp03);
+        cart = cc.Sprite.create(res.hpgauge03_png );
+        hp03.addChild(cart, 0);
+        hp03.setScale(0.7);
+        cart.setPosition(size.width * 0.25,size.height * 0.38, 15);
 
         //ユニット4
         maou_unit04 = cc.Layer.create();
@@ -74,9 +104,17 @@ var power = cc.Layer.extend({
 
         hosi04 = cc.Layer.create();
         this.addChild(hosi04);
-        cart = cc.Sprite.create(res.kyouka03_png );
+        cart = cc.Sprite.create(res.powgauge02_png );
         hosi04.addChild(cart, 0);
-        cart.setPosition(size.width * 0.4,size.height * 0.3, 15);
+        hosi04.setScale(0.7);
+        cart.setPosition(size.width * 0.25,size.height * 0.26, 15);
+
+        hp04 = cc.Layer.create();
+        this.addChild(hp04);
+        cart = cc.Sprite.create(res.hpgauge06_png );
+        hp04.addChild(cart, 0);
+        hp04.setScale(0.7);
+        cart.setPosition(size.width * 0.25,size.height * 0.16, 15);
 
         //ユニット5
         maou_unit05 = cc.Layer.create();
@@ -87,9 +125,17 @@ var power = cc.Layer.extend({
 
         hosi05 = cc.Layer.create();
         this.addChild(hosi05);
-        cart = cc.Sprite.create(res.kyouka05_png );
+        cart = cc.Sprite.create(res.powgauge09_png );
         hosi05.addChild(cart, 0);
-        cart.setPosition(size.width * 0.4,size.height * 0.15, 15);
+        hosi05.setScale(0.7);
+        cart.setPosition(size.width * 0.25,size.height * 0.04, 15);
+
+        hp05 = cc.Layer.create();
+        this.addChild(hp05);
+        cart = cc.Sprite.create(res.hpgauge01_png );
+        hp05.addChild(cart, 0);
+        hp05.setScale(0.7);
+        cart.setPosition(size.width * 0.25,size.height * -0.06, 15);
 
 
 
@@ -127,12 +173,15 @@ var power = cc.Layer.extend({
         return true;
     },
       onTouchBegan: function(touch, event) {
-        return true;
+        if(touch.getLocation().x < 470 && touch.getLocation().y < 50 && touch.getLocation().x > 300 && touch.getLocation().y > 20 ){
+          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+          cc.director.runScene(new StageSelectScene());
+        }
       },
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new gameScene());
+        //cc.director.runScene(new gameScene());
       },
 });
 

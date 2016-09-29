@@ -4,6 +4,7 @@ var color = cc.color(255, 0, 0, 128);
 var color02 = cc.color(255, 0, 255, 128);
 var color04 = cc.color(230, 100, 0, 128);
 var color05 = cc.color(255, 30, 30, 128);
+var color06 = cc.color(0, 0, 2550, 128);
 
 var title = cc.Layer.extend({
     ctor: function() {
