@@ -36,7 +36,7 @@ var zenkai02 = cc.Layer.extend({
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new ZenkaiScene03());
+        cc.director.runScene(new SeniScene());
       },
 });
 

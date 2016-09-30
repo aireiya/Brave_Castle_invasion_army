@@ -46,17 +46,19 @@ var select = cc.Layer.extend({
         this.addChild(stage03); //文字つける時はこっち*/
         stage03.setPosition(size.width * 0.8,size.height * 0.6, 15);
 
+        /*
         //ステージ4
         stage04 = cc.LabelTTF.create("ステージ4", "Arial", 30);
         stage04.setColor(color03);
-        this.addChild(stage04); //文字つける時はこっち*/
+        this.addChild(stage04); //文字つける時はこっち
         stage04.setPosition(size.width * 0.4,size.height * 0.4, 15);
 
         //ステージ5
         stage05 = cc.LabelTTF.create("ステージ5", "Arial", 30);
         stage05.setColor(color03);
-        this.addChild(stage05); //文字つける時はこっち*/
+        this.addChild(stage05); //文字つける時はこっち
         stage05.setPosition(size.width * 0.7,size.height * 0.4, 15);
+        */
 
         //ステージ選んで
         label03 = cc.LabelTTF.create("<ステージを選ぶのです", "Arial", 25);
@@ -68,7 +70,7 @@ var select = cc.Layer.extend({
         drop01.setPosition(size.width / 5, size.height * 0.15);
         this.addChild(drop01);
 
-        //ステージ5
+        //ユニット強化
         unit = cc.LabelTTF.create("ユニット強化へ", "Arial", 30);
         unit.setColor(color02);
         this.addChild(unit); //文字つける時はこっち*/
@@ -92,6 +94,7 @@ var select = cc.Layer.extend({
       onTouchBegan: function(touch, event) {
         if(touch.getLocation().x < 300 && touch.getLocation().y < 200 && touch.getLocation().x > 175 && touch.getLocation().y > 180 ){
           console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+
           cc.director.runScene(new gameScene());
         }
         if(touch.getLocation().x < 500 && touch.getLocation().y < 50 && touch.getLocation().x > 290 && touch.getLocation().y > 20 ){

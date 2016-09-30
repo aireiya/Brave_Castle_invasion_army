@@ -19,7 +19,9 @@ var rane04;
 var rane05;
 
 var otomoset03;
-var otomo03x = 275;
+var otomo03x = 190;
+
+var copoint = 110;
 
 var color = cc.color(255, 0, 0, 128);
 var color02 = cc.color(255, 0, 255, 128);
@@ -189,7 +191,7 @@ var game = cc.Layer.extend({
     this.addChild(maou_otomo03);
     otomo03 = cc.Sprite.create(res.maou_otomo05_01 );
     maou_otomo03.addChild(otomo03, 0);
-    otomo03.setPosition(80, otomo03x);
+    otomo03.setPosition(100, otomo03x);
     maou_otomo03.setVisible(false);
 
 //-----------コスト
@@ -198,10 +200,10 @@ cost01.setColor(color);
 this.addChild(cost01); //文字つける時はこっち*/
 cost01.setPosition(size.width * 0.57,size.height * 0.05, 15);
 
-cost01 = cc.LabelTTF.create("所持コスト:110", "Arial", 30);
-cost01.setColor(color06);
-this.addChild(cost01); //文字つける時はこっち*/
-cost01.setPosition(size.width * 0.25,size.height * 0.8, 15);
+cost02 = cc.LabelTTF.create("所持コスト:" + copoint, "Arial", 30);
+cost02.setColor(color06);
+this.addChild(cost02); //文字つける時はこっち*/
+cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
 
 
     // タップイベントリスナーを登録する
@@ -217,11 +219,13 @@ cost01.setPosition(size.width * 0.25,size.height * 0.8, 15);
 },
   onTouchBegan: function(touch, event) {
     //ヒントのクリック判定
-    if(touch.getLocation().x < 90 && touch.getLocation().y < 280 && touch.getLocation().x > 70 && touch.getLocation().y > 270 ){
+    if(touch.getLocation().x < 100 && touch.getLocation().y < 200 && touch.getLocation().x > 70 && touch.getLocation().y > 150 ){
       console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
       console.log(unit05);
       if(unit01 == 1 || unit02 == 1 || unit03 == 1 || unit04 == 1 || unit05 == 1){
         console.log("しょーかん");
+        copoint = copoint - 50;
+        cost02.setString("所持コスト:" + copoint);
         maou_otomo03.setVisible(true);
         otomoset03 = 1;
 
@@ -232,9 +236,24 @@ cost01.setPosition(size.width * 0.25,size.height * 0.8, 15);
         console.log("たっちセカンド" + touch.getLocation().x +" " + touch.getLocation().y);
         unit05 = 1;
       }
-      cc.director.runScene(new ResultScene());
 
-    return true;
+      if(touch.getLocation().x < 200 && touch.getLocation().y < 300 && touch.getLocation().x > 15 && touch.getLocation().y > 290){
+        console.log("ざひょー" + touch.getLocation().x +" " + touch.getLocation().y);
+        cc.director.runScene(new ResultScene());
+      }
+
+      if(touch.getLocation().x < 475 && touch.getLocation().y < 300 && touch.getLocation().x > 290 && touch.getLocation().y > 290){
+        console.log("ざひょー" + touch.getLocation().x +" " + touch.getLocation().y);
+        cc.director.runScene(new GameOverScene());
+      }
+
+      if(touch.getLocation().x < 470 && touch.getLocation().y < 230 && touch.getLocation().x > 380 && touch.getLocation().y > 120){
+        console.log("ざひょー" + touch.getLocation().x +" " + touch.getLocation().y);
+        cc.director.runScene(new ZenkaiScene03());
+      }
+      //cc.director.runScene(new ResultScene());
+
+    //return true;
   },
   onTouchMoved: function(touch, event) {},
   onTouchEnded: function(touch, event) {},

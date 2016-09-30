@@ -83,12 +83,19 @@ var result = cc.Layer.extend({
         return true;
     },
       onTouchBegan: function(touch, event) {
-        return true;
+        if(touch.getLocation().x < 460 && touch.getLocation().y < 30 && touch.getLocation().x > 310 && touch.getLocation().y > 10 ){
+          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+          cc.director.runScene(new StageSelectScene());
+        }
+        if(touch.getLocation().x < 330 && touch.getLocation().y < 320 && touch.getLocation().x > 150 && touch.getLocation().y > 100 ){
+          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+          //cc.director.runScene(new GameOverScene());
+        }
       },
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new GameOverScene());
+        //cc.director.runScene(new GameOverScene());
       },
 });
 

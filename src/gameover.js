@@ -61,12 +61,23 @@ var gameover = cc.Layer.extend({
         return true;
     },
       onTouchBegan: function(touch, event) {
-        return true;
+        if(touch.getLocation().x < 210 && touch.getLocation().y < 150 && touch.getLocation().x > 120 && touch.getLocation().y > 110 ){
+          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+          cc.director.runScene(new gameScene());
+        }
+        if(touch.getLocation().x < 350 && touch.getLocation().y < 150 && touch.getLocation().x > 290 && touch.getLocation().y > 110 ){
+          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+          cc.director.runScene(new StageSelectScene());
+        }
+        if(touch.getLocation().x < 460 && touch.getLocation().y < 100 && touch.getLocation().x > 300 && touch.getLocation().y > 0 ){
+          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+          cc.director.runScene(new ZenkaiScene03());
+        }
       },
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new TitleScene());
+        //cc.director.runScene(new TitleScene());
       },
 });
 
