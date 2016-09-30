@@ -36,7 +36,8 @@ var zenkai02 = cc.Layer.extend({
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new SeniScene());
+        var a = cc.TransitionFade.create(2.0, new SeniScene());
+        cc.director.runScene(a);
       },
 });
 

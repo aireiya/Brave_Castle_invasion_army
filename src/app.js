@@ -239,17 +239,20 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
 
       if(touch.getLocation().x < 200 && touch.getLocation().y < 300 && touch.getLocation().x > 15 && touch.getLocation().y > 290){
         console.log("ざひょー" + touch.getLocation().x +" " + touch.getLocation().y);
-        cc.director.runScene(new ResultScene());
+        var a = cc.TransitionFade.create(2.0, new ResultScene());
+        cc.director.runScene(a);
       }
 
       if(touch.getLocation().x < 475 && touch.getLocation().y < 300 && touch.getLocation().x > 290 && touch.getLocation().y > 290){
         console.log("ざひょー" + touch.getLocation().x +" " + touch.getLocation().y);
-        cc.director.runScene(new GameOverScene());
+        var a = cc.TransitionFade.create(2.0, new GameOverScene());
+        cc.director.runScene(a);
       }
 
       if(touch.getLocation().x < 470 && touch.getLocation().y < 230 && touch.getLocation().x > 380 && touch.getLocation().y > 120){
         console.log("ざひょー" + touch.getLocation().x +" " + touch.getLocation().y);
-        cc.director.runScene(new ZenkaiScene03());
+        var a = cc.TransitionFade.create(2.0, new ZenkaiScene03());
+        cc.director.runScene(a);
       }
       //cc.director.runScene(new ResultScene());
 

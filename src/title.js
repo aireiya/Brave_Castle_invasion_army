@@ -67,7 +67,8 @@ var title = cc.Layer.extend({
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
         // 次のシーンに切り替える
-        cc.director.runScene(new ZenkaiScene());
+        var a = cc.TransitionFade.create(2.0, new ZenkaiScene());
+        cc.director.runScene(a);
       },
 });
 

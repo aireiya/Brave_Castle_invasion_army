@@ -183,7 +183,8 @@ var power = cc.Layer.extend({
       onTouchBegan: function(touch, event) {
         if(touch.getLocation().x < 470 && touch.getLocation().y < 50 && touch.getLocation().x > 300 && touch.getLocation().y > 20 ){
           console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
-          cc.director.runScene(new StageSelectScene());
+          var a = cc.TransitionFade.create(2.0, new StageSelectScene());
+          cc.director.runScene(a);
         }
         if(touch.getLocation().x < 230 && touch.getLocation().y < 265 && touch.getLocation().x > 35 && touch.getLocation().y > 220 ){
           console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);

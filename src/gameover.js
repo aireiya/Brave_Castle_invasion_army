@@ -63,15 +63,18 @@ var gameover = cc.Layer.extend({
       onTouchBegan: function(touch, event) {
         if(touch.getLocation().x < 210 && touch.getLocation().y < 150 && touch.getLocation().x > 120 && touch.getLocation().y > 110 ){
           console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
-          cc.director.runScene(new gameScene());
+          var a = cc.TransitionFade.create(2.0, new gameScene());
+          cc.director.runScene(a);
         }
         if(touch.getLocation().x < 350 && touch.getLocation().y < 150 && touch.getLocation().x > 290 && touch.getLocation().y > 110 ){
           console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
-          cc.director.runScene(new StageSelectScene());
+          var a = cc.TransitionFade.create(2.0, new StageSelectScene());
+          cc.director.runScene(a);
         }
         if(touch.getLocation().x < 460 && touch.getLocation().y < 100 && touch.getLocation().x > 300 && touch.getLocation().y > 0 ){
           console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
-          cc.director.runScene(new ZenkaiScene03());
+          var a = cc.TransitionFade.create(2.0, new ZenkaiScene03());
+          cc.director.runScene(a);
         }
       },
       onTouchMoved: function(touch, event) {},

@@ -95,11 +95,13 @@ var select = cc.Layer.extend({
         if(touch.getLocation().x < 300 && touch.getLocation().y < 200 && touch.getLocation().x > 175 && touch.getLocation().y > 180 ){
           console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
 
-          cc.director.runScene(new gameScene());
+          var a = cc.TransitionFade.create(2.0, new gameScene());
+          cc.director.runScene(a);
         }
         if(touch.getLocation().x < 500 && touch.getLocation().y < 50 && touch.getLocation().x > 290 && touch.getLocation().y > 20 ){
           console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
-          cc.director.runScene(new PowerSelectScene());
+          var a = cc.TransitionFade.create(2.0, new PowerSelectScene());
+          cc.director.runScene(a);
         }
       },
       onTouchMoved: function(touch, event) {},
