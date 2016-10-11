@@ -6,17 +6,15 @@ var detectedX;　 //現在タッチしているX座標
 var savedX;　 //前回タッチしていたX座標
 var touching = false;　 //タッチ状況管理用flag
 
-var unit01 = 0;
-var unit02 = 0;
-var unit03 = 0;
-var unit04 = 0;
-var unit05 = 0;
+var unitup = 0;
 
 var rane01;
 var rane02;
 var rane03;
 var rane04;
 var rane05;
+
+var upcos = 0;;
 
 var otomoset03;
 var otomo03x = 190;
@@ -41,6 +39,7 @@ var game = cc.Layer.extend({
     this._super();
     //グラデーション背景
     //  var backgroundLayer = cc.LayerGradient.create(cc.color(0,0,0,255), cc.color(0x46,0x82,0xB4,255));
+    this.scheduleUpdate();
 
     //森の背景
     var background = new cc.Sprite(res.background_png);
@@ -81,14 +80,6 @@ var game = cc.Layer.extend({
     camp01.addChild(cart, 0);
     cart.setPosition(0, 150);
 
-    //ユニットボックス
-    unitbox01 = cc.Layer.create();
-    this.addChild(unitbox01);
-    cart = cc.Sprite.create(res.unit_box_png );
-    unitbox01.addChild(cart, 0);
-    unitbox01.setScale(1);
-    cart.setPosition(250, 20);
-
     //拠点ゲージ
     csbar = cc.Layer.create();
     this.addChild(csbar);
@@ -122,62 +113,12 @@ var game = cc.Layer.extend({
     brave_otomo03.addChild(cart, 0);
     cart.setPosition(300, 110);
 
-
-    //モンスター画像
-    maou_otomo01 = cc.Layer.create();
-    this.addChild(maou_otomo01);
-    cart = cc.Sprite.create(res.maou_otomo01_01 );
-    maou_otomo01.addChild(cart, 0);
-    cart.setPosition(170, 70);
-
-    maou_otomo01 = cc.Layer.create();
-    this.addChild(maou_otomo01);
-    cart = cc.Sprite.create(res.maou_otomo01_01 );
-    maou_otomo01.addChild(cart, 0);
-    cart.setPosition(300, 190);
-
-    maou_otomo02 = cc.Layer.create();
-    this.addChild(maou_otomo02);
-    cart = cc.Sprite.create(res.maou_otomo02_01 );
-    maou_otomo02.addChild(cart, 0);
-    cart.setPosition(250, 230);
-
-    maou_otomo02 = cc.Layer.create();
-    this.addChild(maou_otomo02);
-    cart = cc.Sprite.create(res.maou_otomo02_01 );
-    maou_otomo02.addChild(cart, 0);
-    cart.setPosition(200, 150);
-
 //--------リストのユニット
-    maou_list01 = cc.Layer.create();
-    this.addChild(maou_list01);
-    cart = cc.Sprite.create(res.maou_otomo01_01 );
-    maou_list01.addChild(cart, 0);
-    cart.setPosition(80, 20);
-
-    maou_list02 = cc.Layer.create();
-    this.addChild(maou_list02);
-    cart = cc.Sprite.create(res.maou_otomo02_01 );
-    maou_list02.addChild(cart, 0);
-    cart.setPosition(160, 20);
-
-    maou_list03 = cc.Layer.create();
-    this.addChild(maou_list03);
-    cart = cc.Sprite.create(res.maou_otomo03_01 );
-    maou_list03.addChild(cart, 0);
-    cart.setPosition(250, 20);
-
-    maou_list04 = cc.Layer.create();
-    this.addChild(maou_list04);
-    cart = cc.Sprite.create(res.maou_otomo04_01 );
-    maou_list04.addChild(cart, 0);
-    cart.setPosition(330, 20);
-
-    maou_list05 = cc.Layer.create();
-    this.addChild(maou_list05);
-    cart = cc.Sprite.create(res.maou_otomo05_01 );
-    maou_list05.addChild(cart, 0);
-    cart.setPosition(420, 20);
+    unitbar = cc.Layer.create();
+    this.addChild(unitbar);
+    bar = cc.Sprite.create(res.unitbar_png );
+    unitbar.addChild(bar, 0);
+    bar.setPosition(240, 20);
 
 //----------戦闘エフェクト
     kemuri = cc.Layer.create();
@@ -187,19 +128,43 @@ var game = cc.Layer.extend({
     cart.setPosition(190, 70);
 
 //-----------隠してるやつ
+
+    maou_otomo01 = cc.Layer.create();
+    this.addChild(maou_otomo01);
+    otomo01 = cc.Sprite.create(res.maou_otomo01_01 );
+    maou_otomo01.addChild(otomo01, 0);
+    otomo01.setPosition(100, otomo03x);
+    maou_otomo01.setVisible(false);
+
+    maou_otomo02 = cc.Layer.create();
+    this.addChild(maou_otomo02);
+    otomo02 = cc.Sprite.create(res.maou_otomo02_01 );
+    maou_otomo02.addChild(otomo02, 0);
+    otomo02.setPosition(100, otomo03x);
+    maou_otomo02.setVisible(false);
+
     maou_otomo03 = cc.Layer.create();
     this.addChild(maou_otomo03);
-    otomo03 = cc.Sprite.create(res.maou_otomo05_01 );
+    otomo03 = cc.Sprite.create(res.maou_otomo03_01 );
     maou_otomo03.addChild(otomo03, 0);
     otomo03.setPosition(100, otomo03x);
     maou_otomo03.setVisible(false);
 
-//-----------コスト
-cost01 = cc.LabelTTF.create("10     20       30      40      50", "Arial", 30);
-cost01.setColor(color);
-this.addChild(cost01); //文字つける時はこっち*/
-cost01.setPosition(size.width * 0.57,size.height * 0.05, 15);
+    maou_otomo04 = cc.Layer.create();
+    this.addChild(maou_otomo04);
+    otomo04 = cc.Sprite.create(res.maou_otomo04_01 );
+    maou_otomo04.addChild(otomo04, 0);
+    otomo04.setPosition(100, otomo03x);
+    maou_otomo04.setVisible(false);
 
+    maou_otomo05 = cc.Layer.create();
+    this.addChild(maou_otomo05);
+    otomo05 = cc.Sprite.create(res.maou_otomo05_01 );
+    maou_otomo05.addChild(otomo05, 0);
+    otomo05.setPosition(100, otomo03x);
+    maou_otomo05.setVisible(false);
+
+//-----------コスト
 cost02 = cc.LabelTTF.create("所持コスト:" + copoint, "Arial", 30);
 cost02.setColor(color06);
 this.addChild(cost02); //文字つける時はこっち*/
@@ -219,41 +184,83 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
 },
   onTouchBegan: function(touch, event) {
     //ヒントのクリック判定
-    if(touch.getLocation().x < 100 && touch.getLocation().y < 200 && touch.getLocation().x > 70 && touch.getLocation().y > 150 ){
+    //--------------レーンリスト------------------
+    if(touch.getLocation().x < 100 && touch.getLocation().y < 200 && touch.getLocation().x > 50 && touch.getLocation().y > 150 ){
       console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
-      console.log(unit05);
-      if(unit01 == 1 || unit02 == 1 || unit03 == 1 || unit04 == 1 || unit05 == 1){
-        console.log("しょーかん");
-        copoint = copoint - 50;
+      switch(unitup){
+        case 1:
+        console.log("しょーかん1ユニ");
+        copoint = copoint - 10;
+        cost02.setString("所持コスト:" + copoint);
+        maou_otomo01.setVisible(true);
+        //otomoset01 = 1;
+        unitup = 0;
+        break;
+
+        case 2:
+        console.log("しょーかん2ユニ");
+        copoint = copoint - 20;
+        cost02.setString("所持コスト:" + copoint);
+        maou_otomo02.setVisible(true);
+        //otomoset02 = 1;
+        unitup = 0;
+        break;
+
+        case 3:
+        console.log("しょーかん3ユニ");
+        copoint = copoint - 30;
         cost02.setString("所持コスト:" + copoint);
         maou_otomo03.setVisible(true);
-        otomoset03 = 1;
+        //otomoset03 = 1;
+        unitup = 0;
+        break;
 
+        case 4:
+        console.log("しょーかん4ユニ");
+        copoint = copoint - 40;
+        cost02.setString("所持コスト:" + copoint);
+        maou_otomo04.setVisible(true);
+        //otomoset04 = 1;
+        unitup = 0;
+        break;
+
+        case 5:
+        console.log("しょーかん2ユニ");
+        copoint = copoint - 50;
+        cost02.setString("所持コスト:" + copoint);
+        maou_otomo05.setVisible(true);
+        //otomoset05 = 1;
+        unitup = 0;
+        break;
       }
     }
+//-------------------ユニットリスト-------------------
+//y軸固定
+      if( touch.getLocation().y < 37 &&  touch.getLocation().y > 0){
 
-      if(touch.getLocation().x < 460 && touch.getLocation().y < 30 && touch.getLocation().x > 400 && touch.getLocation().y > 15){
-        console.log("たっちセカンド" + touch.getLocation().x +" " + touch.getLocation().y);
-        unit05 = 1;
+        //--------------ユニット1--------------
+        if(touch.getLocation().x < 99 && touch.getLocation().x > 5 ){   console.log("たっちセカンド1ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+          unitup = 1;
+        }
+        //--------------ユニット2--------------
+        if(touch.getLocation().x < 193 && touch.getLocation().x > 100 ){  console.log("たっちセカンド2ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+          unitup = 2;
+        }
+        //--------------ユニット3--------------
+        if(touch.getLocation().x < 285 && touch.getLocation().x > 194 ){  console.log("たっちセカンド3ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+          unitup = 3;
+        }
+        //--------------ユニット4--------------
+        if(touch.getLocation().x < 380 && touch.getLocation().x > 286 ){  console.log("たっちセカンド4ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+          unitup = 4;
+        }
+        //--------------ユニット5--------------
+        if(touch.getLocation().x < 475 && touch.getLocation().x > 381 ){  console.log("たっちセカンド5ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+          unitup = 5;
+        }
+
       }
 
-      if(touch.getLocation().x < 200 && touch.getLocation().y < 300 && touch.getLocation().x > 15 && touch.getLocation().y > 290){
-        console.log("ざひょー" + touch.getLocation().x +" " + touch.getLocation().y);
-        var a = cc.TransitionFade.create(2.0, new ResultScene());
-        cc.director.runScene(a);
-      }
-
-      if(touch.getLocation().x < 475 && touch.getLocation().y < 300 && touch.getLocation().x > 290 && touch.getLocation().y > 290){
-        console.log("ざひょー" + touch.getLocation().x +" " + touch.getLocation().y);
-        var a = cc.TransitionFade.create(2.0, new GameOverScene());
-        cc.director.runScene(a);
-      }
-
-      if(touch.getLocation().x < 470 && touch.getLocation().y < 230 && touch.getLocation().x > 380 && touch.getLocation().y > 120){
-        console.log("ざひょー" + touch.getLocation().x +" " + touch.getLocation().y);
-        var a = cc.TransitionFade.create(2.0, new ZenkaiScene03());
-        cc.director.runScene(a);
-      }
       //cc.director.runScene(new ResultScene());
 
     //return true;
@@ -261,12 +268,21 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
   onTouchMoved: function(touch, event) {},
   onTouchEnded: function(touch, event) {},
 
-  //アップデート
+  //アップデート まだ未実装
   update: function(dt) {
-    if(otomoset03 == 1){
+    /*if(otomoset03 == 1){
       otomo03x += 5;
       otomo03.setPosition(80, otomo03x);
       console.log(otomo03x);
+    }*/
+
+    upcos++;
+    if(upcos == 50){
+      copoint++;
+      cost02.setString("所持コスト:" + copoint);
+      upcos = 0;
     }
+
+    //console.log("あっぷでーと");
   },
 });

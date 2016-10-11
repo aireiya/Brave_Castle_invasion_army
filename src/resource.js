@@ -67,6 +67,8 @@ var res = {
 
     caslebar_png : "res/caslebar.png",
 
+    unitbar_png : "res/gazo/unitbar.png",
+
 
 };
 
