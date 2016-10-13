@@ -17,7 +17,11 @@ var rane05;
 var upcos = 0;;
 
 var otomoset03;
-var otomo03x = 190;
+var otomo01x = 230;
+var otomo02x = 190;
+var otomo03x = 150;
+var otomo04x = 110;
+var otomo04x = 70;
 
 var copoint = 110;
 
@@ -133,35 +137,35 @@ var game = cc.Layer.extend({
     this.addChild(maou_otomo01);
     otomo01 = cc.Sprite.create(res.maou_otomo01_01 );
     maou_otomo01.addChild(otomo01, 0);
-    otomo01.setPosition(100, otomo03x);
+    otomo01.setPosition(100, otomo01x);
     maou_otomo01.setVisible(false);
 
     maou_otomo02 = cc.Layer.create();
     this.addChild(maou_otomo02);
     otomo02 = cc.Sprite.create(res.maou_otomo02_01 );
     maou_otomo02.addChild(otomo02, 0);
-    otomo02.setPosition(100, otomo03x);
+    otomo02.setPosition(100, otomo01x);
     maou_otomo02.setVisible(false);
 
     maou_otomo03 = cc.Layer.create();
     this.addChild(maou_otomo03);
     otomo03 = cc.Sprite.create(res.maou_otomo03_01 );
     maou_otomo03.addChild(otomo03, 0);
-    otomo03.setPosition(100, otomo03x);
+    otomo03.setPosition(100, otomo01x);
     maou_otomo03.setVisible(false);
 
     maou_otomo04 = cc.Layer.create();
     this.addChild(maou_otomo04);
     otomo04 = cc.Sprite.create(res.maou_otomo04_01 );
     maou_otomo04.addChild(otomo04, 0);
-    otomo04.setPosition(100, otomo03x);
+    otomo04.setPosition(100, otomo01x);
     maou_otomo04.setVisible(false);
 
     maou_otomo05 = cc.Layer.create();
     this.addChild(maou_otomo05);
     otomo05 = cc.Sprite.create(res.maou_otomo05_01 );
     maou_otomo05.addChild(otomo05, 0);
-    otomo05.setPosition(100, otomo03x);
+    otomo05.setPosition(100, otomo01x);
     maou_otomo05.setVisible(false);
 
 //-----------コスト
@@ -185,7 +189,8 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
   onTouchBegan: function(touch, event) {
     //ヒントのクリック判定
     //--------------レーンリスト------------------
-    if(touch.getLocation().x < 100 && touch.getLocation().y < 200 && touch.getLocation().x > 50 && touch.getLocation().y > 150 ){
+    if(touch.getLocation().x < 100 && touch.getLocation().x > 50  ){
+      if(touch.getLocation().y > 220 && touch.getLocation().y < 240){
       console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
       switch(unitup){
         case 1:
@@ -232,6 +237,7 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
         //otomoset05 = 1;
         unitup = 0;
         break;
+        }
       }
     }
 //-------------------ユニットリスト-------------------
@@ -271,9 +277,9 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
   //アップデート まだ未実装
   update: function(dt) {
     /*if(otomoset03 == 1){
-      otomo03x += 5;
-      otomo03.setPosition(80, otomo03x);
-      console.log(otomo03x);
+      otomo02x += 5;
+      otomo03.setPosition(80, otomo02x);
+      console.log(otomo02x);
     }*/
 
     upcos++;
