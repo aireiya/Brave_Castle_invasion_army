@@ -68,6 +68,8 @@ var res = {
     caslebar_png : "res/caslebar.png",
 
     unitbar_png : "res/gazo/unitbar.png",
+    unit_plist : "res/spritesheet.plist",
+    unit_png : "res/spritesheet.png"
 
 
 };

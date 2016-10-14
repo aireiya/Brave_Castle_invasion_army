@@ -17,13 +17,24 @@ var rane05;
 var upcos = 0;;
 
 var otomoset03;
-var otomo01x = 230;
-var otomo02x = 190;
-var otomo03x = 150;
-var otomo04x = 110;
-var otomo04x = 70;
+var otomo01y = 230;
+var otomo02y = 190;
+var otomo03y = 150;
+var otomo04y = 110;
+var otomo05y = 70;
+
+var otomo02x = 80;
 
 var copoint = 110;
+
+var moveon01 = 0;
+var moveon02 = 0;
+var moveon03 = 0;
+var moveon04 = 0;
+var moveon05 = 0;
+
+var unitArray = [];
+var unitLayer;
 
 var color = cc.color(255, 0, 0, 128);
 var color02 = cc.color(255, 0, 255, 128);
@@ -44,6 +55,14 @@ var game = cc.Layer.extend({
     //グラデーション背景
     //  var backgroundLayer = cc.LayerGradient.create(cc.color(0,0,0,255), cc.color(0x46,0x82,0xB4,255));
     this.scheduleUpdate();
+
+    //スプライトシート読み込み
+    cache = cc.spriteFrameCache;
+    cache.addSpriteFrames(res.unit_plist, res.unit_png);
+    //cache.getSpriteFrame()
+
+    unitLayer = cc.Layer.create();
+    this.addChild(unitLayer);
 
     //森の背景
     var background = new cc.Sprite(res.background_png);
@@ -95,25 +114,25 @@ var game = cc.Layer.extend({
     //人画像
     brave_otomo01 = cc.Layer.create();
     this.addChild(brave_otomo01);
-    cart = cc.Sprite.create(res.brave_otomo01_01 );
-    brave_otomo01.addChild(cart, 0);
-    cart.setPosition(240, 150);
-
-    brave_otomo01 = cc.Layer.create();
-    this.addChild(brave_otomo01);
-    cart = cc.Sprite.create(res.brave_otomo01_01 );
-    brave_otomo01.addChild(cart, 0);
-    cart.setPosition(250, 110);
+    brave01 = cc.Sprite.create(cache.getSpriteFrame("brave_otomo03_02"));
+    brave_otomo01.addChild(brave01, 0);
+    brave01.setPosition(150, 150);
 
     brave_otomo02 = cc.Layer.create();
     this.addChild(brave_otomo02);
-    cart = cc.Sprite.create(res.brave_otomo02_01 );
+    brave02 = cc.Sprite.create(cache.getSpriteFrame("brave_otomo01_02") );
+    brave_otomo02.addChild(brave02, 0);
+    brave02.setPosition(250, 110);
+
+    brave_otomo02 = cc.Layer.create();
+    this.addChild(brave_otomo02);
+    cart = cc.Sprite.create(cache.getSpriteFrame("brave_otomo05_02") );
     brave_otomo02.addChild(cart, 0);
     cart.setPosition(210, 70);
 
     brave_otomo03 = cc.Layer.create();
     this.addChild(brave_otomo03);
-    cart = cc.Sprite.create(res.brave_otomo02_01 );
+    cart = cc.Sprite.create(cache.getSpriteFrame("brave_otomo04_02") );
     brave_otomo03.addChild(cart, 0);
     cart.setPosition(300, 110);
 
@@ -137,35 +156,35 @@ var game = cc.Layer.extend({
     this.addChild(maou_otomo01);
     otomo01 = cc.Sprite.create(res.maou_otomo01_01 );
     maou_otomo01.addChild(otomo01, 0);
-    otomo01.setPosition(100, otomo01x);
+    otomo01.setPosition(100, otomo01y);
     maou_otomo01.setVisible(false);
 
     maou_otomo02 = cc.Layer.create();
     this.addChild(maou_otomo02);
     otomo02 = cc.Sprite.create(res.maou_otomo02_01 );
     maou_otomo02.addChild(otomo02, 0);
-    otomo02.setPosition(100, otomo01x);
+    otomo02.setPosition(100, otomo01y);
     maou_otomo02.setVisible(false);
 
     maou_otomo03 = cc.Layer.create();
     this.addChild(maou_otomo03);
     otomo03 = cc.Sprite.create(res.maou_otomo03_01 );
     maou_otomo03.addChild(otomo03, 0);
-    otomo03.setPosition(100, otomo01x);
+    otomo03.setPosition(100, otomo01y);
     maou_otomo03.setVisible(false);
 
     maou_otomo04 = cc.Layer.create();
     this.addChild(maou_otomo04);
     otomo04 = cc.Sprite.create(res.maou_otomo04_01 );
     maou_otomo04.addChild(otomo04, 0);
-    otomo04.setPosition(100, otomo01x);
+    otomo04.setPosition(100, otomo01y);
     maou_otomo04.setVisible(false);
 
     maou_otomo05 = cc.Layer.create();
     this.addChild(maou_otomo05);
     otomo05 = cc.Sprite.create(res.maou_otomo05_01 );
     maou_otomo05.addChild(otomo05, 0);
-    otomo05.setPosition(100, otomo01x);
+    otomo05.setPosition(100, otomo01y);
     maou_otomo05.setVisible(false);
 
 //-----------コスト
@@ -197,8 +216,10 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
         console.log("しょーかん1ユニ");
         copoint = copoint - 10;
         cost02.setString("所持コスト:" + copoint);
-        maou_otomo01.setVisible(true);
+        //maou_otomo01.setVisible(true);
         //otomoset01 = 1;
+        addunit();
+
         unitup = 0;
         break;
 
@@ -207,6 +228,7 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
         copoint = copoint - 20;
         cost02.setString("所持コスト:" + copoint);
         maou_otomo02.setVisible(true);
+        moveon02 = 1;
         //otomoset02 = 1;
         unitup = 0;
         break;
@@ -218,6 +240,7 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
         maou_otomo03.setVisible(true);
         //otomoset03 = 1;
         unitup = 0;
+        moveon03 = 1;
         break;
 
         case 4:
@@ -227,6 +250,7 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
         maou_otomo04.setVisible(true);
         //otomoset04 = 1;
         unitup = 0;
+        moveon04 = 1;
         break;
 
         case 5:
@@ -236,6 +260,7 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
         maou_otomo05.setVisible(true);
         //otomoset05 = 1;
         unitup = 0;
+        moveon05 = 1;
         break;
         }
       }
@@ -276,11 +301,11 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
 
   //アップデート まだ未実装
   update: function(dt) {
-    /*if(otomoset03 == 1){
-      otomo02x += 5;
-      otomo03.setPosition(80, otomo02x);
+    if(moveon02 == 1){
+      otomo02x += 1;
+      otomo02.setPosition(otomo02x, otomo01y);
       console.log(otomo02x);
-    }*/
+    }
 
     upcos++;
     if(upcos == 50){
@@ -290,5 +315,16 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
     }
 
     //console.log("あっぷでーと");
-  },
+  }
 });
+function addunit(/*row, col*/) {
+  //var randomTile = Math.floor(Math.random() * tileTypes.length);
+
+  var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
+  unitLayer.addChild(sprite, 0);
+  //sprite.val = randomTile;
+  //unitLayer.addChild(sprite, 0);
+  sprite.setPosition(100,otomo01x);
+  //unitArray[row][col] = sprite; //タイルを管理する配列に格納
+  console.log("うぉぉん");
+}

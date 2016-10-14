@@ -15,10 +15,10 @@
         </dict>
         <key>frames</key>
         <dict>
-            <key>maou_otomo_01_01.png</key>
+            <key>maou_otomo01_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{8,8},{32,39}}</string>
+                <string>{{8,8},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -28,10 +28,10 @@
                 <key>sourceSize</key>
                 <string>{24,31}</string>
             </dict>
-            <key>maou_otomo01_02.png</key>
+            <key>maou_otomo01_02</key>
             <dict>
                 <key>frame</key>
-                <string>{{40,8},{64,39}}</string>
+                <string>{{40,8},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -41,10 +41,10 @@
                 <key>sourceSize</key>
                 <string>{24,31}</string>
             </dict>
-            <key>maou_otomo01_03.png</key>
+            <key>maou_otomo01_03</key>
             <dict>
                 <key>frame</key>
-                <string>{{72,8},{96,39}}</string>
+                <string>{{72,8},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -54,24 +54,10 @@
                 <key>sourceSize</key>
                 <string>{24,31}</string>
             </dict>
-            <key>maou_otomo02_01.png</key>
+            <key>maou_otomo02_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{8,48},{32,79}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{24,31}}</string>
-                <key>sourceSize</key>
-                <string>{24,31}</string>
-            </dict>
-            
-            <key>maou_otomo02_02.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{40,48},{64,79}}</string>
+                <string>{{8,48},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -82,10 +68,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>maou_otomo02_03.png</key>
+            <key>maou_otomo02_02</key>
             <dict>
                 <key>frame</key>
-                <string>{{72,48},{96,79}}</string>
+                <string>{{40,48},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -96,10 +82,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>maou_otomo03_01.png</key>
+            <key>maou_otomo02_03</key>
             <dict>
                 <key>frame</key>
-                <string>{{8,88},{32,119}}</string>
+                <string>{{72,48},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -110,10 +96,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>maou_otomo03_02.png</key>
+            <key>maou_otomo03_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{40,88},{65,119}}</string>
+                <string>{{8,88},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,10 +110,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>maou_otomo03_03.png</key>
+            <key>maou_otomo03_02</key>
             <dict>
                 <key>frame</key>
-                <string>{{72,88},{96,119}}</string>
+                <string>{{40,88},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -138,10 +124,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>maou_otomo04_01.png</key>
+            <key>maou_otomo03_03</key>
             <dict>
                 <key>frame</key>
-                <string>{{8,128},{32,159}}</string>
+                <string>{{72,88},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -152,10 +138,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>maou_otomo04_02.png</key>
+            <key>maou_otomo04_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{40,128},{64,159}}</string>
+                <string>{{8,128},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -166,10 +152,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>maou_otomo04_03.png</key>
+            <key>maou_otomo04_02</key>
             <dict>
                 <key>frame</key>
-                <string>{{72,128},{96,159}}</string>
+                <string>{{40,128},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -180,10 +166,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>maou_otomo05_01.png</key>
+            <key>maou_otomo04_03</key>
             <dict>
                 <key>frame</key>
-                <string>{{8,168},{26,191}}</string>
+                <string>{{72,128},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -194,10 +180,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>maou_otomo05_02.png</key>
+            <key>maou_otomo05_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{40,168},{58,191}}</string>
+                <string>{{8,168},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -208,10 +194,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>maou_otomo05_03.png</key>
+            <key>maou_otomo05_02</key>
             <dict>
                 <key>frame</key>
-                <string>{{72,168},{90,191}}</string>
+                <string>{{40,168},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -222,10 +208,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo01_01.png</key>
+            <key>maou_otomo05_03</key>
             <dict>
                 <key>frame</key>
-                <string>{{104,8},{128,39}}</string>
+                <string>{{72,168},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -236,10 +222,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo01_02.png</key>
+            <key>brave_otomo01_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{136,8},{160,39}}</string>
+                <string>{{104,8},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -250,10 +236,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo01_03.png</key>
+            <key>brave_otomo01_02</key>
             <dict>
                 <key>frame</key>
-                <string>{{168,8},{192,39}}</string>
+                <string>{{136,8},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -264,10 +250,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo02_01.png</key>
+            <key>brave_otomo01_03</key>
             <dict>
                 <key>frame</key>
-                <string>{{104,48},{128,79}}</string>
+                <string>{{168,8},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -278,10 +264,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo02_02.png</key>
+            <key>brave_otomo02_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{135,48},{159,79}}</string>
+                <string>{{104,48},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -292,10 +278,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo02_03.png</key>
+            <key>brave_otomo02_02</key>
             <dict>
                 <key>frame</key>
-                <string>{{168,48},{192,79}}</string>
+                <string>{{135,48},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -306,10 +292,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo03_01.png</key>
+            <key>brave_otomo02_03</key>
             <dict>
                 <key>frame</key>
-                <string>{{104,88},{128,119}}</string>
+                <string>{{168,48},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -320,10 +306,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo03_01.png</key>
+            <key>brave_otomo03_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{104,88},{128,119}}</string>
+                <string>{{104,88},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -334,10 +320,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo03_02.png</key>
+            <key>brave_otomo03_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{136,88},{160,119}}</string>
+                <string>{{104,88},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -348,10 +334,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo03_03.png</key>
+            <key>brave_otomo03_02</key>
             <dict>
                 <key>frame</key>
-                <string>{{168,88},{192,119}}</string>
+                <string>{{136,88},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -362,10 +348,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo04_01.png</key>
+            <key>brave_otomo03_03</key>
             <dict>
                 <key>frame</key>
-                <string>{{104,128},{128,159}}</string>
+                <string>{{168,88},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -376,10 +362,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo04_02.png</key>
+            <key>brave_otomo04_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{136,128},{160,159}}</string>
+                <string>{{104,128},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -390,10 +376,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo04_03.png</key>
+            <key>brave_otomo04_02</key>
             <dict>
                 <key>frame</key>
-                <string>{{168,128},{192,159}}</string>
+                <string>{{136,128},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -404,10 +390,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo05_01.png</key>
+            <key>brave_otomo04_03</key>
             <dict>
                 <key>frame</key>
-                <string>{{136,88},{160,119}}</string>
+                <string>{{168,128},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -418,10 +404,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo05_02.png</key>
+            <key>brave_otomo05_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{136,168},{160,199}}</string>
+                <string>{{136,88},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -432,10 +418,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>brave_otomo05_03.png</key>
+            <key>brave_otomo05_02</key>
             <dict>
                 <key>frame</key>
-                <string>{{168,168},{192,199}}</string>
+                <string>{{136,168},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -446,10 +432,10 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>yuusha_01.png</key>
+            <key>brave_otomo05_03</key>
             <dict>
                 <key>frame</key>
-                <string>{{104,208},{128,239}}</string>
+                <string>{{168,168},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -460,10 +446,24 @@
                 <string>{24,31}</string>
             </dict>
             
-            <key>yuusha_02.png</key>
+            <key>yuusha_01</key>
             <dict>
                 <key>frame</key>
-                <string>{{168,208},{192,239}}</string>
+                <string>{{104,208},{24,31}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{24,31}}</string>
+                <key>sourceSize</key>
+                <string>{24,31}</string>
+            </dict>
+            
+            <key>yuusha_02</key>
+            <dict>
+                <key>frame</key>
+                <string>{{168,208},{24,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
