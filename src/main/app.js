@@ -36,7 +36,10 @@ var moveon05 = 0;
 var unitx01 = 0;
 
 var unitArray01 = [];
+var unitArray01x = [];
+var array01 = 0;
 var unitLayer;
+var array01i = 0;
 
 var addunit;
 var unit;
@@ -52,6 +55,10 @@ var gameScene = cc.Scene.extend({
     gameLayer = new game();
     gameLayer.init();
     this.addChild(gameLayer);
+
+    otomounit = new addunit();
+    otomounit.init();
+    this.addChild(otomounit);
 
   }
 });
@@ -180,25 +187,41 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
 //◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆gameおわり◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
 //addunit.addItem();
  addunit = cc.Layer.extend({
-   addItem: function() {
-  unit = new Unit();
-  this.addChild(unit);
-},
+
+   ctor: function(){
+      this._super();
+      //unit = new Unit();
+      //this.addChild(unit);
+
+     },
+    addItem:function(){
+      unit = new Unit();
+      this.addChild(unit);
+    },
+
 });
 
 var Unit = cc.Sprite.extend({
   ctor: function() {
     this._super();
     //this.initWithFile(cache.getSpriteFrame("maou_otomo01_01"));
+    //this.initWithFile(cache.getSpriteFrame("maou_otomo01_01"));
     var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
+    sprite.setPosition(100, otomo01y);
+    unitArray01x.push(100);
     unitArray01.push(sprite);
-    brave_otomo02.addChild(brave02, 0);
+
+    this.addChild(unitArray01[array01]);
+    console.log(unitArray01x.length);
+    array01++;
 
     console.log("うぉぉん");
 
+    this.scheduleUpdate();
+
   },
   //アイテムが生成された後、描画されるときに実行
-  onEnter: function() {
+  /*onEnter: function() {
     this._super();
     //レーン1の左から
     this.setPosition(100,otomo01y);
@@ -206,8 +229,16 @@ var Unit = cc.Sprite.extend({
     var moveAction = cc.MoveTo.create(400, otomo01y);
     this.runAction(moveAction);
     this.scheduleUpdate();
-  },
+  },*/
   update: function(dt) {
+    if(array01i < unitArray01.length){
+      unitArray01x[array01i] = unitArray01x[array01i] + 1;
 
+      console.log(unitArray01[array01i ] + "いちー"　+ unitArray01x[array01i]);
+
+      unitArray01[array01i].setPosition(unitArray01x[array01i ], otomo01y);
+      array01i ++;
+    }
+    else array01i  = 0;
   },
 });

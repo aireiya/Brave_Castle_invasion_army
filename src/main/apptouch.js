@@ -15,10 +15,9 @@ onTouchBegan: function(touch, event) {
       cost02.setString("所持コスト:" + copoint);
       //maou_otomo01.setVisible(true);
       //otomoset01 = 1;
-      addunit();
+      otomounit.addItem();
       //this.schedule(this.addunit, 1);
       //リスナーでイベントキャッチ　ontouthch addunitメソッドを呼び出す
-      unitLayer.addChild(unit, 1);
 
       unitup = 0;
       break;
