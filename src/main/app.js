@@ -199,6 +199,7 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
   //アップデート
   update: function(dt) {
 
+//-------出撃可能判定
     if(copoint >= 50){
       no01.setVisible(false);
       no02.setVisible(false);
@@ -231,7 +232,7 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
         }
       }
     }
-
+//--------時間毎コストアップ
     upcos++;
     if(upcos == 50){
       copoint++;
@@ -318,8 +319,12 @@ var Unit = cc.Sprite.extend({
       unitArray01x[array01i] = unitArray01x[array01i] + 1;
 
       //console.log(unitArray01[array01i ] + "いちー"　+ unitArray01x[array01i]);
-
       unitArray01[array01i].setPosition(unitArray01x[array01i], unitArray01y[array01i]);
+
+        if(unitArray01[array01i].getPositionX() > 400){
+          unitArray01[array01i].setPosition(400, unitArray01y[array01i]);
+          //■ここに城HPを減らす処理をつける
+        }
       array01i ++;
     }
     else array01i  = 0;
