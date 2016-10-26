@@ -27,12 +27,6 @@ var otomo02x = 80;
 
 var copoint = 110;
 
-var moveon01 = 0;
-var moveon02 = 0;
-var moveon03 = 0;
-var moveon04 = 0;
-var moveon05 = 0;
-
 var unitx01 = 0;
 
 var unitArray01 = [];
@@ -206,7 +200,29 @@ var Unit = cc.Sprite.extend({
     this._super();
     //this.initWithFile(cache.getSpriteFrame("maou_otomo01_01"));
     //this.initWithFile(cache.getSpriteFrame("maou_otomo01_01"));
-    var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
+    switch (unitup) {
+      case 1:
+          var sprite =  cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
+        break;
+
+      case 2:
+          var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo02_01"));
+        break;
+
+      case 3:
+          var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo03_01"));
+        break;
+
+      case 4:
+          var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo04_01"));
+        break;
+
+      case 5:
+          var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo05_01"));
+        break;
+}
+
+    //var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
     sprite.setPosition(100, otomo01y);
     unitArray01x.push(100);
     unitArray01.push(sprite);

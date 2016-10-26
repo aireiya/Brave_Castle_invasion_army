@@ -26,9 +26,7 @@ onTouchBegan: function(touch, event) {
       console.log("しょーかん2ユニ");
       copoint = copoint - 20;
       cost02.setString("所持コスト:" + copoint);
-      maou_otomo02.setVisible(true);
-      moveon02 = 1;
-      //otomoset02 = 1;
+      otomounit.addItem();
       unitup = 0;
       break;
 
@@ -36,30 +34,24 @@ onTouchBegan: function(touch, event) {
       console.log("しょーかん3ユニ");
       copoint = copoint - 30;
       cost02.setString("所持コスト:" + copoint);
-      maou_otomo03.setVisible(true);
-      //otomoset03 = 1;
+      otomounit.addItem();
       unitup = 0;
-      moveon03 = 1;
       break;
 
       case 4:
       console.log("しょーかん4ユニ");
       copoint = copoint - 40;
       cost02.setString("所持コスト:" + copoint);
-      maou_otomo04.setVisible(true);
-      //otomoset04 = 1;
+      otomounit.addItem();
       unitup = 0;
-      moveon04 = 1;
       break;
 
       case 5:
       console.log("しょーかん2ユニ");
       copoint = copoint - 50;
       cost02.setString("所持コスト:" + copoint);
-      maou_otomo05.setVisible(true);
-      //otomoset05 = 1;
+      otomounit.addItem();
       unitup = 0;
-      moveon05 = 1;
       break;
       }
     }
