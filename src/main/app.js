@@ -31,9 +31,11 @@ var unitx01 = 0;
 
 var unitArray01 = [];
 var unitArray01x = [];
+var unitArray01y = [];
 var array01 = 0;
 var unitLayer;
 var array01i = 0;
+var raneY = 0;
 
 var addunit;
 var unit;
@@ -90,6 +92,7 @@ var game = cc.Layer.extend({
     unitrane01.addChild(cart, 0);
     cart.setPosition(250, 150);
 
+
     //城画像
     shiro01 = cc.Layer.create();
     this.addChild(shiro01);
@@ -102,8 +105,16 @@ var game = cc.Layer.extend({
     camp01 = cc.Layer.create();
     this.addChild(camp01);
     cart = cc.Sprite.create(res.camp_png);
-    camp01.addChild(cart, 0);
-    cart.setPosition(0, 150);
+    camp01.addChild(cart, -1);
+    cart.setPosition(-20, 150);
+
+    //出撃アイコン
+    gorane = cc.Layer.create();
+    this.addChild(gorane);
+    go = cc.Sprite.create(res.go_png );
+    unitrane01.addChild(go, 1);
+    go.setPosition(70, 150);
+    go.setVisible(false);
 
     //拠点ゲージ
     csbar = cc.Layer.create();
@@ -114,7 +125,6 @@ var game = cc.Layer.extend({
     cart.setPosition(250, 310);
 
 
-
 //--------リストのユニット
     unitbar = cc.Layer.create();
     this.addChild(unitbar);
@@ -122,12 +132,48 @@ var game = cc.Layer.extend({
     unitbar.addChild(bar, 0);
     bar.setPosition(240, 20);
 
+//-------出撃禁止アイコン
+    nounit = cc.Layer.create();
+    this.addChild(nounit);
+    no01 = cc.Sprite.create(res.batu_png );
+    nounit.addChild(no01, 0);
+    no01.setPosition(50, 20);
+    no01.setVisible(false);
+
+    nounit = cc.Layer.create();
+    this.addChild(nounit);
+    no02 = cc.Sprite.create(res.batu_png );
+    nounit.addChild(no02, 0);
+    no02.setPosition(140, 20);
+    no02.setVisible(false);
+
+    nounit = cc.Layer.create();
+    this.addChild(nounit);
+    no03 = cc.Sprite.create(res.batu_png );
+    nounit.addChild(no03, 0);
+    no03.setPosition(235, 20);
+    no03.setVisible(false);
+
+    nounit = cc.Layer.create();
+    this.addChild(nounit);
+    no04 = cc.Sprite.create(res.batu_png );
+    nounit.addChild(no04, 0);
+    no04.setPosition(330, 20);
+    no04.setVisible(false);
+
+    nounit = cc.Layer.create();
+    this.addChild(nounit);
+    no05 = cc.Sprite.create(res.batu_png );
+    nounit.addChild(no05, 0);
+    no05.setPosition(420, 20);
+    no05.setVisible(false);
+
 //----------戦闘エフェクト
-    kemuri = cc.Layer.create();
+    /*kemuri = cc.Layer.create();
     this.addChild(kemuri);
     cart = cc.Sprite.create(res.kemuri_png );
     kemuri.addChild(cart, 0);
-    cart.setPosition(190, 70);
+    cart.setPosition(190, 70);*/
 
 //-----------コスト
 cost02 = cc.LabelTTF.create("所持コスト:" + copoint, "Arial", 30);
@@ -152,11 +198,39 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
 
   //アップデート
   update: function(dt) {
-    /*if(moveon02 == 1){
-      otomo02x += 1;
-      otomo02.setPosition(otomo02x, otomo01y);
-      //console.log(otomo02x);
-    }*/
+
+    if(copoint >= 50){
+      no01.setVisible(false);
+      no02.setVisible(false);
+      no03.setVisible(false);
+      no04.setVisible(false);
+      no05.setVisible(false);
+    }
+      if(copoint < 50){
+      no05.setVisible(true);
+      no01.setVisible(false);
+      no02.setVisible(false);
+      no03.setVisible(false);
+      no04.setVisible(false);
+        if(copoint < 40){
+        no04.setVisible(true);
+        no01.setVisible(false);
+        no02.setVisible(false);
+        no03.setVisible(false);
+          if(copoint < 30){
+          no03.setVisible(true);
+          no01.setVisible(false);
+          no02.setVisible(false);
+            if(copoint < 20){
+            no02.setVisible(true);
+            no01.setVisible(false);
+              if(copoint < 10){
+              no01.setVisible(true);
+            }
+          }
+        }
+      }
+    }
 
     upcos++;
     if(upcos == 50){
@@ -164,17 +238,7 @@ cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
       cost02.setString("所持コスト:" + copoint);
       upcos = 0;
     }
-    /*★★★ユニット処理案件★★★
-    0,クリックしたら任意のレーンにユニットが出るように。
-    1,配列2個作って、ユニット出した時に配列１にユニットの種類を格納。配列２にHP格納。
-    2,配列１から戦闘しているユニットの種類を持ってきて、配列２のHPを削る。
-    3,配列２のHPが0になったら配列１から消して、ユニット画像も消す。
-    4,再配置する時には、配列１の初めから調べて、空いているところを使う。
-    5,updateで、配列に入っているユニットを順々に座標いじって進軍させる。
-    6,あたり判定で射程を処理する。
-    7,戦闘中は配列１から、どれが戦闘しているのか読み取ってくる。*/
 
-    //console.log("あっぷでーと");
   },
 });
 
@@ -223,9 +287,12 @@ var Unit = cc.Sprite.extend({
 }
 
     //var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
-    sprite.setPosition(100, otomo01y);
+    console.log("Y座標" + raneY);
+    sprite.setPosition(100, raneY);
     unitArray01x.push(100);
+    unitArray01y.push(raneY);
     unitArray01.push(sprite);
+    go.setVisible(false);
 
     this.addChild(unitArray01[array01]);
     console.log(unitArray01x.length);
@@ -250,11 +317,12 @@ var Unit = cc.Sprite.extend({
     if(array01i < unitArray01.length){
       unitArray01x[array01i] = unitArray01x[array01i] + 1;
 
-      console.log(unitArray01[array01i ] + "いちー"　+ unitArray01x[array01i]);
+      //console.log(unitArray01[array01i ] + "いちー"　+ unitArray01x[array01i]);
 
-      unitArray01[array01i].setPosition(unitArray01x[array01i ], otomo01y);
+      unitArray01[array01i].setPosition(unitArray01x[array01i], unitArray01y[array01i]);
       array01i ++;
     }
     else array01i  = 0;
+
   },
 });

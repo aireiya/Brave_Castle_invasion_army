@@ -69,7 +69,11 @@ var res = {
 
     unitbar_png : "res/gazo/unitbar.png",
     unit_plist : "res/spritesheet.plist",
-    unit_png : "res/spritesheet.png"
+    unit_png : "res/spritesheet.png",
+
+    go_png : "res/rane_go.png",
+    batu_png : "res/batu.png",
+    
 
 
 };
