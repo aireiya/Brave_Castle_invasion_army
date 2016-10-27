@@ -40,6 +40,9 @@ var raneY = 0;
 var addunit;
 var unit;
 
+var enemyCS = 100;
+var enemyDM = 0;
+var ENBpos = 0;
 
 var color = cc.color(255, 0, 0, 128);
 var color02 = cc.color(255, 0, 255, 128);
@@ -121,8 +124,26 @@ var game = cc.Layer.extend({
     this.addChild(csbar);
     cart = cc.Sprite.create(res.caslebar_png );
     csbar.addChild(cart, 0);
-    csbar.setScale(0.8);
-    cart.setPosition(250, 310);
+    //csbar.setScale(0.8);
+    cart.setPosition(size.width * 0.5, 290);
+
+    //自軍HP
+    PLbar = cc.Layer.create();
+    this.addChild(PLbar);
+    pl = cc.Sprite.create(res.PL_png );
+    PLbar.addChild(pl, 0);
+    pl.setAnchorPoint(1,0.5);
+    //PLbar.setScaleX(0.8);
+    pl.setPosition(188, 290);
+
+    //敵軍HP
+    ENbar = cc.Layer.create();
+    this.addChild(ENbar);
+    en = cc.Sprite.create(res.EN_png );
+    ENbar.addChild(en, 0);
+    en.setAnchorPoint(0,0.5);
+    //ENbar.setScale(0.8);
+    en.setPosition(294, 290);
 
 
 //--------リストのユニット
@@ -176,10 +197,10 @@ var game = cc.Layer.extend({
     cart.setPosition(190, 70);*/
 
 //-----------コスト
-cost02 = cc.LabelTTF.create("所持コスト:" + copoint, "Arial", 30);
+cost02 = cc.LabelTTF.create("所持コスト:" + copoint, "Arial", 25);
 cost02.setColor(color06);
 this.addChild(cost02); //文字つける時はこっち*/
-cost02.setPosition(size.width * 0.25,size.height * 0.8, 15);
+cost02.setPosition(size.width * 0.19,size.height * 0.8, 15);
 
 
     // タップイベントリスナーを登録する
@@ -324,6 +345,22 @@ var Unit = cc.Sprite.extend({
         if(unitArray01[array01i].getPositionX() > 400){
           unitArray01[array01i].setPosition(400, unitArray01y[array01i]);
           //■ここに城HPを減らす処理をつける
+
+          enemyDM++;
+            if(enemyDM > 10){
+              enemyCS--;
+              enemyDM = 0;
+              ENBpos++;
+              ENbar.setScaleX(enemyCS / 100);
+              console.log(ENbar.getPositionX());
+              //コンテンツサイズで画像更新
+              //アンカーポイント0,0でやる
+              //イグノリアフォアアンカーポジション 常にtrue アンカーポイントを無効化 falseで治るかも
+              if(enemyCS < 0){
+                var a = cc.TransitionFade.create(2.0, new ResultScene());
+                cc.director.runScene(a);
+              }
+            }
         }
       array01i ++;
     }
