@@ -16,12 +16,13 @@ var rane05;
 
 var upcos = 0;;
 
-var otomoset03;
+//★ユニットレーン座標★
 var otomo01y = 230;
 var otomo02y = 190;
 var otomo03y = 150;
 var otomo04y = 110;
 var otomo05y = 70;
+//★--------------★
 
 var otomo02x = 80;
 
@@ -29,13 +30,18 @@ var copoint = 110;
 
 var unitx01 = 0;
 
+//◆ユニット配列◆
 var unitArray01 = [];
 var unitArray01x = [];
 var unitArray01y = [];
+var unituppt = [];
 var array01 = 0;
 var unitLayer;
 var array01i = 0;
 var raneY = 0;
+var arraytrue = 0;
+var gazopt = 1;
+//◆----------◆
 
 var addunit;
 var unit;
@@ -43,6 +49,12 @@ var unit;
 var enemyCS = 100;
 var enemyDM = 0;
 var ENBpos = 0;
+
+var timer = 0;
+var timerm = 0;
+
+var change = 0;
+var sept = 0;
 
 var color = cc.color(255, 0, 0, 128);
 var color02 = cc.color(255, 0, 255, 128);
@@ -78,6 +90,19 @@ var game = cc.Layer.extend({
     //ユニット召喚レイヤー
     unitLayer = cc.Layer.create();
     this.addChild(unitLayer);
+
+    //BGM
+    audioEngine.stopMusic();//前BGMの停止
+    //音楽再生エンジン
+    audioEngine = cc.audioEngine;
+
+    if (!audioEngine.isMusicPlaying()) {
+      //audioEngine.playMusic("res/bgm_main.mp3", true);
+      audioEngine.playMusic(res.main_mp3 , true);
+    }
+
+    //SE登録
+    //audioEngine.preloadEffect(res.at01_mp3);
 
     //森の背景
     var background = new cc.Sprite(res.background_png);
@@ -119,6 +144,7 @@ var game = cc.Layer.extend({
     go.setPosition(70, 150);
     go.setVisible(false);
 
+
     //拠点ゲージ
     csbar = cc.Layer.create();
     this.addChild(csbar);
@@ -141,9 +167,17 @@ var game = cc.Layer.extend({
     this.addChild(ENbar);
     en = cc.Sprite.create(res.EN_png );
     ENbar.addChild(en, 0);
-    en.setAnchorPoint(0,0.5);
+    en.setAnchorPoint(0,0);
     //ENbar.setScale(0.8);
-    en.setPosition(294, 290);
+    en.setPosition(294, 278);
+
+    //タイマー背景
+    timerb = cc.Layer.create();
+    this.addChild(timerb);
+    cart = cc.Sprite.create(res.tm_png );
+    timerb.addChild(cart, 0);
+    //csbar.setScale(0.8);
+    timerb.setPosition(size.width * 0.5, 290);
 
 
 //--------リストのユニット
@@ -190,17 +224,44 @@ var game = cc.Layer.extend({
     no05.setVisible(false);
 
 //----------戦闘エフェクト
-    /*kemuri = cc.Layer.create();
+    kemuri = cc.Layer.create();
     this.addChild(kemuri);
-    cart = cc.Sprite.create(res.kemuri_png );
-    kemuri.addChild(cart, 0);
-    cart.setPosition(190, 70);*/
+    kemu = cc.Sprite.create(res.kemuri_png );
+    kemuri.addChild(kemu, 0);
+    kemu.setPosition(430, 200);
+    kemu.setVisible(false);
+
+    kemuri02 = cc.Layer.create();
+    this.addChild(kemuri02);
+    kemu02 = cc.Sprite.create(res.kemuri_png );
+    kemuri02.addChild(kemu02, 0);
+    kemu02.setPosition(400, 120);
+    kemu02.setVisible(false);
+
+    kemuri03 = cc.Layer.create();
+    this.addChild(kemuri03);
+    kemu03 = cc.Sprite.create(res.kemuri_png );
+    kemuri03.addChild(kemu03, 0);
+    kemu03.setPosition(460, 160);
+    kemu03.setVisible(false);
+
 
 //-----------コスト
 cost02 = cc.LabelTTF.create("所持コスト:" + copoint, "Arial", 25);
 cost02.setColor(color06);
 this.addChild(cost02); //文字つける時はこっち*/
 cost02.setPosition(size.width * 0.19,size.height * 0.8, 15);
+
+//-----------コスト
+txtime = cc.LabelTTF.create("経過時間", "Arial", 23);
+txtime.setColor(color02);
+this.addChild(txtime); //文字つける時はこっち*/
+txtime.setPosition(size.width * 0.5,size.height * 0.94, 15);
+
+ovtime = cc.LabelTTF.create("0秒", "Arial", 23);
+ovtime.setColor(color02);
+this.addChild(ovtime); //文字つける時はこっち*/
+ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
 
 
     // タップイベントリスナーを登録する
@@ -260,6 +321,15 @@ cost02.setPosition(size.width * 0.19,size.height * 0.8, 15);
       cost02.setString("所持コスト:" + copoint);
       upcos = 0;
     }
+    //タイマー
+    timerm++;
+    if(timerm == 60){
+      timer++;
+      ovtime.setString("" + timer　+ "秒");
+      timerm = 0;
+    }
+
+
 
   },
 });
@@ -314,6 +384,7 @@ var Unit = cc.Sprite.extend({
     unitArray01x.push(100);
     unitArray01y.push(raneY);
     unitArray01.push(sprite);
+    unituppt
     go.setVisible(false);
 
     this.addChild(unitArray01[array01]);
@@ -336,28 +407,52 @@ var Unit = cc.Sprite.extend({
     this.scheduleUpdate();
   },*/
   update: function(dt) {
+
+
+    //ユニット配列
     if(array01i < unitArray01.length){
       unitArray01x[array01i] = unitArray01x[array01i] + 1;
 
       //console.log(unitArray01[array01i ] + "いちー"　+ unitArray01x[array01i]);
+
+      //unitArray01[array01i] = cc.Sprite.create(cache.getSpriteFrame("maou_otomo0" + unituppt[array01i] + "_0" + gazopt ));
       unitArray01[array01i].setPosition(unitArray01x[array01i], unitArray01y[array01i]);
+
+      //画像の更新表示やろうとした
+        /*if(gazopt == 3){
+          gazopt = 0;
+        }
+        gazopt++;*/
 
         if(unitArray01[array01i].getPositionX() > 400){
           unitArray01[array01i].setPosition(400, unitArray01y[array01i]);
           //■ここに城HPを減らす処理をつける
+          kemu.setVisible(true);
+          kemu02.setVisible(true);
+          kemu03.setVisible(true);
 
           enemyDM++;
             if(enemyDM > 10){
+              sept++;
+              if(change == 0 && sept == 2){
+                audioEngine.playEffect(res.at01_mp3);
+                sept = 0;
+            }
+
               enemyCS--;
               enemyDM = 0;
               ENBpos++;
+              var size = ENbar.getContentSize();
               ENbar.setScaleX(enemyCS / 100);
+              ENbar.setContentSize(cc.size(ENbar.width, size.height));
+              //ENbar.ignoreAnchorPointForPosition(false);
               console.log(ENbar.getPositionX());
               //コンテンツサイズで画像更新
               //アンカーポイント0,0でやる
               //イグノリアフォアアンカーポジション 常にtrue アンカーポイントを無効化 falseで治るかも
-              if(enemyCS < 0){
+              if(enemyCS < 20){
                 var a = cc.TransitionFade.create(2.0, new ResultScene());
+                change = 1;
                 cc.director.runScene(a);
               }
             }

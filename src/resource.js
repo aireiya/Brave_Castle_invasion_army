@@ -75,6 +75,19 @@ var res = {
     batu_png : "res/batu.png",
     PL_png : "res/PLhp.png",
     EN_png : "res/ENhp.png",
+    tm_png : "res/timer.png",
+
+    main_mp3 : "res/bgm/battle37.mp3",
+    result_mp3 : "res/bgm/result09.mp3",
+    select_mp3 : "res/bgm/select11.mp3",
+    title_mp3 : "res/bgm/title10.mp3",
+    kyouka_mp3 : "res/bgm/kyouka07.mp3",
+
+    at01_mp3 : "res/se/battle16.mp3",
+
+    se01_mp3 : "res/se/point17.mp3",
+
+
 
 
 

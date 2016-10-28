@@ -13,6 +13,16 @@ var select = cc.Layer.extend({
         //label.setPosition(size.width / 2, size.height / 2);
         //this.addChild(label, 1);
 
+        //BGM
+        audioEngine.stopMusic();//前BGMの停止
+        //音楽再生エンジン
+        audioEngine = cc.audioEngine;
+
+        if (!audioEngine.isMusicPlaying()) {
+          //audioEngine.playMusic("res/bgm_main.mp3", true);
+          audioEngine.playMusic(res.select_mp3 , true);
+        }
+
         //森の背景
         var background = new cc.Sprite(res.background09_png);
         var size = cc.director.getWinSize();

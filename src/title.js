@@ -15,6 +15,18 @@ var title = cc.Layer.extend({
         //label.setPosition(size.width / 2, size.height / 2);
         //this.addChild(label, 1);
 
+        //------------BGM---------
+
+        audioEngine = cc.audioEngine;
+        //bgm再生
+        if (!audioEngine.isMusicPlaying()) {
+          //audioEngine.playMusic("res/bgm_main.mp3", true);
+          audioEngine.playMusic(res.title_mp3, true);
+        }
+
+        //SE登録
+        //audioEngine.preloadEffect(res.at01_mp3);
+
         //森の背景
         var background = new cc.Sprite(res.background10_png);
         var size = cc.director.getWinSize();

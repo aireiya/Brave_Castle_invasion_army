@@ -9,71 +9,62 @@ onTouchBegan: function(touch, event) {
     if(touch.getLocation().y > 220 && touch.getLocation().y < 240){
       raneY = otomo01y;
       console.log("レーン1");
+      arraytrue = 1;
     }
     if(touch.getLocation().y > 180 && touch.getLocation().y < 200){
       raneY = otomo02y;
       console.log("レーン2");
+      arraytrue = 1;
     }
     if(touch.getLocation().y > 140 && touch.getLocation().y < 160){
       raneY = otomo03y;
       console.log("レーン3");
+      arraytrue = 1;
     }
     if(touch.getLocation().y > 100 && touch.getLocation().y < 120){
       raneY = otomo04y;
       console.log("レーン4");
+      arraytrue = 1;
     }
     if(touch.getLocation().y > 60 && touch.getLocation().y < 80){
       raneY = otomo05y;
       console.log("レーン5");
+      arraytrue = 1;
     }
     console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+    if(arraytrue == 1){
     switch(unitup){
       case 1:
       console.log("しょーかん1ユニ");
       copoint = copoint - 10;
-      cost02.setString("所持コスト:" + copoint);
-      //maou_otomo01.setVisible(true);
-      //otomoset01 = 1;
-      otomounit.addItem();
-      //this.schedule(this.addunit, 1);
-      //リスナーでイベントキャッチ　ontouthch addunitメソッドを呼び出す
-
-      unitup = 0;
       break;
 
       case 2:
       console.log("しょーかん2ユニ");
       copoint = copoint - 20;
-      cost02.setString("所持コスト:" + copoint);
-      otomounit.addItem();
-      unitup = 0;
       break;
 
       case 3:
       console.log("しょーかん3ユニ");
       copoint = copoint - 30;
-      cost02.setString("所持コスト:" + copoint);
-      otomounit.addItem();
-      unitup = 0;
       break;
 
       case 4:
       console.log("しょーかん4ユニ");
       copoint = copoint - 40;
-      cost02.setString("所持コスト:" + copoint);
-      otomounit.addItem();
-      unitup = 0;
       break;
 
       case 5:
       console.log("しょーかん2ユニ");
       copoint = copoint - 50;
-      cost02.setString("所持コスト:" + copoint);
-      otomounit.addItem();
-      unitup = 0;
       break;
 
     }
+    cost02.setString("所持コスト:" + copoint);
+    otomounit.addItem();
+    unitup = 0;
+    arraytrue = 0;
+  }
   }
 //-------------------ユニットリスト-------------------
 //y軸固定

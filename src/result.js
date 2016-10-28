@@ -12,6 +12,16 @@ var result = cc.Layer.extend({
         //label.setPosition(size.width / 2, size.height / 2);
         //this.addChild(label, 1);
 
+        //BGM
+        audioEngine.stopMusic();//前BGMの停止
+        //音楽再生エンジン
+        audioEngine = cc.audioEngine;
+
+        if (!audioEngine.isMusicPlaying()) {
+          //audioEngine.playMusic("res/bgm_main.mp3", true);
+          audioEngine.playMusic(res.result_mp3 , true);
+        }
+
         //背景
         var background = new cc.Sprite(res.background08_png);
         var size = cc.director.getWinSize();
@@ -28,7 +38,7 @@ var result = cc.Layer.extend({
         label01.setPosition(size.width / 2,size.height * 0.8, 15);
 
         //攻略時間
-        var label02 = cc.LabelTTF.create("攻略時間：21秒", "Arial", 30);
+        var label02 = cc.LabelTTF.create("攻略時間：" + timer + "秒", "Arial", 30);
         label02.setColor(255,255,255);
         this.addChild(label02); //文字つける時はこっち*/
         label02.setPosition(size.width / 2,size.height * 0.6, 15);
