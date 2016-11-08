@@ -71,6 +71,7 @@ var res = {
     unit_plist : "res/spritesheet.plist",
     unit_png : "res/spritesheet.png",
 
+
     go_png : "res/rane_go.png",
     batu_png : "res/batu.png",
     PL_png : "res/PLhp.png",

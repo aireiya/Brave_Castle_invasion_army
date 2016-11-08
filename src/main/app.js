@@ -1,6 +1,7 @@
 var itemsLayer;
 var cart;
 var xSpeed = 0; //カートの移動速度
+var poptime = 0;
 
 var detectedX;　 //現在タッチしているX座標
 var savedX;　 //前回タッチしていたX座標
@@ -71,6 +72,10 @@ var gameScene = cc.Scene.extend({
     otomounit.init();
     this.addChild(otomounit);
 
+    enemyunit = new Enemyunit();
+    enemyunit.init();
+    this.addChild(enemyunit);
+
   }
 });
 
@@ -92,7 +97,7 @@ var game = cc.Layer.extend({
     this.addChild(unitLayer);
 
     //BGM
-    audioEngine.stopMusic();//前BGMの停止
+    //audioEngine.stopMusic();//前BGMの停止(このプログラムが最初に読まれば場合は消す)
     //音楽再生エンジン
     audioEngine = cc.audioEngine;
 
@@ -314,6 +319,31 @@ ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
         }
       }
     }
+    //♥♥♥♥♥♥敵出しランダム♥♥♥♥♥♥♥♥♥
+    poptime++;
+    if(poptime == 100){
+    var rand = Math.floor( Math.random() * 5 + 1 ) ;
+    var rand2 = Math.floor( Math.random() * 5 + 1 ) ;
+
+      //console.log("らんだむー");
+      console.log(rand);
+      enemyup = rand;
+      switch (rand2) {
+        case 1: enraneY = otomo01y;
+          break;
+        case 2: enraneY = otomo02y;
+          break;
+        case 3: enraneY = otomo03y;
+          break;
+        case 4: enraneY = otomo04y;
+          break;
+        case 5: enraneY = otomo05y;
+          break;
+    }
+    enemyunit.enItem();
+    poptime = 0;
+  }
+    //♥♥♥♥♥♥敵出しランダム終わり♥♥♥♥♥♥♥♥♥
 //--------時間毎コストアップ
     upcos++;
     if(upcos == 50){
@@ -345,6 +375,7 @@ ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
 
      },
     addItem:function(){
+
       unit = new Unit();
       this.addChild(unit);
     },
@@ -384,7 +415,7 @@ var Unit = cc.Sprite.extend({
     unitArray01x.push(100);
     unitArray01y.push(raneY);
     unitArray01.push(sprite);
-    unituppt
+    //unituppt
     go.setVisible(false);
 
     this.addChild(unitArray01[array01]);
