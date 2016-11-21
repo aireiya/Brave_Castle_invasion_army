@@ -25,7 +25,7 @@ var copoint = 110;  //所持コスト
 var unitArray01 = [];   //ユニット配列
 var array01 = 0;  //ユニット配列保存変数
 var unitLayer;    //ユニット召喚レイヤー
-var array01i = 0; //ユニット配列回し変数
+var array01i = -1; //ユニット配列回し変数
 var raneY = 0;  //レーン位置保存1~5
 var arraytrue = 0;  //出撃許可変数
 var gazopt = 1;   //画像更新表示(アニメーション?)
@@ -314,7 +314,7 @@ ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
     //♥♥♥♥♥♥敵出しランダム♥♥♥♥♥♥♥♥♥
     poptime++;
     if(poptime == 100){
-    var rand = Math.floor( Math.random() * 5 + 1 ) ;
+    var rand = Math.floor( Math.random() * 5+ 1 ) ;
     var rand2 = Math.floor( Math.random() * 5 + 1 ) ;
 
       //console.log("らんだむー");
@@ -381,41 +381,76 @@ var Unit = cc.Sprite.extend({
     //this.initWithFile(cache.getSpriteFrame("maou_otomo01_01"));
     switch (unitup) {
       case 1:
-          var sprite_p =  cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
+      var sprite_p = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
+      //スプライトフレームを作成
+          var frame0 = cache.getSpriteFrame("maou_otomo01_01");
+          var frame1 = cache.getSpriteFrame("maou_otomo01_02");
+          var frame2 = cache.getSpriteFrame("maou_otomo01_03");
           sprite_p.hpP = 10;
         break;
 
       case 2:
           var sprite_p = cc.Sprite.create(cache.getSpriteFrame("maou_otomo02_01"));
+          var frame0 = cache.getSpriteFrame("maou_otomo02_01");
+          var frame1 = cache.getSpriteFrame("maou_otomo02_02");
+          var frame2 = cache.getSpriteFrame("maou_otomo02_03");
           sprite_p.hpP = 20;
         break;
 
       case 3:
           var sprite_p = cc.Sprite.create(cache.getSpriteFrame("maou_otomo03_01"));
+          var frame0 = cache.getSpriteFrame("maou_otomo03_01");
+          var frame1 = cache.getSpriteFrame("maou_otomo03_02");
+          var frame2 = cache.getSpriteFrame("maou_otomo03_03");
           sprite_p.hpP = 30;
         break;
 
       case 4:
           var sprite_p = cc.Sprite.create(cache.getSpriteFrame("maou_otomo04_01"));
+          var frame0 = cache.getSpriteFrame("maou_otomo04_01");
+          var frame1 = cache.getSpriteFrame("maou_otomo04_02");
+          var frame2 = cache.getSpriteFrame("maou_otomo04_03");
           sprite_p.hpP = 40;
         break;
 
       case 5:
           var sprite_p = cc.Sprite.create(cache.getSpriteFrame("maou_otomo05_01"));
+          var frame0 = cache.getSpriteFrame("maou_otomo05_01");
+          var frame1 = cache.getSpriteFrame("maou_otomo05_02");
+          var frame2 = cache.getSpriteFrame("maou_otomo05_03");
           sprite_p.hpP = 50;
         break;
 }
 
     //var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
     //console.log("Y座標" + raneY);
-    sprite_p.setPosition(100, raneY);
+    sprite_p.setPosition(50, raneY);
     sprite_p.numberP = array01;
     sprite_p.attackP = false;
+
+    //------アニメーションの追加
+        var animationframe = [];
+
+          //for (z = 0; z < 2; z++) {
+            //スプライトフレームを配列に登録
+            //animationframe.push("frame" + z);
+            animationframe.push(frame0);
+            animationframe.push(frame1);
+            animationframe.push(frame2);
+          //}
+        //スプライトフレームの配列を連続再生するアニメーションの定義
+        var animation = new cc.Animation(animationframe, 0.1);
+        //永久ループのアクションを定義
+        var action = new cc.RepeatForever(new cc.animate(animation));
+        //実行
+        sprite_p.runAction(action);
+    //-------アニメーションの追加おわり
+
     unitArray01.push(sprite_p);
     go.setVisible(false);
 
 
-    this.addChild(unitArray01[array01]);
+    this.addChild(sprite_p);
     //console.log(unitArray01x.length);
     array01++;
 
@@ -434,11 +469,15 @@ var Unit = cc.Sprite.extend({
     this.runAction(moveAction);
     this.scheduleUpdate();
   },*/
+  //-------アップデート--------
   update: function(dt) {
 
-
+if(unitArray01.length > 0){
+  if(array01i < 0){
+    array01i = unitArray01.length -1;
+  }
     //ユニット配列
-    if(array01i < unitArray01.length){
+    if(array01i >= 0){
 
       //console.log(unitArray01[array01i ] + "いちー"　+ unitArray01x[array01i]);
 
@@ -452,7 +491,7 @@ var Unit = cc.Sprite.extend({
         gazopt++;*/
 //----------------↓ユニット攻城HPへらし↓-------
         if(unitArray01[array01i].getPositionX() > 400){
-          unitArray01[array01i].setPositionX(unitArray01[array01i].getPositionX());
+          unitArray01[array01i].setPositionX(400);
           //敵城ポジション400で止まる
           kemu.setVisible(true);
           kemu02.setVisible(true);
@@ -485,9 +524,9 @@ var Unit = cc.Sprite.extend({
             }
         }
       }
-      array01i ++;
+      array01i --;
     }
-    else array01i  = 0;
+  }
 
   },
 });
