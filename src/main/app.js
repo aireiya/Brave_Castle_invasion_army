@@ -77,7 +77,7 @@ var game = cc.Layer.extend({
     this._super();
     //グラデーション背景
     //  var backgroundLayer = cc.LayerGradient.create(cc.color(0,0,0,255), cc.color(0x46,0x82,0xB4,255));
-    this.scheduleUpdate();
+    this.schedule(this.update, 0.5);
 
     //スプライトシート読み込み
     cache = cc.spriteFrameCache;
@@ -174,7 +174,7 @@ var game = cc.Layer.extend({
     cart = cc.Sprite.create(res.tm_png );
     timerb.addChild(cart, 5);
     //csbar.setScale(0.8);
-    timerb.setPosition(size.width * 0.5, 290);
+    timerb.setPosition(size.width * 0.55, 290);
 
 
 //--------リストのユニット
@@ -313,7 +313,8 @@ ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
     }
     //♥♥♥♥♥♥敵出しランダム♥♥♥♥♥♥♥♥♥
     poptime++;
-    if(poptime == 100){
+    //出現頻度変更、数値はschedule依存
+    if(poptime == 5){
     var rand = Math.floor( Math.random() * 5+ 1 ) ;
     var rand2 = Math.floor( Math.random() * 5 + 1 ) ;
 
@@ -336,16 +337,12 @@ ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
     poptime = 0;
   }
     //♥♥♥♥♥♥敵出しランダム終わり♥♥♥♥♥♥♥♥♥
-//--------時間毎コストアップ
-    upcos++;
-    if(upcos == 50){
+//--------時間毎コストアップ(0.5秒周期)
       copoint++;
       cost02.setString("所持コスト:" + copoint);
-      upcos = 0;
-    }
     //タイマー
     timerm++;
-    if(timerm == 60){
+    if(timerm == 2){
       timer++;
       ovtime.setString("" + timer　+ "秒");
       timerm = 0;
@@ -427,6 +424,7 @@ var Unit = cc.Sprite.extend({
     sprite_p.setPosition(50, raneY);
     sprite_p.numberP = array01;
     sprite_p.attackP = false;
+    sprite_p.deth = false;
 
     //------アニメーションの追加
         var animationframe = [];
@@ -439,7 +437,7 @@ var Unit = cc.Sprite.extend({
             animationframe.push(frame2);
           //}
         //スプライトフレームの配列を連続再生するアニメーションの定義
-        var animation = new cc.Animation(animationframe, 0.1);
+        var animation = new cc.Animation(animationframe, 0.2);
         //永久ループのアクションを定義
         var action = new cc.RepeatForever(new cc.animate(animation));
         //実行
@@ -451,38 +449,25 @@ var Unit = cc.Sprite.extend({
 
 
     this.addChild(sprite_p);
-    //console.log(unitArray01x.length);
     array01++;
 
-    //console.log("うぉぉん");
-
-    this.scheduleUpdate();
+    this.schedule(this.update, 0.025);
 
   },
-  //アイテムが生成された後、描画されるときに実行
-  /*onEnter: function() {
-    this._super();
-    //レーン1の左から
-    this.setPosition(100,otomo01y);
-    //レーン1の右へ
-    var moveAction = cc.MoveTo.create(400, otomo01y);
-    this.runAction(moveAction);
-    this.scheduleUpdate();
-  },*/
   //-------アップデート--------
   update: function(dt) {
 
 if(unitArray01.length > 0){
   if(array01i < 0){
+    console.log("ユニット長さ" + unitArray01.length);
     array01i = unitArray01.length -1;
   }
     //ユニット配列
     if(array01i >= 0){
 
-      //console.log(unitArray01[array01i ] + "いちー"　+ unitArray01x[array01i]);
-
       if(unitArray01[array01i].attackP == false){
-      unitArray01[array01i].setPositionX(unitArray01[array01i].getPositionX() + 1);
+        //移動速度変更
+        unitArray01[array01i].setPositionX(unitArray01[array01i].getPositionX() + 1);
 
       //画像の更新表示やろうとした
         /*if(gazopt == 3){
@@ -490,8 +475,8 @@ if(unitArray01.length > 0){
         }
         gazopt++;*/
 //----------------↓ユニット攻城HPへらし↓-------
-        if(unitArray01[array01i].getPositionX() > 400){
-          unitArray01[array01i].setPositionX(400);
+        if(unitArray01[array01i].getPositionX() > 380){
+          unitArray01[array01i].setPositionX(380);
           //敵城ポジション400で止まる
           kemu.setVisible(true);
           kemu02.setVisible(true);

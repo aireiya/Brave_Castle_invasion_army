@@ -13,12 +13,9 @@ var enraneY;
 var Enemyunit = cc.Layer.extend({
   ctor: function(){
      this._super();
-     //unit = new Unit();
-     //this.addChild(unit);
 
     },
    enItem:function(){
-     //console.log("unitには入ってる");
      var tekiunit = new enUnit();
      this.addChild(tekiunit);
    },
@@ -37,51 +34,75 @@ var enUnit = cc.Sprite.extend({
     switch (enemyup) {
       case 1:
           var sprite =  cc.Sprite.create(cache.getSpriteFrame("brave_otomo01_01"));
+          var frame0 = cache.getSpriteFrame("brave_otomo01_01");
+          var frame1 = cache.getSpriteFrame("brave_otomo01_02");
+          var frame2 = cache.getSpriteFrame("brave_otomo01_03");
           sprite.hp = 5;
           sprite.tag = 1;
         break;
 
       case 2:
           var sprite = cc.Sprite.create(cache.getSpriteFrame("brave_otomo02_01"));
+          var frame0 = cache.getSpriteFrame("brave_otomo02_01");
+          var frame1 = cache.getSpriteFrame("brave_otomo02_02");
+          var frame2 = cache.getSpriteFrame("brave_otomo02_03");
           sprite.hp = 15;
           sprite.tag = 2;
         break;
 
       case 3:
           var sprite = cc.Sprite.create(cache.getSpriteFrame("brave_otomo03_01"));
+          var frame0 = cache.getSpriteFrame("brave_otomo03_01");
+          var frame1 = cache.getSpriteFrame("brave_otomo03_02");
+          var frame2 = cache.getSpriteFrame("brave_otomo03_03");
           sprite.hp = 25;
           sprite.tag = 3;
         break;
 
       case 4:
           var sprite = cc.Sprite.create(cache.getSpriteFrame("brave_otomo04_01"));
+          var frame0 = cache.getSpriteFrame("brave_otomo04_01");
+          var frame1 = cache.getSpriteFrame("brave_otomo04_02");
+          var frame2 = cache.getSpriteFrame("brave_otomo04_03");
           sprite.hp = 35;
           sprite.tag = 4;
         break;
 
       case 5:
           var sprite = cc.Sprite.create(cache.getSpriteFrame("brave_otomo05_01"));
+          var frame0 = cache.getSpriteFrame("brave_otomo05_01");
+          var frame1 = cache.getSpriteFrame("brave_otomo05_02");
+          var frame2 = cache.getSpriteFrame("brave_otomo05_03");
           sprite.hp = 45;
           sprite.tag = 5;
         break;
       }
 
-      //console.log("敵Y座標" + enraneY);
       sprite.setPosition(400, enraneY);
       sprite.number = ensuu;
       sprite.attack = false;
+      sprite.deth = false;
+
+      //------アニメーションの追加
+          var animationframe = [];
+
+              animationframe.push(frame0);
+              animationframe.push(frame1);
+              animationframe.push(frame2);
+          //スプライトフレームの配列を連続再生するアニメーションの定義
+          var animation = new cc.Animation(animationframe, 0.2);
+          //永久ループのアクションを定義
+          var action = new cc.RepeatForever(new cc.animate(animation));
+          //実行
+          sprite.runAction(action);
+      //-------アニメーションの追加おわり
 
       enemyArray.push(sprite);
 
-      //unitupp
-
-      this.addChild(enemyArray[ensuu]);
-      //console.log(enemyArray.length);
+      this.addChild(sprite);
       ensuu++;
 
-      //console.log("敵うぉぉん");
-
-      this.scheduleUpdate();
+      this.schedule(this.update, 0.025);
 
     },
 //-------アップデート-----
@@ -95,9 +116,10 @@ var enUnit = cc.Sprite.extend({
       //ユニット配列
       if(enarrayI >= 0){
           if(enemyArray[enarrayI].attack == false){
+            //移動速度変更
             enemyArray[enarrayI].setPositionX(enemyArray[enarrayI].getPositionX() - 1);
-            if(enemyArray[enarrayI].getPositionX() < 50){
-              enemyArray[enarrayI].setPositionX(50);
+            if(enemyArray[enarrayI].getPositionX() < 60){
+              enemyArray[enarrayI].setPositionX(60);
             }
           }
         enarrayI--;
