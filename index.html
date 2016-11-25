@@ -7,12 +7,11 @@
     <script type="text/javascript" src="src/main/app.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/main/apptouch.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/gameover.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="src/start.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/title.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/stageselect.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/result.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/kyouka.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="src/seni.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/kyoukatouch.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/zenkai/zenkai.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/zenkai/zenkai02.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/zenkai/zenkai03.js" charset="UTF-8"></script>
@@ -33,7 +32,7 @@
                   cc.view
                   .resizeWithBrowserSize(true);
                   cc.LoaderScene.preload(g_resources, function () {
-                       cc.director.runScene(new /*TitleScene*//*PowerSelectScene*/ gameScene/*StageSelectScene*//*ZenkaiScene03
+                       cc.director.runScene(new /*TitleScene*/PowerSelectScene /*gameScene*//*StageSelectScene*//*ZenkaiScene03
                          */());
                   }, this);
               };

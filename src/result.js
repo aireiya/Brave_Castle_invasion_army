@@ -3,6 +3,10 @@
 var color = cc.color(255, 0, 0, 128);
 var color02 = cc.color(255, 0, 255, 128);
 
+var rank;
+
+var R_pt;
+
 var result = cc.Layer.extend({
     ctor: function() {
         this._super();
@@ -44,31 +48,31 @@ var result = cc.Layer.extend({
         label02.setPosition(size.width / 2,size.height * 0.6, 15);
 
         //YES NO
-        var label03 = cc.LabelTTF.create("敵撃破数：0体", "Arial", 30);
+        var label03 = cc.LabelTTF.create("敵撃破数："+ gekiha, "Arial", 30);
         label03.setColor(255,255,255);
         this.addChild(label03); //文字つける時はこっち*/
         label03.setPosition(size.width / 2,size.height * 0.5, 15);
 
         //YES NO
-        var label04 = cc.LabelTTF.create("残存拠点HP：100％", "Arial", 30);
+        var label04 = cc.LabelTTF.create("残存拠点HP：" + playerCS + "%", "Arial", 30);
         label04.setColor(255,255,255);
         this.addChild(label04); //文字つける時はこっち*/
         label04.setPosition(size.width / 2,size.height * 0.4, 15);
 
         //YES NO
-        var label05 = cc.LabelTTF.create("ランク:A！", "Arial", 30);
+        var label05 = cc.LabelTTF.create("ランク:", "Arial", 30);
         label05.setColor(color);
         this.addChild(label05); //文字つける時はこっち*/
         label05.setPosition(size.width * 0.7,size.height * 0.3, 15);
 
         //ランダムでしゃべるやつ
-        label06 = cc.LabelTTF.create("<素晴らしい成果です。", "Arial", 25);
+        var label06 = cc.LabelTTF.create("<素晴らしい成果です。", "Arial", 25);
         label06.setColor(255,255,255);
         this.addChild(label06); //文字つける時はこっち*/
         label06.setPosition(size.width * 0.6,size.height * 0.2, 15);
 
         //NEXT STAGE
-        label07 = cc.LabelTTF.create("NEXT STAGE⇒", "Arial", 20);
+        var label07 = cc.LabelTTF.create("NEXT STAGE⇒", "Arial", 20);
         label07.setColor(color02);
         this.addChild(label07); //文字つける時はこっち*/
         label07.setPosition(size.width * 0.8,size.height * 0.06, 15);
@@ -113,6 +117,61 @@ var result = cc.Layer.extend({
 var ResultScene = cc.Scene.extend({
     onEnter: function() {
         this._super();
+
+
+//タイマー評価
+        if(timer < 120)  { R_pt++;
+          if(timer < 100) { R_pt++;
+            if(timer < 80) { R_pt++;
+              if(timer < 60){ R_pt++;
+                if(timer < 40) { R_pt++;
+                  if(timer < 20) { R_pt++;
+            }}}}}}
+
+//敵撃破評価
+        if(gekiha > 5)  { R_pt++;
+          if(gekiha > 10) { R_pt++;
+            if(gekiha > 15) { R_pt++;
+              if(gekiha > 20){ R_pt++;
+                if(gekiha > 25) { R_pt++;
+                  if(gekiha > 30) { R_pt++;
+                  }}}}}}
+
+//拠点体力評価
+        if(playerCS > 10)  { R_pt++;
+          if(playerCS > 20) { R_pt++;
+            if(playerCS > 30) { R_pt++;
+              if(playerCS > 40){ R_pt++;
+                if(playerCS > 50) { R_pt++;
+                  if(playerCS > 60) { R_pt++;
+                    if(playerCS > 70){ R_pt++;
+                      if(playerCS > 80) { R_pt++;
+                        if(playerCS > 90) { R_pt++;
+                          if(playerCS > 100) { R_pt += 3;
+                  }}}}}}}}}}
+
+//総合評価
+        if(R_pt > 20) {
+          label05.setString("ランク:S!!"); //S
+          label06.setString("文句なしでございます。");
+      }
+        if(R_pt < 20 && R_pt > 15) {
+          label05.setString("ランク:A!"); //A
+          label06.setString("素晴らしい成果です。");
+        }
+        if(R_pt < 15 && R_pt > 10) {
+          label05.setString("ランク:B");//B
+          label06.setString("まぁまぁ、といった所でしょうか。");
+        }
+        if(R_pt < 10 && R_pt > 5)  {
+          label05.setString("ランク:C"); //C
+          label06.setString("少し被害が大きいですね。");
+        }
+        if(R_pt < 5) {
+          label05.setString("ランク:D");  //D
+          label06.setString("勝負に勝って試合に負ける。");
+        }
+
 
         // 背景レイヤーをその場で作る
         var backgroundLayer = new cc.LayerColor(new cc.Color(140, 200, 140, 128));

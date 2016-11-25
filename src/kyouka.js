@@ -1,17 +1,24 @@
 //stageselect.js
 
 var label03;
-var point = 100;
+var point = 1000;
 var cpoint;
+
+//ユニット毎の強化ステータス
+var pow_U01 = 1;
+var pow_U02 = 1;
+var pow_U03 = 1;
+var pow_U04 = 1;
+var pow_U05 = 1;
 
 var power = cc.Layer.extend({
     ctor: function() {
         this._super();
         var size = cc.director.getWinSize();
 
-        //var label = cc.LabelTTF.create("GameOver", "Arial", 40);
-        //label.setPosition(size.width / 2, size.height / 2);
-        //this.addChild(label, 1);
+        //スプライトシート読み込み
+        cache = cc.spriteFrameCache;
+        cache.addSpriteFrames(res.unit_plist, res.unit_png);
 
         //BGM
         //audioEngine.stopMusic();//前BGMの停止
@@ -19,7 +26,6 @@ var power = cc.Layer.extend({
         audioEngine = cc.audioEngine;
 
         if (!audioEngine.isMusicPlaying()) {
-          //audioEngine.playMusic("res/bgm_main.mp3", true);
           audioEngine.playMusic(res.kyouka_mp3 , true);
         }
 
@@ -38,123 +44,161 @@ var power = cc.Layer.extend({
         this.addChild(label01); //文字つける時はこっち*/
         label01.setPosition(size.width * 0.5,size.height * 0.9, 15);
 
-        //ユニット強化
-        label02 = cc.LabelTTF.create("攻撃力\n体力", "Arial", 25);
+        //説明
+        label02 = cc.LabelTTF.create("攻撃力\n体力", "Arial", 20);
         label02.setColor(color);
-        this.addChild(label02); //文字つける時はこっち*/
-        label02.setPosition(size.width * 0.57,size.height * 0.75, 15);
+        this.addChild(label02, 1); //文字つける時はこっち*/
+        label02.setPosition(size.width * 0.48,size.height * 0.75, 15);
+
+        //ユニット枠
+        waku01 = cc.Layer.create();
+        this.addChild(waku01);
+        waku = cc.Sprite.create(res.waku_png);
+        waku01.addChild(waku, 0);
+        waku.setPosition(size.width * 0.21,size.height * 0.45, 15);
+//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        //悪魔アイコン1
+        aku01 = cc.Layer.create();
+        this.addChild(aku01);
+        ma01 = cc.Sprite.create(cache.getSpriteFrame("akuma01"));
+        aku01.addChild(ma01, 0);
+        ma01.setPosition(size.width * 0.075,size.height * 0.75, 15);
 
         //ユニット1強化
         maou_unit01 = cc.Layer.create();
         this.addChild(maou_unit01);
-        tx01 = cc.Sprite.create(res.maou_otomo01_01 );
+        tx01 = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01") );
         maou_unit01.addChild(tx01, 0);
-        tx01.setPosition(size.width * 0.1,size.height * 0.75, 15);
+        tx01.setPosition(size.width * 0.11,size.height * 0.75, 15);
 
         hosi01 = cc.Layer.create();
         this.addChild(hosi01);
-        powtx01 = cc.Sprite.create(res.powgauge02_png );
-        hosi01.setScale(0.7);
+        powtx01 = cc.Sprite.create(cache.getSpriteFrame("powhosi01") );
+        //hosi01.setScale(0.7);
         hosi01.addChild(powtx01, 0);
-        powtx01.setPosition(size.width * 0.25,size.height * 0.92, 15);
+        powtx01.setPosition(size.width * 0.25,size.height * 0.78, 15);
 
         hp01 = cc.Layer.create();
         this.addChild(hp01);
-        hptx01 = cc.Sprite.create(res.hpgauge01_png );
-        hp01.setScale(0.7);
+        hptx01 = cc.Sprite.create(cache.getSpriteFrame("hphosi01") );
+        //hp01.setScale(0.7);
         hp01.addChild(hptx01, 0);
-        hptx01.setPosition(size.width * 0.25,size.height * 0.82, 15);
+        hptx01.setPosition(size.width * 0.25,size.height * 0.72, 15);
+//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        //悪魔アイコン2
+        aku02 = cc.Layer.create();
+        this.addChild(aku02);
+        ma02 = cc.Sprite.create(cache.getSpriteFrame("akuma01"));
+        aku02.addChild(ma02, 0);
+        ma02.setPosition(size.width * 0.075,size.height * 0.6, 15);
 
         //ユニット2強化
         maou_unit02 = cc.Layer.create();
         this.addChild(maou_unit02);
-        cart = cc.Sprite.create(res.maou_otomo02_01 );
-        maou_unit02.addChild(cart, 0);
-        cart.setPosition(size.width * 0.1,size.height * 0.6, 15);
+        tx02 = cc.Sprite.create(cache.getSpriteFrame("maou_otomo02_01") );
+        maou_unit02.addChild(tx02, 0);
+        tx02.setPosition(size.width * 0.11,size.height * 0.6, 15);
 
         hosi02 = cc.Layer.create();
         this.addChild(hosi02);
-        cart = cc.Sprite.create(res.powgauge03_png );
-        hosi02.addChild(cart, 0);
-        hosi02.setScale(0.7);
-        cart.setPosition(size.width * 0.25,size.height * 0.7, 15);
+        powtx02 = cc.Sprite.create(cache.getSpriteFrame("powhosi02"));
+        hosi02.addChild(powtx02, 0);
+        //hosi02.setScale(0.7);
+        powtx02.setPosition(size.width * 0.25,size.height * 0.63, 15);
 
         hp02 = cc.Layer.create();
         this.addChild(hp02);
-        cart = cc.Sprite.create(res.hpgauge04_png );
-        hp02.addChild(cart, 0);
-        hp02.setScale(0.7);
-        cart.setPosition(size.width * 0.25,size.height * 0.6, 15);
+        hptx02 = cc.Sprite.create(cache.getSpriteFrame("hphosi01"));
+        hp02.addChild(hptx02, 0);
+        //hp02.setScale(0.7);
+        hptx02.setPosition(size.width * 0.25,size.height * 0.57, 15);
+//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        //悪魔アイコン3
+        aku03 = cc.Layer.create();
+        this.addChild(aku03);
+        ma03 = cc.Sprite.create(cache.getSpriteFrame("akuma01"));
+        aku03.addChild(ma03, 0);
+        ma03.setPosition(size.width * 0.075,size.height * 0.45, 15);
 
         //ユニット3
         maou_unit03 = cc.Layer.create();
         this.addChild(maou_unit03);
-        cart = cc.Sprite.create(res.maou_otomo03_01 );
-        maou_unit03.addChild(cart, 0);
-        cart.setPosition(size.width * 0.1,size.height * 0.45, 15);
+        tx03 = cc.Sprite.create(cache.getSpriteFrame("maou_otomo03_01") );
+        maou_unit03.addChild(tx03, 0);
+        tx03.setPosition(size.width * 0.11,size.height * 0.45, 15);
 
         hosi03 = cc.Layer.create();
         this.addChild(hosi03);
-        cart = cc.Sprite.create(res.powgauge05_png );
-        hosi03.addChild(cart, 0);
-        hosi03.setScale(0.7);
-        cart.setPosition(size.width * 0.25,size.height * 0.48, 15);
+        powtx03 = cc.Sprite.create(cache.getSpriteFrame("powhosi01"));
+        hosi03.addChild(powtx03, 0);
+        //hosi03.setScale(0.7);
+        powtx03.setPosition(size.width * 0.25,size.height * 0.48, 15);
 
         hp03 = cc.Layer.create();
         this.addChild(hp03);
-        cart = cc.Sprite.create(res.hpgauge03_png );
-        hp03.addChild(cart, 0);
-        hp03.setScale(0.7);
-        cart.setPosition(size.width * 0.25,size.height * 0.38, 15);
+        hptx03 = cc.Sprite.create(cache.getSpriteFrame("hphosi03") );
+        hp03.addChild(hptx03, 0);
+        //hp03.setScale(0.7);
+        hptx03.setPosition(size.width * 0.25,size.height * 0.42, 15);
+//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        //悪魔アイコン4
+        aku04 = cc.Layer.create();
+        this.addChild(aku04);
+        ma04 = cc.Sprite.create(cache.getSpriteFrame("akuma01"));
+        aku04.addChild(ma04, 0);
+        ma04.setPosition(size.width * 0.075,size.height * 0.3, 15);
 
         //ユニット4
         maou_unit04 = cc.Layer.create();
         this.addChild(maou_unit04);
-        cart = cc.Sprite.create(res.maou_otomo04_01 );
-        maou_unit04.addChild(cart, 0);
-        cart.setPosition(size.width * 0.1,size.height * 0.3, 15);
+        tx04 = cc.Sprite.create(cache.getSpriteFrame("maou_otomo04_01") );
+        maou_unit04.addChild(tx04, 0);
+        tx04.setPosition(size.width * 0.11,size.height * 0.3, 15);
 
         hosi04 = cc.Layer.create();
         this.addChild(hosi04);
-        cart = cc.Sprite.create(res.powgauge02_png );
-        hosi04.addChild(cart, 0);
-        hosi04.setScale(0.7);
-        cart.setPosition(size.width * 0.25,size.height * 0.26, 15);
+        powtx04 = cc.Sprite.create(cache.getSpriteFrame("powhosi03") );
+        hosi04.addChild(powtx04, 0);
+        //hosi04.setScale(0.7);
+        powtx04.setPosition(size.width * 0.25,size.height * 0.33, 15);
 
         hp04 = cc.Layer.create();
         this.addChild(hp04);
-        tx04 = cc.Sprite.create(res.hpgauge06_png );
-        hp04.addChild(tx04, 0);
-        hp04.setScale(0.7);
-        tx04.setPosition(size.width * 0.25,size.height * 0.16, 15);
+        hptx04 = cc.Sprite.create(cache.getSpriteFrame("hphosi02"));
+        hp04.addChild(hptx04, 0);
+        //hp04.setScale(0.7);
+        hptx04.setPosition(size.width * 0.25,size.height * 0.27, 15);
+//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        //悪魔アイコン2
+        aku05 = cc.Layer.create();
+        this.addChild(aku05);
+        ma05 = cc.Sprite.create(cache.getSpriteFrame("akuma01"));
+        aku05.addChild(ma05, 0);
+        ma05.setPosition(size.width * 0.075,size.height * 0.15, 15);
 
         //ユニット5
         maou_unit05 = cc.Layer.create();
         this.addChild(maou_unit05);
-        cart = cc.Sprite.create(res.maou_otomo05_01 );
-        maou_unit05.addChild(cart, 0);
-        cart.setPosition(size.width * 0.1,size.height * 0.15, 15);
+        tx05 = cc.Sprite.create(cache.getSpriteFrame("maou_otomo05_01") );
+        maou_unit05.addChild(tx05, 0);
+        tx05.setPosition(size.width * 0.11,size.height * 0.15, 15);
 
         hosi05 = cc.Layer.create();
         this.addChild(hosi05);
-        cart = cc.Sprite.create(res.powgauge09_png );
-        hosi05.addChild(cart, 0);
-        hosi05.setScale(0.7);
-        cart.setPosition(size.width * 0.25,size.height * 0.04, 15);
+        powtx05 = cc.Sprite.create(cache.getSpriteFrame("powhosi04") );
+        hosi05.addChild(powtx05, 0);
+        //hosi05.setScale(0.7);
+        powtx05.setPosition(size.width * 0.25,size.height * 0.19, 15);
 
         hp05 = cc.Layer.create();
         this.addChild(hp05);
-        cart = cc.Sprite.create(res.hpgauge01_png );
-        hp05.addChild(cart, 0);
-        hp05.setScale(0.7);
-        cart.setPosition(size.width * 0.25,size.height * -0.06, 15);
-
-
-
-
-
+        hptx05 = cc.Sprite.create(cache.getSpriteFrame("hphosi01") );
+        hp05.addChild(hptx05, 0);
+        //hp05.setScale(0.7);
+        hptx05.setPosition(size.width * 0.25,size.height * 0.13, 15);
+//■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         //ステージ選んで
-        label03 = cc.LabelTTF.create("クリアポイントで\nユニットを強化", "Arial", 25);
+        label03 = cc.LabelTTF.create("クリアptで\nユニットを強化", "Arial", 25);
         label03.setColor(255,255,255);
         this.addChild(label03); //文字つける時はこっち
         label03.setPosition(size.width * 0.8,size.height * 0.3, 15);
@@ -170,10 +214,10 @@ var power = cc.Layer.extend({
         unit.setPosition(size.width * 0.8,size.height * 0.1, 15);
 
         //クリアポイント
-        cpoint = cc.LabelTTF.create("クリアポイント:" + point, "Arial", 25);
+        cpoint = cc.LabelTTF.create("クリアpt:" + point, "Arial", 25);
         cpoint.setColor(color06);
         this.addChild(cpoint); //文字つける時はこっち*/
-        cpoint.setPosition(size.width * 0.8,size.height * 0.65, 15);
+        cpoint.setPosition(size.width * 0.75,size.height * 0.75, 15);
 
         /*var drop02 = cc.Sprite.create(res.replay_png);　
         drop02.setPosition(size.width / 2, size.height * 0.2);　
@@ -188,28 +232,10 @@ var power = cc.Layer.extend({
                     onTouchEnded: this.onTouchEnded
                 }, this);
 
-        return true;
+        //return true;
+        cc.eventManager.addListener(kyoukaTouch, this);
     },
-      onTouchBegan: function(touch, event) {
-        if(touch.getLocation().x < 470 && touch.getLocation().y < 50 && touch.getLocation().x > 300 && touch.getLocation().y > 20 ){
-          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
-          var a = cc.TransitionFade.create(2.0, new StageSelectScene());
-          cc.director.runScene(a);
-        }
-        if(touch.getLocation().x < 230 && touch.getLocation().y < 265 && touch.getLocation().x > 35 && touch.getLocation().y > 220 ){
-          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
-          //cc.director.runScene(new StageSelectScene());
-          powtx01.setTexture(res.powgauge03_png);
-          hptx01.setTexture(res.hpgauge02_png);
-          point = point - 30;
-          cpoint.setString("クリアポイント:" + point);
-        }
-      },
-      onTouchMoved: function(touch, event) {},
-      onTouchEnded: function(touch, event) {
-        // 次のシーンに切り替える
-        //cc.director.runScene(new gameScene());
-      },
+
 });
 
 var PowerSelectScene = cc.Scene.extend({

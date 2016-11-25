@@ -20,39 +20,12 @@ var res = {
     kemuri_png : "res/kemuri.png",
     kodomo_png : "res/kodomo.png",
 
-    kyouka00_png : "res/kyouka00.png",
-    kyouka01_png : "res/kyouka01.png",
-    kyouka02_png : "res/kyouka02.png",
-    kyouka03_png : "res/kyouka03.png",
-    kyouka04_png : "res/kyouka04.png",
-    kyouka05_png : "res/kyouka05.png",
-
     seni01_png : "res/seni.png",
     zenkai01_png : "res/zenkai.png",
     zenkai02_png : "res/zenkai02.png",
     zenkai03_png : "res/zenkai03.png",
 
-    powgauge01_png : "res/new/A_kyouka03.png",
-    powgauge02_png : "res/new/A_kyouka03.png",
-    powgauge03_png : "res/new/A_kyouka03.png",
-    powgauge04_png : "res/new/A_kyouka03.png",
-    powgauge05_png : "res/new/A_kyouka03.png",
-    powgauge06_png : "res/new/A_kyouka03.png",
-    powgauge07_png : "res/new/A_kyouka03.png",
-    powgauge08_png : "res/new/A_kyouka03.png",
-    powgauge09_png : "res/new/A_kyouka03.png",
-    powgauge10_png : "res/new/A_kyouka03.png",
-
-    hpgauge01_png : "res/new/B_kyouka03.png",
-    hpgauge02_png : "res/new/B_kyouka03.png",
-    hpgauge03_png : "res/new/B_kyouka03.png",
-    hpgauge04_png : "res/new/B_kyouka03.png",
-    hpgauge05_png : "res/new/B_kyouka03.png",
-    hpgauge06_png : "res/new/B_kyouka03.png",
-    hpgauge07_png : "res/new/B_kyouka03.png",
-    hpgauge08_png : "res/new/B_kyouka03.png",
-    hpgauge09_png : "res/new/B_kyouka03.png",
-    hpgauge010_png : "res/new/B_kyouka03.png",
+    waku_png : "res/new/waku_all.png",
 
     caslebar_png : "res/new/caslebar2.png",
 
@@ -76,10 +49,6 @@ var res = {
     at01_mp3 : "res/se/battle16.mp3",
 
     se01_mp3 : "res/se/point17.mp3",
-
-
-
-
 
 };
 

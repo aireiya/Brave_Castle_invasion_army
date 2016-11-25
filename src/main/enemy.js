@@ -8,6 +8,14 @@ var enarrayI = -1;   //エネミー配列回し変数
 
 var enemyup = 0;
 
+var playerDM = 0;
+var cppt = 0;
+var change_E = 0;
+var playerCS = 100;
+var playerDM = 0;
+
+var PLBpos = 0;
+
 var enraneY;
 
 var Enemyunit = cc.Layer.extend({
@@ -118,9 +126,41 @@ var enUnit = cc.Sprite.extend({
           if(enemyArray[enarrayI].attack == false){
             //移動速度変更
             enemyArray[enarrayI].setPositionX(enemyArray[enarrayI].getPositionX() - 1);
+                        //----------------↓エネミー攻城HPへらし↓-------
             if(enemyArray[enarrayI].getPositionX() < 60){
               enemyArray[enarrayI].setPositionX(60);
-            }
+                      //味方城ポジション60で止まる
+                      kemu.setVisible(true);
+                      kemu02.setVisible(true);
+                      kemu03.setVisible(true);
+
+                      playerDM++;
+                        if(playerDM > 10){
+                          cppt++;
+                          if(change_E == 0 && cppt == 2){
+                            audioEngine.playEffect(res.at01_mp3);
+                            cppt = 0;
+                        }
+
+                          playerCS--;
+                          playerDM = 0;
+                          PLBpos++;
+                          var size = PLbar.getContentSize();
+                          PLbar.setScaleX(playerCS / 100);
+                          PLbar.setContentSize(cc.size(PLbar.width, size.height));
+                          //ENbar.ignoreAnchorPointForPosition(false);
+                          //console.log(ENbar.getPositionX());
+                          //コンテンツサイズで画像更新
+                          //アンカーポイント0,0でやる
+                          //イグノリアフォアアンカーポジション 常にtrue アンカーポイントを無効化 falseで治るかも
+                          if(playerCS < 20){
+                            var b = cc.TransitionFade.create(2.0, new GameOverScene());
+                            change_E = 1;
+                            cc.director.runScene(b);
+                          }
+                        }
+                    }
+
           }
         enarrayI--;
       }

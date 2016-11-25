@@ -11,6 +11,8 @@ var unitup = 0;   //ユニット画像保存変数
 var poptime = 0;  //敵出現ディレイ
 var upcos = 0;    //増加コストディレイ
 
+var emargency = 0;  //敵被攻撃レーン検知
+
 //★ユニットレーン座標★
 var otomo01y = 230;
 var otomo02y = 190;
@@ -250,15 +252,15 @@ this.addChild(cost02); //文字つける時はこっち*/
 cost02.setPosition(size.width * 0.19,size.height * 0.8, 15);
 
 //-----------コスト
-txtime = cc.LabelTTF.create("経過時間", "Arial", 23);
+txtime = cc.LabelTTF.create("経過", "Arial", 23);
 txtime.setColor(color02);
 this.addChild(txtime); //文字つける時はこっち*/
-txtime.setPosition(size.width * 0.5,size.height * 0.94, 15);
+txtime.setPosition(size.width * 0.52,size.height * 0.94, 15);
 
 ovtime = cc.LabelTTF.create("0秒", "Arial", 23);
 ovtime.setColor(color02);
 this.addChild(ovtime); //文字つける時はこっち*/
-ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
+ovtime.setPosition(size.width * 0.52,size.height * 0.87, 15);
 
 
     // タップイベントリスナーを登録する
@@ -332,6 +334,11 @@ ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
           break;
         case 5: enraneY = otomo05y;
           break;
+    }
+//エネミー被攻撃検知、被攻撃レーンにエネミー出現
+    if(emargency != 0){
+      enraneY = emargency;
+      emargency = 0;
     }
     enemyunit.enItem();
     poptime = 0;
@@ -477,6 +484,8 @@ if(unitArray01.length > 0){
 //----------------↓ユニット攻城HPへらし↓-------
         if(unitArray01[array01i].getPositionX() > 380){
           unitArray01[array01i].setPositionX(380);
+          emargency = unitArray01[array01i].getPositionY();
+
           //敵城ポジション400で止まる
           kemu.setVisible(true);
           kemu02.setVisible(true);

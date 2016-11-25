@@ -1,5 +1,7 @@
 var attack;
 
+var gekiha = 0;
+
 var P_attackArray = [];
 
 attack = cc.Layer.extend({
@@ -64,6 +66,7 @@ if(unitArray01.length > 0){
 
                   break;
                 }
+                gekiha++;
                 cost02.setString("所持コスト:" + copoint);
                 enemyArray[n].removeFromParentAndCleanup(true);
                 //enemyArray[n] = null;

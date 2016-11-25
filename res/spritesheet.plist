@@ -478,113 +478,239 @@
             <key>powhosi00</key>
             <dict>
                 <key>frame</key>
-                <string>{{200,8},{140,36}}</string>
+                <string>{{200,8},{120,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{140,36}}</string>
+                <string>{{0,0},{120,31}}</string>
                 <key>sourceSize</key>
-                <string>{140,36}</string>
+                <string>{120,31}</string>
             </dict>
             
             <key>powhosi01</key>
             <dict>
                 <key>frame</key>
-                <string>{{200,48},{140,36}}</string>
+                <string>{{200,40},{120,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{140,36}}</string>
+                <string>{{0,0},{120,31}}</string>
                 <key>sourceSize</key>
-                <string>{140,36}</string>
+                <string>{120,31}</string>
             </dict>
             
             <key>powhosi02</key>
             <dict>
                 <key>frame</key>
-                <string>{{200,88},{140,36}}</string>
+                <string>{{200,72},{120,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{140,36}}</string>
+                <string>{{0,0},{120,31}}</string>
                 <key>sourceSize</key>
-                <string>{140,36}</string>
+                <string>{120,31}</string>
             </dict>
             
             <key>powhosi03</key>
             <dict>
                 <key>frame</key>
-                <string>{{200,128},{140,36}}</string>
+                <string>{{200,104},{120,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{140,36}}</string>
+                <string>{{0,0},{120,31}}</string>
                 <key>sourceSize</key>
-                <string>{140,36}</string>
+                <string>{120,31}</string>
             </dict>
             
             <key>powhosi04</key>
             <dict>
                 <key>frame</key>
-                <string>{{200,168},{140,36}}</string>
+                <string>{{200,136},{120,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{140,36}}</string>
+                <string>{{0,0},{120,31}}</string>
                 <key>sourceSize</key>
-                <string>{140,36}</string>
+                <string>{120,31}</string>
             </dict>
             
             <key>powhosi05</key>
             <dict>
                 <key>frame</key>
-                <string>{{200,208},{140,36}}</string>
+                <string>{{200,168},{120,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{140,36}}</string>
+                <string>{{0,0},{120,31}}</string>
                 <key>sourceSize</key>
-                <string>{140,36}</string>
+                <string>{120,31}</string>
             </dict>
             
             <key>hphosi00</key>
             <dict>
                 <key>frame</key>
-                <string>{{344,8},{140,36}}</string>
+                <string>{{328,8},{120,31}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{140,36}}</string>
+                <string>{{0,0},{120,31}}</string>
                 <key>sourceSize</key>
-                <string>{140,36}</string>
+                <string>{120,31}</string>
+            </dict>
+            
+            <key>hphosi01</key>
+            <dict>
+                <key>frame</key>
+                <string>{{328,40},{120,31}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{120,31}}</string>
+                <key>sourceSize</key>
+                <string>{120,31}</string>
+            </dict>
+            
+            <key>hphosi02</key>
+            <dict>
+                <key>frame</key>
+                <string>{{328,72},{120,31}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{120,31}}</string>
+                <key>sourceSize</key>
+                <string>{120,31}</string>
+            </dict>
+            
+            <key>hphosi03</key>
+            <dict>
+                <key>frame</key>
+                <string>{{328,104},{120,31}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{120,31}}</string>
+                <key>sourceSize</key>
+                <string>{120,31}</string>
+            </dict>
+            
+            <key>hphosi04</key>
+            <dict>
+                <key>frame</key>
+                <string>{{328,136},{120,31}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{120,31}}</string>
+                <key>sourceSize</key>
+                <string>{120,31}</string>
+            </dict>
+            
+            <key>hphosi05</key>
+            <dict>
+                <key>frame</key>
+                <string>{{328,168},{120,31}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{120,31}}</string>
+                <key>sourceSize</key>
+                <string>{120,31}</string>
             </dict>
             
             <key>caslehp</key>
             <dict>
                 <key>frame</key>
-                <string>{{8,240},{372,42}}</string>
+                <string>{{8,256},{346,23}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{372,42}}</string>
+                <string>{{0,0},{346,23}}</string>
                 <key>sourceSize</key>
-                <string>{372,42}</string>
+                <string>{346,23}</string>
+            </dict>
+            
+            <key>akuma01</key>
+            <dict>
+                <key>frame</key>
+                <string>{{8,295},{30,30}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{30,30}}</string>
+                <key>sourceSize</key>
+                <string>{30,30}</string>
+            </dict>
+            
+            <key>akuma02</key>
+            <dict>
+                <key>frame</key>
+                <string>{{48,295},{30,30}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{30,30}}</string>
+                <key>sourceSize</key>
+                <string>{30,30}</string>
+            </dict>
+            
+            <key>akuma03</key>
+            <dict>
+                <key>frame</key>
+                <string>{{88,295},{30,30}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{30,30}}</string>
+                <key>sourceSize</key>
+                <string>{30,30}</string>
+            </dict>
+            
+            <key>akuma04</key>
+            <dict>
+                <key>frame</key>
+                <string>{{127,295},{30,30}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{30,30}}</string>
+                <key>sourceSize</key>
+                <string>{30,30}</string>
             </dict>
             
         </dict>
