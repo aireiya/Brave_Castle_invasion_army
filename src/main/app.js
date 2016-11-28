@@ -11,6 +11,8 @@ var unitup = 0;   //ユニット画像保存変数
 var poptime = 0;  //敵出現ディレイ
 var upcos = 0;    //増加コストディレイ
 
+var stagepop = 0; //ステージ変更時のユニット出現頻度調整
+
 var emargency = 0;  //敵被攻撃レーン検知
 
 //★ユニットレーン座標★
@@ -104,7 +106,21 @@ var game = cc.Layer.extend({
     //audioEngine.preloadEffect(res.at01_mp3);
 
     //森の背景
-    var background = new cc.Sprite(res.background_png);
+    switch (stage) {
+      case 1:
+        var background = new cc.Sprite(res.backgroundst1_png);
+        stagepop = 5;
+        break;
+      case 2:
+        var background = new cc.Sprite(res.backgroundst2_png);
+        stagepop = 3;
+        break;
+      case 3:
+        var background = new cc.Sprite(res.backgroundst3_png);
+        console.log("ステージ3");
+        stagepop = 1;
+        break;
+    }
     var size = cc.director.getWinSize();
     background.setPosition(cc.p(size.width / 2.0, size.height / 2.0));
     var backgroundLayer = cc.Layer.create();
@@ -144,11 +160,11 @@ var game = cc.Layer.extend({
     go.setVisible(false);
 
 
-    //拠点ゲージ
+    //拠点ゲージ背景
     csbar = cc.Layer.create();
     this.addChild(csbar);
-    cart = cc.Sprite.create(res.caslebar_png );
-    csbar.addChild(cart, 4);
+    cart = cc.Sprite.create(res.caslebar02_png );
+    csbar.addChild(cart, 2);
     //csbar.setScale(0.8);
     cart.setPosition(size.width * 0.5, 290);
 
@@ -168,7 +184,22 @@ var game = cc.Layer.extend({
     ENbar.addChild(en, 3);
     en.setAnchorPoint(0,0);
     //ENbar.setScale(0.8);
-    en.setPosition(294, 278);
+    en.setPosition(294, 280);
+
+    //拠点ゲージ
+    csbar = cc.Layer.create();
+    this.addChild(csbar);
+    cart = cc.Sprite.create(res.caslebar_png );
+    csbar.addChild(cart, 4);
+    //csbar.setScale(0.8);
+    cart.setPosition(size.width * 0.5, 290);
+
+    //コスト背景
+    csbar = cc.Layer.create();
+    this.addChild(csbar);
+    cart = cc.Sprite.create(res.background18_png);
+    csbar.addChild(cart, 4);
+    cart.setPosition(size.width * 0.19, size.height * 0.8);
 
     //タイマー背景
     timerb = cc.Layer.create();
@@ -176,8 +207,7 @@ var game = cc.Layer.extend({
     cart = cc.Sprite.create(res.tm_png );
     timerb.addChild(cart, 5);
     //csbar.setScale(0.8);
-    timerb.setPosition(size.width * 0.55, 290);
-
+    timerb.setPosition(size.width * 0.54, 290);
 
 //--------リストのユニット
     unitbar = cc.Layer.create();
@@ -316,7 +346,7 @@ ovtime.setPosition(size.width * 0.52,size.height * 0.87, 15);
     //♥♥♥♥♥♥敵出しランダム♥♥♥♥♥♥♥♥♥
     poptime++;
     //出現頻度変更、数値はschedule依存
-    if(poptime == 5){
+    if(poptime == stagepop){
     var rand = Math.floor( Math.random() * 5+ 1 ) ;
     var rand2 = Math.floor( Math.random() * 5 + 1 ) ;
 
@@ -390,7 +420,8 @@ var Unit = cc.Sprite.extend({
           var frame0 = cache.getSpriteFrame("maou_otomo01_01");
           var frame1 = cache.getSpriteFrame("maou_otomo01_02");
           var frame2 = cache.getSpriteFrame("maou_otomo01_03");
-          sprite_p.hpP = 10;
+          sprite_p.hpP = hp_U01;
+          sprite_p.atk = pow_U01;
         break;
 
       case 2:
@@ -398,7 +429,8 @@ var Unit = cc.Sprite.extend({
           var frame0 = cache.getSpriteFrame("maou_otomo02_01");
           var frame1 = cache.getSpriteFrame("maou_otomo02_02");
           var frame2 = cache.getSpriteFrame("maou_otomo02_03");
-          sprite_p.hpP = 20;
+          sprite_p.hpP = hp_U02;
+          sprite_p.atk = pow_U02;
         break;
 
       case 3:
@@ -406,7 +438,8 @@ var Unit = cc.Sprite.extend({
           var frame0 = cache.getSpriteFrame("maou_otomo03_01");
           var frame1 = cache.getSpriteFrame("maou_otomo03_02");
           var frame2 = cache.getSpriteFrame("maou_otomo03_03");
-          sprite_p.hpP = 30;
+          sprite_p.hpP = hp_U03;
+          sprite_p.atk = pow_U03;
         break;
 
       case 4:
@@ -414,7 +447,8 @@ var Unit = cc.Sprite.extend({
           var frame0 = cache.getSpriteFrame("maou_otomo04_01");
           var frame1 = cache.getSpriteFrame("maou_otomo04_02");
           var frame2 = cache.getSpriteFrame("maou_otomo04_03");
-          sprite_p.hpP = 40;
+          sprite_p.hpP = hp_U04;
+          sprite_p.atk = pow_U04;
         break;
 
       case 5:
@@ -422,7 +456,8 @@ var Unit = cc.Sprite.extend({
           var frame0 = cache.getSpriteFrame("maou_otomo05_01");
           var frame1 = cache.getSpriteFrame("maou_otomo05_02");
           var frame2 = cache.getSpriteFrame("maou_otomo05_03");
-          sprite_p.hpP = 50;
+          sprite_p.hpP = hp_U05;
+          sprite_p.atk = pow_U05;
         break;
 }
 
@@ -466,7 +501,7 @@ var Unit = cc.Sprite.extend({
 
 if(unitArray01.length > 0){
   if(array01i < 0){
-    console.log("ユニット長さ" + unitArray01.length);
+    //console.log("ユニット長さ" + unitArray01.length);
     array01i = unitArray01.length -1;
   }
     //ユニット配列
@@ -482,7 +517,7 @@ if(unitArray01.length > 0){
         }
         gazopt++;*/
 //----------------↓ユニット攻城HPへらし↓-------
-        if(unitArray01[array01i].getPositionX() > 380){
+        if(unitArray01[array01i].getPositionX() > 380　&& unitArray01[array01i].deth == false){
           unitArray01[array01i].setPositionX(380);
           emargency = unitArray01[array01i].getPositionY();
 
@@ -511,6 +546,15 @@ if(unitArray01.length > 0){
               //アンカーポイント0,0でやる
               //イグノリアフォアアンカーポジション 常にtrue アンカーポイントを無効化 falseで治るかも
               if(enemyCS < 20){
+                switch (stage) {
+                  case 1:
+                    stage_S02 = true;
+                    break;
+                  case 1:
+                    stage_S03 = true;
+                    break;
+
+                }
                 var a = cc.TransitionFade.create(2.0, new ResultScene());
                 change = 1;
                 cc.director.runScene(a);

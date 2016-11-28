@@ -16,18 +16,21 @@ event: cc.EventListener.TOUCH_ONE_BY_ONE, //一回だけ反応
         //強化値毎の画像変更
         point = point - 30;
         cpoint.setString("クリアpt:" + point);
-        pow_U01++;
-        switch(pow_U01){
+        lv_U01++;
+        switch(lv_U01){
           case 2 :  hptx01.setSpriteFrame(cache.getSpriteFrame("hphosi02"));
                     ma01.setSpriteFrame(cache.getSpriteFrame("akuma02"));
+                    pow_U04 += 10;
                     break;
 
           case 3 :  powtx01.setSpriteFrame(cache.getSpriteFrame("powhosi02"));
                     ma01.setSpriteFrame(cache.getSpriteFrame("akuma03"));
+                    pow_U01 += 1;
                     break;
 
           case 4 :  hptx01.setSpriteFrame(cache.getSpriteFrame("hphosi03"));
                     ma01.setSpriteFrame(cache.getSpriteFrame("akuma04"));
+                    hp_U01 += 10;
                     break;
         }
       }
@@ -37,18 +40,21 @@ event: cc.EventListener.TOUCH_ONE_BY_ONE, //一回だけ反応
         //強化値毎の画像変更
         point = point - 40;
         cpoint.setString("クリアpt:" + point);
-        pow_U02++;
-        switch(pow_U02){
+        lv_U02++;
+        switch(lv_U02){
           case 2 :  powtx02.setSpriteFrame(cache.getSpriteFrame("powhosi03"));
                     ma02.setSpriteFrame(cache.getSpriteFrame("akuma02"));
+                    pow_U02 += 1;
                     break;
 
           case 3 :  powtx02.setSpriteFrame(cache.getSpriteFrame("powhosi04"));
                     ma02.setSpriteFrame(cache.getSpriteFrame("akuma03"));
+                    pow_U02 += 1;
                     break;
 
           case 4 :  hptx02.setSpriteFrame(cache.getSpriteFrame("hphosi02"));
                     ma02.setSpriteFrame(cache.getSpriteFrame("akuma04"));
+                    hp_U02 += 10;
                     break;
         }
       }
@@ -58,18 +64,21 @@ event: cc.EventListener.TOUCH_ONE_BY_ONE, //一回だけ反応
         //強化値毎の画像変更
         point = point - 50;
         cpoint.setString("クリアpt:" + point);
-        pow_U03++;
-        switch(pow_U03){
+        lv_U03++;
+        switch(lv_U03){
           case 2 :  powtx03.setSpriteFrame(cache.getSpriteFrame("powhosi02"));
                     ma03.setSpriteFrame(cache.getSpriteFrame("akuma02"));
+                    pow_U03 += 1;
                     break;
 
           case 3 :  powtx03.setSpriteFrame(cache.getSpriteFrame("powhosi03"));
                     ma03.setSpriteFrame(cache.getSpriteFrame("akuma03"));
+                    pow_U03 += 1;
                     break;
 
           case 4 :  hptx03.setSpriteFrame(cache.getSpriteFrame("hphosi04"));
                     ma03.setSpriteFrame(cache.getSpriteFrame("akuma04"));
+                    hp_U03 += 10;
                     break;
         }
       }
@@ -79,18 +88,21 @@ event: cc.EventListener.TOUCH_ONE_BY_ONE, //一回だけ反応
         //強化値毎の画像変更
         point = point - 60;
         cpoint.setString("クリアpt:" + point);
-        pow_U04++;
-        switch(pow_U04){
+        lv_U04++;
+        switch(lv_U04){
           case 2 :  hptx04.setSpriteFrame(cache.getSpriteFrame("hphosi03"));
                     ma04.setSpriteFrame(cache.getSpriteFrame("akuma02"));
+                    hp_U04 += 10;
                     break;
 
           case 3 :  hptx04.setSpriteFrame(cache.getSpriteFrame("hphosi04"));
                     ma04.setSpriteFrame(cache.getSpriteFrame("akuma03"));
+                    hp_U04 += 10;
                     break;
 
           case 4 :  hptx04.setSpriteFrame(cache.getSpriteFrame("hphosi05"));
                     ma04.setSpriteFrame(cache.getSpriteFrame("akuma04"));
+                    hp_U04 += 10;
                     break;
         }
       }
@@ -100,18 +112,21 @@ event: cc.EventListener.TOUCH_ONE_BY_ONE, //一回だけ反応
         //強化値毎の画像変更
         point = point - 70;
         cpoint.setString("クリアpt:" + point);
-        pow_U05++;
-        switch(pow_U05){
+        lv_U05++;
+        switch(lv_U05){
           case 2 :  hptx05.setSpriteFrame(cache.getSpriteFrame("hphosi02"));
                     ma05.setSpriteFrame(cache.getSpriteFrame("akuma02"));
+                    pow_U05 += 10;
                     break;
 
           case 3 :  powtx05.setSpriteFrame(cache.getSpriteFrame("powhosi05"));
                     ma05.setSpriteFrame(cache.getSpriteFrame("akuma03"));
+                    pow_U05 += 1;
                     break;
 
           case 4 :  hptx05.setSpriteFrame(cache.getSpriteFrame("hphosi03"));
                     ma05.setSpriteFrame(cache.getSpriteFrame("akuma04"));
+                    pow_U05 += 10;
                     break;
         }
       }

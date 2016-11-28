@@ -127,7 +127,7 @@ var enUnit = cc.Sprite.extend({
             //移動速度変更
             enemyArray[enarrayI].setPositionX(enemyArray[enarrayI].getPositionX() - 1);
                         //----------------↓エネミー攻城HPへらし↓-------
-            if(enemyArray[enarrayI].getPositionX() < 60){
+            if(enemyArray[enarrayI].getPositionX() < 60 && enemyArray[enarrayI].deth == false){
               enemyArray[enarrayI].setPositionX(60);
                       //味方城ポジション60で止まる
                       kemu.setVisible(true);

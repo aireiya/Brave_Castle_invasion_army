@@ -1,15 +1,29 @@
 //stageselect.js
 
 var label03;
-var point = 1000;
-var cpoint;
+var point = 100; //強化ポイント初期値
+var cpoint; //強化ポイント表示
 
-//ユニット毎の強化ステータス
+//ユニット毎の強化レベル
+var lv_U01 = 1;
+var lv_U02 = 1;
+var lv_U03 = 1;
+var lv_U04 = 1;
+var lv_U05 = 1;
+
+//ユニット毎のHP
+var hp_U01 = 10;
+var hp_U02 = 10;
+var hp_U03 = 30;
+var hp_U04 = 20;
+var hp_U05 = 10;
+
+//ユニット毎の攻撃力
 var pow_U01 = 1;
-var pow_U02 = 1;
+var pow_U02 = 2;
 var pow_U03 = 1;
-var pow_U04 = 1;
-var pow_U05 = 1;
+var pow_U04 = 3;
+var pow_U05 = 4;
 
 var power = cc.Layer.extend({
     ctor: function() {
@@ -38,24 +52,31 @@ var power = cc.Layer.extend({
         background.setScale(1.5);
         this.addChild(backgroundLayer);
 
+        //タイトル枠
+        back = cc.Layer.create();
+        this.addChild(back);
+        bg = cc.Sprite.create(res.background11_png);
+        back.addChild(bg, 0);
+        bg.setPosition(size.width * 0.5,size.height * 0.92, 15);
+
         //ユニット強化
         label01 = cc.LabelTTF.create("ユニット強化", "Arial", 40);
         label01.setColor(255,255,255);
         this.addChild(label01); //文字つける時はこっち*/
-        label01.setPosition(size.width * 0.5,size.height * 0.9, 15);
+        label01.setPosition(size.width * 0.5,size.height * 0.92, 15);
 
         //説明
         label02 = cc.LabelTTF.create("攻撃力\n体力", "Arial", 20);
         label02.setColor(color);
         this.addChild(label02, 1); //文字つける時はこっち*/
-        label02.setPosition(size.width * 0.48,size.height * 0.75, 15);
+        label02.setPosition(size.width * 0.48,size.height * 0.74, 15);
 
         //ユニット枠
         waku01 = cc.Layer.create();
         this.addChild(waku01);
         waku = cc.Sprite.create(res.waku_png);
         waku01.addChild(waku, 0);
-        waku.setPosition(size.width * 0.21,size.height * 0.45, 15);
+        waku.setPosition(size.width * 0.295,size.height * 0.45, 15);
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         //悪魔アイコン1
         aku01 = cc.Layer.create();
@@ -197,15 +218,38 @@ var power = cc.Layer.extend({
         //hp05.setScale(0.7);
         hptx05.setPosition(size.width * 0.25,size.height * 0.13, 15);
 //■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+        //ポイント背景
+        back02 = cc.Layer.create();
+        this.addChild(back02);
+        bg02 = cc.Sprite.create(res.background12_png );
+        back02.addChild(bg02, 0);
+        //hp05.setScale(0.7);
+        bg02.setPosition(size.width * 0.8,size.height * 0.35, 15);
+
         //ステージ選んで
         label03 = cc.LabelTTF.create("クリアptで\nユニットを強化", "Arial", 25);
         label03.setColor(255,255,255);
         this.addChild(label03); //文字つける時はこっち
         label03.setPosition(size.width * 0.8,size.height * 0.3, 15);
 
+        //クリアポイント
+        cpoint = cc.LabelTTF.create("クリアpt:" + point, "Arial", 25);
+        cpoint.setColor(color06);
+        this.addChild(cpoint); //文字つける時はこっち*/
+        cpoint.setPosition(size.width * 0.8,size.height * 0.45, 15);
+
         var drop01 = cc.Sprite.create(res.kodomo_png);　
-        drop01.setPosition(size.width * 0.7, size.height * 0.5);
+        drop01.setPosition(size.width * 0.7, size.height * 0.609);
         this.addChild(drop01);
+
+        //ポイント背景
+        back03 = cc.Layer.create();
+        this.addChild(back03);
+        bg03 = cc.Sprite.create(res.background13_png );
+        back03.addChild(bg03, 0);
+        //hp05.setScale(0.7);
+        bg03.setPosition(size.width * 0.8,size.height * 0.1, 15);
 
         //ステージ選択へ
         unit = cc.LabelTTF.create("ステージ選択へ", "Arial", 25);
@@ -213,11 +257,6 @@ var power = cc.Layer.extend({
         this.addChild(unit); //文字つける時はこっち*/
         unit.setPosition(size.width * 0.8,size.height * 0.1, 15);
 
-        //クリアポイント
-        cpoint = cc.LabelTTF.create("クリアpt:" + point, "Arial", 25);
-        cpoint.setColor(color06);
-        this.addChild(cpoint); //文字つける時はこっち*/
-        cpoint.setPosition(size.width * 0.75,size.height * 0.75, 15);
 
         /*var drop02 = cc.Sprite.create(res.replay_png);　
         drop02.setPosition(size.width / 2, size.height * 0.2);　

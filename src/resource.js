@@ -1,5 +1,5 @@
 var res = {
-    background_png : "res/sougen.png",
+    backgroundst1_png : "res/sougen.png",
     background02_png : "res/back/boti01.png",
     background03_png : "res/back/boti02.png",
     background04_png : "res/back/win.jpg",
@@ -9,6 +9,18 @@ var res = {
     background08_png : "res/back/win02.png",
     background09_png : "res/back/kusa01.png",
     background10_png : "res/back/siro.png",
+
+    background11_png : "res/new/title_03.jpg",
+    background12_png : "res/new/kyoukawaku02.png",
+    background13_png : "res/new/kyoukawaku03.png",
+    background14_png : "res/new/caslebar_one.png",
+    background15_png : "res/mesframe15_txt_blue.png",
+    background16_png : "res/new/kyoukawaku05.png",
+    background17_png : "res/new/kyoukawaku.png",
+    background18_png : "res/new/caslebar_one02.png",
+
+    backgroundst2_png : "res/iwahada.png",
+    backgroundst3_png : "res/setugen.png",
 
     shiro01_png : "res/purezen/tyusei02_d_02.png",
 
@@ -23,11 +35,12 @@ var res = {
     seni01_png : "res/seni.png",
     zenkai01_png : "res/zenkai.png",
     zenkai02_png : "res/zenkai02.png",
-    zenkai03_png : "res/zenkai03.png",
+    zenkai03_png : "res/zenkai04.png",
 
-    waku_png : "res/new/waku_all.png",
+    waku_png : "res/new/waku_all02.png",
 
     caslebar_png : "res/new/caslebar2.png",
+    caslebar02_png : "res/new/caslebar4.png",
 
     unitbar_png : "res/new/unitbar03.png",
     unit_plist : "res/spritesheet.plist",

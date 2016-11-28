@@ -1,8 +1,9 @@
 //stageselect.js
 
-var color = cc.color(100, 50, 50, 128);
-var color02 = cc.color(255, 0, 255, 128);
-var color03 = cc.color(100, 100, 100, 50);
+
+var stage = 1;
+var stage_S02 = false;
+var stage_S03 = false;
 
 var select = cc.Layer.extend({
     ctor: function() {
@@ -14,7 +15,7 @@ var select = cc.Layer.extend({
         //this.addChild(label, 1);
 
         //BGM
-        audioEngine.stopMusic();//前BGMの停止
+        //audioEngine.stopMusic();//前BGMの停止
         //音楽再生エンジン
         audioEngine = cc.audioEngine;
 
@@ -32,6 +33,34 @@ var select = cc.Layer.extend({
         background.setScale(2);
         this.addChild(backgroundLayer);
 
+        //セレクト枠
+        back = cc.Layer.create();
+        this.addChild(back);
+        bg = cc.Sprite.create(res.background16_png);
+        back.addChild(bg, 0);
+        bg.setPosition(size.width * 0.5,size.height * 0.6, 15);
+
+        //コメント枠
+        back02 = cc.Layer.create();
+        this.addChild(back02);
+        bg02 = cc.Sprite.create(res.background15_png);
+        back.addChild(bg02, 0);
+        bg02.setPosition(size.width * 0.5,size.height * 0.3, 15);
+
+        //タイトル枠
+        back03 = cc.Layer.create();
+        this.addChild(back03);
+        bg03 = cc.Sprite.create(res.background11_png);
+        back.addChild(bg03, 0);
+        bg03.setPosition(size.width * 0.5,size.height * 0.8, 15);
+
+        //コメント枠
+        back04 = cc.Layer.create();
+        this.addChild(back04);
+        bg04 = cc.Sprite.create(res.background17_png);
+        back.addChild(bg04, 0);
+        bg04.setPosition(size.width * 0.8,size.height * 0.1, 15);
+
         //ステージ選択
         label01 = cc.LabelTTF.create("ステージ選択", "Arial", 40);
         label01.setColor(255,255,255);
@@ -40,13 +69,13 @@ var select = cc.Layer.extend({
 
         //ステージ１
         stage01 = cc.LabelTTF.create("ステージ1", "Arial", 30);
-        stage01.setColor(255,255,255);
+        stage01.setColor(color);
         this.addChild(stage01); //文字つける時はこっち*/
         stage01.setPosition(size.width * 0.2,size.height * 0.6, 15);
 
         //ステージ2
         stage02 = cc.LabelTTF.create("ステージ2", "Arial", 30);
-        stage02.setColor(color);
+        stage02.setColor(color03);
         this.addChild(stage02); //文字つける時はこっち*/
         stage02.setPosition(size.width * 0.5,size.height * 0.6, 15);
 
@@ -71,24 +100,32 @@ var select = cc.Layer.extend({
         */
 
         //ステージ選んで
-        label03 = cc.LabelTTF.create("<ステージを選ぶのです", "Arial", 25);
+        label03 = cc.LabelTTF.create("ステージを選んで下さい。\n枠内をクリックすると戦闘が始まります。\nユニット強化は右下をクリックして下さい。", "Arial", 15);
         label03.setColor(255,255,255);
         this.addChild(label03); //文字つける時はこっち*/
-        label03.setPosition(size.width / 2,size.height * 0.2, 15);
+        label03.setPosition(size.width * 0.515,size.height * 0.3, 15);
 
         var drop01 = cc.Sprite.create(res.kodomo_png);　
-        drop01.setPosition(size.width / 5, size.height * 0.15);
+        drop01.setPosition(size.width * 0.15, size.height * 0.2);
         this.addChild(drop01);
 
         //ユニット強化
-        unit = cc.LabelTTF.create("ユニット強化へ", "Arial", 30);
+        unit = cc.LabelTTF.create("ユニット強化へ", "Arial", 23);
         unit.setColor(color02);
         this.addChild(unit); //文字つける時はこっち*/
         unit.setPosition(size.width * 0.8,size.height * 0.1, 15);
 
-        /*var drop02 = cc.Sprite.create(res.replay_png);　
-        drop02.setPosition(size.width / 2, size.height * 0.2);　
-        this.addChild(drop02);*/
+        //■■■■■ステージの文字色変更■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+        if(stage_S02 == true){
+          stage01.setColor(color08);
+          stage02.setColor(color);
+        }
+        if(stage_S03 == true){
+          stage01.setColor(color08);
+          stage02.setColor(color08);
+          stage03.setColor(color);
+        }
 
         // タップイベントリスナーを登録する
                 cc.eventManager.addListener({
@@ -102,12 +139,36 @@ var select = cc.Layer.extend({
         return true;
     },
       onTouchBegan: function(touch, event) {
-        if(touch.getLocation().x < 300 && touch.getLocation().y < 200 && touch.getLocation().x > 175 && touch.getLocation().y > 180 ){
-          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
 
+        //■■■■■ステージ選択■■■■■■■■■■■■■■■■■■■■■■■■■■
+        if(touch.getLocation().y < 200 && touch.getLocation().y > 180 ){
+          console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+          //■■■■■ステージ1■■■■■■■■■■■■■■■■■■■■■■■■■■
+          if(touch.getLocation().x < 160 && touch.getLocation().x > 30  ){
+            stage = 1;
+          var a = cc.TransitionFade.create(2.0, new gameScene());
+          cc.director.runScene(a);
+          }
+
+          //■■■■■ステージ2■■■■■■■■■■■■■■■■■■■■■■■■■■
+          if(touch.getLocation().x < 300 && touch.getLocation().x > 175 && stage_S02 == true){
+            stage = 2;
+          var a = cc.TransitionFade.create(2.0, new gameScene());
+          cc.director.runScene(a);
+          }
+
+          //■■■■■ステージ3■■■■■■■■■■■■■■■■■■■■■■■■■■
+          if(touch.getLocation().x < 450 && touch.getLocation().x > 320 && stage_S03 == true){
+            stage = 3;
+            console.log("ステージ3選択");
           var a = cc.TransitionFade.create(2.0, new gameScene());
           cc.director.runScene(a);
         }
+
+      }
+
+        //■■■■■強化画面へ■■■■■■■■■■■■■■■■■■■■■■■■■■
+
         if(touch.getLocation().x < 500 && touch.getLocation().y < 50 && touch.getLocation().x > 290 && touch.getLocation().y > 20 ){
           console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
           var a = cc.TransitionFade.create(2.0, new PowerSelectScene());
