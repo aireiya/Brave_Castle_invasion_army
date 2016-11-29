@@ -27,6 +27,7 @@ var unitLayer;    //ユニット召喚レイヤー
 var array01i = -1; //ユニット配列回し変数
 var raneY = 0;  //レーン位置保存1~5
 var arraytrue = 0;  //出撃許可変数
+var scene_Un = false;
 //◆----------◆
 
 var addunit;
@@ -71,6 +72,21 @@ var gameScene = cc.Scene.extend({
 
 
 var game = cc.Layer.extend({
+  ctor: function(){
+    this._super();
+    switch (stage) {
+      case 1:
+        cc.eventManager.addListener(listener, this);
+        break;
+      case 2:
+        cc.eventManager.addListener(listener02, this);
+        break;
+      case 2:
+        cc.eventManager.addListener(listener03, this);
+        break;
+
+    }
+  },
   init: function() {
     this._super();
     //グラデーション背景
@@ -78,9 +94,10 @@ var game = cc.Layer.extend({
     this.schedule(this.update, 0.5);
 
     //■■■■■初期化数値■■■■■■■■■■■■■■■■■■■■■■■■■■
+
     copoint = 100;
     timer = 0;
-
+    //味方ユニット系
     enemyCS = 100;
     unitArray01 = [];
     array01 = 0;
@@ -89,7 +106,8 @@ var game = cc.Layer.extend({
     arraytrue = 0;
     ENBpos = 0;
     raneY = 0;
-
+    scene_Un = false;
+    //敵ユニット系
     playerCS = 100;
     enemyArray = [];
     ensuu = 0;
@@ -97,9 +115,6 @@ var game = cc.Layer.extend({
     enemyup = 0;
     PLBpos = 0;
     change_E = 0;
-
-    console.log(unitarray01.length);
-
 
     //スプライトシート読み込み
     cache = cc.spriteFrameCache;
@@ -111,7 +126,7 @@ var game = cc.Layer.extend({
     this.addChild(unitLayer);
 
     //BGM
-    audioEngine.stopMusic();//前BGMの停止(このプログラムが最初に読まれば場合は消す)
+    //audioEngine.stopMusic();//前BGMの停止(このプログラムが最初に読まれば場合は消す)
     //音楽再生エンジン
     audioEngine = cc.audioEngine;
 
@@ -310,18 +325,8 @@ ovtime.setColor(color02);
 this.addChild(ovtime); //文字つける時はこっち*/
 ovtime.setPosition(size.width * 0.52,size.height * 0.87, 15);
 
-
-    // タップイベントリスナーを登録する
-            cc.eventManager.addListener({
-                event: cc.EventListener.TOUCH_ONE_BY_ONE,
-                swallowTouches: true,
-                onTouchBegan: this.onTouchBegan,
-                onTouchMoved: this.onTouchMoved,
-                onTouchEnded: this.onTouchEnded
-            }, this);
-
     //return true;
-    cc.eventManager.addListener(listener, this);
+    //cc.eventManager.addListener(listener, this);
 },
 
 
@@ -367,6 +372,7 @@ ovtime.setPosition(size.width * 0.52,size.height * 0.87, 15);
     if(poptime == stagepop){
     var rand = Math.floor( Math.random() * 5+ 1 ) ;
     var rand2 = Math.floor( Math.random() * 5 + 1 ) ;
+    //console.log("ランダム");
 
       //console.log("らんだむー");
       //console.log(rand);
@@ -568,6 +574,7 @@ if(unitArray01.length > 0){
                     break;
 
                 }
+                scene_Un = true;
                 var a = cc.TransitionFade.create(2.0, new ResultScene());
                 change = 1;
                 cc.director.runScene(a);

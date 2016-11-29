@@ -1,5 +1,5 @@
 
-var listener = cc.EventListener.create({
+var listener03 = cc.EventListener.create({
 event: cc.EventListener.TOUCH_ONE_BY_ONE, //一回だけ反応
 //swallowTouches: true,
 onTouchBegan: function(touch, event) {

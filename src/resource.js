@@ -35,7 +35,7 @@ var res = {
     seni01_png : "res/seni.png",
     zenkai01_png : "res/zenkai.png",
     zenkai02_png : "res/zenkai02.png",
-    zenkai03_png : "res/zenkai04.png",
+    zenkai03_png : "res/zenkai03.png",
 
     waku_png : "res/new/waku_all02.png",
 

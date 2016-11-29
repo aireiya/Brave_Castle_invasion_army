@@ -257,22 +257,77 @@ var power = cc.Layer.extend({
         this.addChild(unit); //文字つける時はこっち*/
         unit.setPosition(size.width * 0.8,size.height * 0.1, 15);
 
-
-        /*var drop02 = cc.Sprite.create(res.replay_png);　
-        drop02.setPosition(size.width / 2, size.height * 0.2);　
-        this.addChild(drop02);*/
-
-        // タップイベントリスナーを登録する
-                cc.eventManager.addListener({
-                    event: cc.EventListener.TOUCH_ONE_BY_ONE,
-                    swallowTouches: true,
-                    onTouchBegan: this.onTouchBegan,
-                    onTouchMoved: this.onTouchMoved,
-                    onTouchEnded: this.onTouchEnded
-                }, this);
-
-        //return true;
         cc.eventManager.addListener(kyoukaTouch, this);
+
+        //■■■■■画像変更■■■■■■■■■■■■■■■■■■■■■■■■■■
+        //ユニット01
+        switch(lv_U01){
+          case 2 :  hptx01.setSpriteFrame(cache.getSpriteFrame("hphosi02"));
+                    ma01.setSpriteFrame(cache.getSpriteFrame("akuma02"));
+                    break;
+
+          case 3 :  powtx01.setSpriteFrame(cache.getSpriteFrame("powhosi02"));
+                    ma01.setSpriteFrame(cache.getSpriteFrame("akuma03"));
+                    break;
+
+          case 4 :  hptx01.setSpriteFrame(cache.getSpriteFrame("hphosi03"));
+                    ma01.setSpriteFrame(cache.getSpriteFrame("akuma04"));
+                    break;
+        }
+        //ユニット02
+        switch(lv_U02){
+          case 2 :  powtx02.setSpriteFrame(cache.getSpriteFrame("powhosi03"));
+                    ma02.setSpriteFrame(cache.getSpriteFrame("akuma02"));
+                    break;
+
+          case 3 :  powtx02.setSpriteFrame(cache.getSpriteFrame("powhosi04"));
+                    ma02.setSpriteFrame(cache.getSpriteFrame("akuma03"));
+                    break;
+
+          case 4 :  hptx02.setSpriteFrame(cache.getSpriteFrame("hphosi02"));
+                    ma02.setSpriteFrame(cache.getSpriteFrame("akuma04"));
+                    break;
+        }
+        //ユニット03
+        switch(lv_U03){
+          case 2 :  powtx03.setSpriteFrame(cache.getSpriteFrame("powhosi02"));
+                    ma03.setSpriteFrame(cache.getSpriteFrame("akuma02"));
+                    break;
+
+          case 3 :  powtx03.setSpriteFrame(cache.getSpriteFrame("powhosi03"));
+                    ma03.setSpriteFrame(cache.getSpriteFrame("akuma03"));
+                    break;
+
+          case 4 :  hptx03.setSpriteFrame(cache.getSpriteFrame("hphosi04"));
+                    ma03.setSpriteFrame(cache.getSpriteFrame("akuma04"));
+                    break;
+        }
+        switch(lv_U04){
+          case 2 :  hptx04.setSpriteFrame(cache.getSpriteFrame("hphosi03"));
+                    ma04.setSpriteFrame(cache.getSpriteFrame("akuma02"));
+                    break;
+
+          case 3 :  hptx04.setSpriteFrame(cache.getSpriteFrame("hphosi04"));
+                    ma04.setSpriteFrame(cache.getSpriteFrame("akuma03"));
+                    break;
+
+          case 4 :  hptx04.setSpriteFrame(cache.getSpriteFrame("hphosi05"));
+                    ma04.setSpriteFrame(cache.getSpriteFrame("akuma04"));
+                    break;
+        }
+        switch(lv_U05){
+          case 2 :  hptx05.setSpriteFrame(cache.getSpriteFrame("hphosi02"));
+                    ma05.setSpriteFrame(cache.getSpriteFrame("akuma02"));
+                    break;
+
+          case 3 :  powtx05.setSpriteFrame(cache.getSpriteFrame("powhosi05"));
+                    ma05.setSpriteFrame(cache.getSpriteFrame("akuma03"));
+                    break;
+
+          case 4 :  hptx05.setSpriteFrame(cache.getSpriteFrame("hphosi03"));
+                    ma05.setSpriteFrame(cache.getSpriteFrame("akuma04"));
+                    break;
+        }
     },
 
 });

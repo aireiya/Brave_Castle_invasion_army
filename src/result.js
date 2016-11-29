@@ -12,10 +12,6 @@ var result = cc.Layer.extend({
         this._super();
         var size = cc.director.getWinSize();
 
-        //var label = cc.LabelTTF.create("GameOver", "Arial", 40);
-        //label.setPosition(size.width / 2, size.height / 2);
-        //this.addChild(label, 1);
-
         //BGM
         audioEngine.stopMusic();//前BGMの停止
         //音楽再生エンジン
@@ -86,7 +82,7 @@ var result = cc.Layer.extend({
         label06.setPosition(size.width * 0.6,size.height * 0.3, 15);
 
         //クリアpt
-        var label07 = cc.LabelTTF.create("クリアpt 00pt獲得です。", "Arial", 25);
+        var label07 = cc.LabelTTF.create("クリアpt00pt獲得です。", "Arial", 25);
         label07.setColor(255,255,255);
         this.addChild(label07); //文字つける時はこっち*/
         label07.setPosition(size.width * 0.6,size.height * 0.2, 15);
@@ -134,25 +130,25 @@ var result = cc.Layer.extend({
                           }}}}}}}}}}
 
         //総合評価
-                if(R_pt > 20) {
+                if(R_pt >= 20) {
                   label05.setString("ランク:S!!"); //S
                   label06.setString("文句なしでございます。");
                   var rand03 = Math.floor( Math.random() * 50+ 1 ) ;
                   rand03 += 200;
               }
-                if(R_pt < 20 && R_pt > 15) {
+                if(R_pt < 20 && R_pt >= 15) {
                   label05.setString("ランク:A!"); //A
                   label06.setString("素晴らしい成果です。");
                   var rand03 = Math.floor( Math.random() * 50+ 1 ) ;
                   rand03 += 150;
                 }
-                if(R_pt < 15 && R_pt > 10) {
+                if(R_pt < 15 && R_pt >= 10) {
                   label05.setString("ランク:B");//B
-                  label06.setString("まぁまぁ、といった所でしょうか。");
+                  label06.setString("まぁまぁ、でしょうか。");
                   var rand03 = Math.floor( Math.random() * 50+ 1 ) ;
                   rand03 += 100;
                 }
-                if(R_pt < 10 && R_pt > 5)  {
+                if(R_pt < 10 && R_pt >= 5)  {
                   label05.setString("ランク:C"); //C
                   label06.setString("少し被害が大きいですね。");
                   var rand03 = Math.floor( Math.random() * 50+ 1 ) ;
@@ -168,10 +164,6 @@ var result = cc.Layer.extend({
                 point += rand03;
 
         //■■■■■■■■■■評価項目おわり■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-
-        /*var drop02 = cc.Sprite.create(res.replay_png);　
-        drop02.setPosition(size.width / 2, size.height * 0.2);　
-        this.addChild(drop02);*/
 
         // タップイベントリスナーを登録する
                 cc.eventManager.addListener({
