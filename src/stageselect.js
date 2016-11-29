@@ -15,7 +15,7 @@ var select = cc.Layer.extend({
         //this.addChild(label, 1);
 
         //BGM
-        //audioEngine.stopMusic();//前BGMの停止
+        audioEngine.stopMusic();//前BGMの停止
         //音楽再生エンジン
         audioEngine = cc.audioEngine;
 

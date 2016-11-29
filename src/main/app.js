@@ -111,7 +111,7 @@ var game = cc.Layer.extend({
     this.addChild(unitLayer);
 
     //BGM
-    //audioEngine.stopMusic();//前BGMの停止(このプログラムが最初に読まれば場合は消す)
+    audioEngine.stopMusic();//前BGMの停止(このプログラムが最初に読まれば場合は消す)
     //音楽再生エンジン
     audioEngine = cc.audioEngine;
 

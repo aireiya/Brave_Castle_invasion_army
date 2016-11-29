@@ -35,7 +35,7 @@ var power = cc.Layer.extend({
         cache.addSpriteFrames(res.unit_plist, res.unit_png);
 
         //BGM
-        //audioEngine.stopMusic();//前BGMの停止
+        audioEngine.stopMusic();//前BGMの停止
         //音楽再生エンジン
         audioEngine = cc.audioEngine;
 
