@@ -100,7 +100,7 @@ var result = cc.Layer.extend({
         var drop01 = cc.Sprite.create(res.kodomo_png);　
         drop01.setPosition(size.width / 5, size.height * 0.25);
         this.addChild(drop01);
-/*
+
         //■■■■■■■■■■評価項目■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         //タイマー評価
                 if(timer < 120)  { R_pt++;

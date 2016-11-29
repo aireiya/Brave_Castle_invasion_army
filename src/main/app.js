@@ -1,10 +1,5 @@
 var itemsLayer;
 var cart;   //オブジェクト画像表示
-var xSpeed = 0; //カートの移動速度
-
-var detectedX;　 //現在タッチしているX座標
-var savedX;　 //前回タッチしていたX座標
-var touching = false;　 //タッチ状況管理用flag
 
 var unitup = 0;   //ユニット画像保存変数
 
@@ -23,7 +18,7 @@ var otomo04y = 110;
 var otomo05y = 70;
 //★--------------★
 
-var copoint = 110;  //所持コスト
+var copoint = 100;  //所持コスト
 
 //◆ユニット配列◆
 var unitArray01 = [];   //ユニット配列
@@ -32,7 +27,6 @@ var unitLayer;    //ユニット召喚レイヤー
 var array01i = -1; //ユニット配列回し変数
 var raneY = 0;  //レーン位置保存1~5
 var arraytrue = 0;  //出撃許可変数
-var gazopt = 1;   //画像更新表示(アニメーション?)
 //◆----------◆
 
 var addunit;
@@ -45,7 +39,7 @@ var timer = 0;
 var timerm = 0;
 
 var change = 0;
-var sept = 0;
+var sept = 0; //敵城への攻撃頻度
 
 var color = cc.color(255, 0, 0, 128);
 var color02 = cc.color(255, 0, 255, 128);
@@ -82,6 +76,30 @@ var game = cc.Layer.extend({
     //グラデーション背景
     //  var backgroundLayer = cc.LayerGradient.create(cc.color(0,0,0,255), cc.color(0x46,0x82,0xB4,255));
     this.schedule(this.update, 0.5);
+
+    //■■■■■初期化数値■■■■■■■■■■■■■■■■■■■■■■■■■■
+    copoint = 100;
+    timer = 0;
+
+    enemyCS = 100;
+    unitArray01 = [];
+    array01 = 0;
+    unitup = 0;
+    array01i = -1;
+    arraytrue = 0;
+    ENBpos = 0;
+    raneY = 0;
+
+    playerCS = 100;
+    enemyArray = [];
+    ensuu = 0;
+    enarrayI = -1;
+    enemyup = 0;
+    PLBpos = 0;
+    change_E = 0;
+
+    console.log(unitarray01.length);
+
 
     //スプライトシート読み込み
     cache = cc.spriteFrameCache;
@@ -511,11 +529,6 @@ if(unitArray01.length > 0){
         //移動速度変更
         unitArray01[array01i].setPositionX(unitArray01[array01i].getPositionX() + 1);
 
-      //画像の更新表示やろうとした
-        /*if(gazopt == 3){
-          gazopt = 0;
-        }
-        gazopt++;*/
 //----------------↓ユニット攻城HPへらし↓-------
         if(unitArray01[array01i].getPositionX() > 380　&& unitArray01[array01i].deth == false){
           unitArray01[array01i].setPositionX(380);

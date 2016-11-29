@@ -73,31 +73,31 @@ onTouchBegan: function(touch, event) {
 
       //--------------ユニット1--------------
       if(touch.getLocation().x < 99 && touch.getLocation().x > 5 && copoint >= 10 ){
-        //console.log("たっちセカンド1ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+        console.log("たっちセカンド1ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
         unitup = 1;
         go.setVisible(true);
       }
       //--------------ユニット2--------------
       if(touch.getLocation().x < 193 && touch.getLocation().x > 100 && copoint >= 20 ){
-        //console.log("たっちセカンド2ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+        console.log("たっちセカンド2ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
         unitup = 2;
         go.setVisible(true);
       }
       //--------------ユニット3--------------
       if(touch.getLocation().x < 285 && touch.getLocation().x > 194 && copoint >= 30 ){
-        //console.log("たっちセカンド3ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+        console.log("たっちセカンド3ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
         unitup = 3;
         go.setVisible(true);
       }
       //--------------ユニット4--------------
       if(touch.getLocation().x < 380 && touch.getLocation().x > 286 && copoint >= 40 ){
-        //console.log("たっちセカンド4ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+        console.log("たっちセカンド4ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
         unitup = 4;
         go.setVisible(true);
       }
       //--------------ユニット5--------------
       if(touch.getLocation().x < 475 && touch.getLocation().x > 381 && copoint >= 50 ){
-        //console.log("たっちセカンド5ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+        console.log("たっちセカンド5ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
         unitup = 5;
         go.setVisible(true);
       }
