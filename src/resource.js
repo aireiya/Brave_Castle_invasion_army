@@ -63,6 +63,10 @@ var res = {
 
     se01_mp3 : "res/se/point17.mp3",
 
+    kemuri : "res/new/particle_kemuri.plist",
+
+    help : "res/help.png",
+
 };
 
 var g_resources = [];

@@ -72,21 +72,6 @@ var gameScene = cc.Scene.extend({
 
 
 var game = cc.Layer.extend({
-  ctor: function(){
-    this._super();
-    switch (stage) {
-      case 1:
-        cc.eventManager.addListener(listener, this);
-        break;
-      case 2:
-        cc.eventManager.addListener(listener02, this);
-        break;
-      case 2:
-        cc.eventManager.addListener(listener03, this);
-        break;
-
-    }
-  },
   init: function() {
     this._super();
     //グラデーション背景
@@ -146,6 +131,7 @@ var game = cc.Layer.extend({
         break;
       case 2:
         var background = new cc.Sprite(res.backgroundst2_png);
+        console.log("ステージ2");
         stagepop = 3;
         break;
       case 3:
@@ -315,19 +301,137 @@ this.addChild(cost02); //文字つける時はこっち*/
 cost02.setPosition(size.width * 0.19,size.height * 0.8, 15);
 
 //-----------コスト
-txtime = cc.LabelTTF.create("経過", "Arial", 23);
+txtime = cc.LabelTTF.create("経過", "Arial", 25);
 txtime.setColor(color02);
 this.addChild(txtime); //文字つける時はこっち*/
-txtime.setPosition(size.width * 0.52,size.height * 0.94, 15);
+txtime.setPosition(size.width * 0.5,size.height * 0.94, 15);
 
-ovtime = cc.LabelTTF.create("0秒", "Arial", 23);
+ovtime = cc.LabelTTF.create("0秒", "Arial", 25);
 ovtime.setColor(color02);
 this.addChild(ovtime); //文字つける時はこっち*/
-ovtime.setPosition(size.width * 0.52,size.height * 0.87, 15);
+ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
 
     //return true;
     //cc.eventManager.addListener(listener, this);
+
+    // タップイベントリスナーを登録する
+            cc.eventManager.addListener({
+                event: cc.EventListener.TOUCH_ONE_BY_ONE,
+                swallowTouches: true,
+                onTouchBegan: this.onTouchBegan,
+                onTouchMoved: this.onTouchMoved,
+                onTouchEnded: this.onTouchEnded
+            }, this);
+
+    return true;
 },
+onTouchBegan: function(touch, event) {
+  //ヒントのクリック判定
+  //--------------レーンリスト------------------
+  if(touch.getLocation().x < 100 && touch.getLocation().x > 50 && scene_Un == false){
+    if(touch.getLocation().y > 220 && touch.getLocation().y < 240){
+      raneY = otomo01y;
+      //console.log("レーン1");
+      arraytrue = 1;
+    }
+    if(touch.getLocation().y > 180 && touch.getLocation().y < 200){
+      raneY = otomo02y;
+      //console.log("レーン2");
+      arraytrue = 1;
+    }
+    if(touch.getLocation().y > 140 && touch.getLocation().y < 160){
+      raneY = otomo03y;
+      //console.log("レーン3");
+      arraytrue = 1;
+    }
+    if(touch.getLocation().y > 100 && touch.getLocation().y < 120){
+      raneY = otomo04y;
+      //console.log("レーン4");
+      arraytrue = 1;
+    }
+    if(touch.getLocation().y > 60 && touch.getLocation().y < 80){
+      raneY = otomo05y;
+      //console.log("レーン5");
+      arraytrue = 1;
+    }
+    //console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+    if(arraytrue == 1){
+    switch(unitup){
+      case 1:
+      //console.log("しょーかん1ユニ");
+      copoint = copoint - 10;
+      break;
+
+      case 2:
+      //console.log("しょーかん2ユニ");
+      copoint = copoint - 20;
+      break;
+
+      case 3:
+      //console.log("しょーかん3ユニ");
+      copoint = copoint - 30;
+      break;
+
+      case 4:
+      //console.log("しょーかん4ユニ");
+      copoint = copoint - 40;
+      break;
+
+      case 5:
+      //console.log("しょーかん2ユニ");
+      copoint = copoint - 50;
+      break;
+
+    }
+    cost02.setString("所持コスト:" + copoint);
+    otomounit.addItem();
+    unitup = 0;
+    arraytrue = 0;
+  }
+  }
+//-------------------ユニットリスト-------------------
+//y軸固定
+    if( touch.getLocation().y < 37 &&  touch.getLocation().y > 0){
+
+
+      //--------------ユニット1--------------
+      if(touch.getLocation().x < 99 && touch.getLocation().x > 5 && copoint >= 10 ){
+        //console.log("たっちセカンド1ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+        unitup = 1;
+        go.setVisible(true);
+      }
+      //--------------ユニット2--------------
+      if(touch.getLocation().x < 193 && touch.getLocation().x > 100 && copoint >= 20 ){
+        //console.log("たっちセカンド2ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+        unitup = 2;
+        go.setVisible(true);
+      }
+      //--------------ユニット3--------------
+      if(touch.getLocation().x < 285 && touch.getLocation().x > 194 && copoint >= 30 ){
+        //console.log("たっちセカンド3ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+        unitup = 3;
+        go.setVisible(true);
+      }
+      //--------------ユニット4--------------
+      if(touch.getLocation().x < 380 && touch.getLocation().x > 286 && copoint >= 40 ){
+        //console.log("たっちセカンド4ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+        unitup = 4;
+        go.setVisible(true);
+      }
+      //--------------ユニット5--------------
+      if(touch.getLocation().x < 475 && touch.getLocation().x > 381 && copoint >= 50 ){
+        //console.log("たっちセカンド5ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
+        unitup = 5;
+        go.setVisible(true);
+      }
+    }
+
+    //cc.director.runScene(new ResultScene());
+
+  //return true;
+},
+onTouchMoved: function(touch, event) {},
+onTouchEnded: function(touch, event) {},
 
 
   //アップデート
@@ -366,16 +470,13 @@ ovtime.setPosition(size.width * 0.52,size.height * 0.87, 15);
         }
       }
     }
-    //♥♥♥♥♥♥敵出しランダム♥♥♥♥♥♥♥♥♥
+    //■■■■■■敵出しランダム■■■■■■■■■■■■■■■
     poptime++;
     //出現頻度変更、数値はschedule依存
     if(poptime == stagepop){
     var rand = Math.floor( Math.random() * 5+ 1 ) ;
     var rand2 = Math.floor( Math.random() * 5 + 1 ) ;
-    //console.log("ランダム");
-
-      //console.log("らんだむー");
-      //console.log(rand);
+    console.log("敵出現");
       enemyup = rand;
       switch (rand2) {
         case 1: enraneY = otomo01y;
@@ -397,7 +498,7 @@ ovtime.setPosition(size.width * 0.52,size.height * 0.87, 15);
     enemyunit.enItem();
     poptime = 0;
   }
-    //♥♥♥♥♥♥敵出しランダム終わり♥♥♥♥♥♥♥♥♥
+    //■■■■■■敵出しランダム終わり■■■■■■■■■■■■■■■■■■
 //--------時間毎コストアップ(0.5秒周期)
       copoint++;
       cost02.setString("所持コスト:" + copoint);
@@ -410,181 +511,6 @@ ovtime.setPosition(size.width * 0.52,size.height * 0.87, 15);
     }
 
 
-
-  },
-});
-
-//◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆gameおわり◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
-//addunit.addItem();
- addunit = cc.Layer.extend({
-
-   ctor: function(){
-      this._super();
-      //unit = new Unit();
-      //this.addChild(unit);
-
-     },
-    addItem:function(){
-
-      var unit = new Unit();
-      this.addChild(unit);
-    },
-
-});
-
-var Unit = cc.Sprite.extend({
-  ctor: function() {
-    this._super();
-    //this.initWithFile(cache.getSpriteFrame("maou_otomo01_01"));
-    //this.initWithFile(cache.getSpriteFrame("maou_otomo01_01"));
-    switch (unitup) {
-      case 1:
-      var sprite_p = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
-      //スプライトフレームを作成
-          var frame0 = cache.getSpriteFrame("maou_otomo01_01");
-          var frame1 = cache.getSpriteFrame("maou_otomo01_02");
-          var frame2 = cache.getSpriteFrame("maou_otomo01_03");
-          sprite_p.hpP = hp_U01;
-          sprite_p.atk = pow_U01;
-        break;
-
-      case 2:
-          var sprite_p = cc.Sprite.create(cache.getSpriteFrame("maou_otomo02_01"));
-          var frame0 = cache.getSpriteFrame("maou_otomo02_01");
-          var frame1 = cache.getSpriteFrame("maou_otomo02_02");
-          var frame2 = cache.getSpriteFrame("maou_otomo02_03");
-          sprite_p.hpP = hp_U02;
-          sprite_p.atk = pow_U02;
-        break;
-
-      case 3:
-          var sprite_p = cc.Sprite.create(cache.getSpriteFrame("maou_otomo03_01"));
-          var frame0 = cache.getSpriteFrame("maou_otomo03_01");
-          var frame1 = cache.getSpriteFrame("maou_otomo03_02");
-          var frame2 = cache.getSpriteFrame("maou_otomo03_03");
-          sprite_p.hpP = hp_U03;
-          sprite_p.atk = pow_U03;
-        break;
-
-      case 4:
-          var sprite_p = cc.Sprite.create(cache.getSpriteFrame("maou_otomo04_01"));
-          var frame0 = cache.getSpriteFrame("maou_otomo04_01");
-          var frame1 = cache.getSpriteFrame("maou_otomo04_02");
-          var frame2 = cache.getSpriteFrame("maou_otomo04_03");
-          sprite_p.hpP = hp_U04;
-          sprite_p.atk = pow_U04;
-        break;
-
-      case 5:
-          var sprite_p = cc.Sprite.create(cache.getSpriteFrame("maou_otomo05_01"));
-          var frame0 = cache.getSpriteFrame("maou_otomo05_01");
-          var frame1 = cache.getSpriteFrame("maou_otomo05_02");
-          var frame2 = cache.getSpriteFrame("maou_otomo05_03");
-          sprite_p.hpP = hp_U05;
-          sprite_p.atk = pow_U05;
-        break;
-}
-
-    //var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
-    //console.log("Y座標" + raneY);
-    sprite_p.setPosition(50, raneY);
-    sprite_p.numberP = array01;
-    sprite_p.attackP = false;
-    sprite_p.deth = false;
-
-    //------アニメーションの追加
-        var animationframe = [];
-
-          //for (z = 0; z < 2; z++) {
-            //スプライトフレームを配列に登録
-            //animationframe.push("frame" + z);
-            animationframe.push(frame0);
-            animationframe.push(frame1);
-            animationframe.push(frame2);
-          //}
-        //スプライトフレームの配列を連続再生するアニメーションの定義
-        var animation = new cc.Animation(animationframe, 0.2);
-        //永久ループのアクションを定義
-        var action = new cc.RepeatForever(new cc.animate(animation));
-        //実行
-        sprite_p.runAction(action);
-    //-------アニメーションの追加おわり
-
-    unitArray01.push(sprite_p);
-    go.setVisible(false);
-
-
-    this.addChild(sprite_p);
-    array01++;
-
-    this.schedule(this.update, 0.025);
-
-  },
-  //-------アップデート--------
-  update: function(dt) {
-
-if(unitArray01.length > 0){
-  if(array01i < 0){
-    //console.log("ユニット長さ" + unitArray01.length);
-    array01i = unitArray01.length -1;
-  }
-    //ユニット配列
-    if(array01i >= 0){
-
-      if(unitArray01[array01i].attackP == false){
-        //移動速度変更
-        unitArray01[array01i].setPositionX(unitArray01[array01i].getPositionX() + 1);
-
-//----------------↓ユニット攻城HPへらし↓-------
-        if(unitArray01[array01i].getPositionX() > 380　&& unitArray01[array01i].deth == false){
-          unitArray01[array01i].setPositionX(380);
-          emargency = unitArray01[array01i].getPositionY();
-
-          //敵城ポジション400で止まる
-          kemu.setVisible(true);
-          kemu02.setVisible(true);
-          kemu03.setVisible(true);
-
-          enemyDM++;
-            if(enemyDM > 10){
-              sept++;
-              if(change == 0 && sept == 2){
-                audioEngine.playEffect(res.at01_mp3);
-                sept = 0;
-            }
-
-              enemyCS--;
-              enemyDM = 0;
-              ENBpos++;
-              var size = ENbar.getContentSize();
-              ENbar.setScaleX(enemyCS / 100);
-              ENbar.setContentSize(cc.size(ENbar.width, size.height));
-              //ENbar.ignoreAnchorPointForPosition(false);
-              //console.log(ENbar.getPositionX());
-              //コンテンツサイズで画像更新
-              //アンカーポイント0,0でやる
-              //イグノリアフォアアンカーポジション 常にtrue アンカーポイントを無効化 falseで治るかも
-              if(enemyCS < 20){
-                switch (stage) {
-                  case 1:
-                    stage_S02 = true;
-                    break;
-                  case 1:
-                    stage_S03 = true;
-                    break;
-
-                }
-                scene_Un = true;
-                var a = cc.TransitionFade.create(2.0, new ResultScene());
-                change = 1;
-                cc.director.runScene(a);
-              }
-            }
-        }
-      }
-      array01i --;
-    }
-  }
 
   },
 });

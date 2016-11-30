@@ -2,10 +2,52 @@ var attack;
 
 var gekiha = 0;
 
+var Particle01;
+var Particle02;
+var Particle03;
+var Particle04;
+var Particle05;
+
 attack = cc.Layer.extend({
  ctor: function(){
     this._super();
     this.schedule(this.update, 0.1);
+
+    //エフェクト追加レーン1
+    Particle01 = new cc.ParticleSystem(res.kemuri);
+    Particle01.setPosition(1000,otomo01y );
+    this.addChild(Particle01, 20);
+    Particle01.setAutoRemoveOnFinish(true);
+
+    //エフェクト追加レーン2
+    Particle02 = new cc.ParticleSystem(res.kemuri);
+    Particle02.setPosition(1000,otomo02y );
+    this.addChild(Particle02, 20);
+    Particle02.setAutoRemoveOnFinish(true);
+
+    //エフェクト追加レーン3
+    Particle03 = new cc.ParticleSystem(res.kemuri);
+    Particle03.setPosition(1000,otomo03y );
+    this.addChild(Particle03, 20);
+    Particle03.setAutoRemoveOnFinish(true);
+
+    //エフェクト追加レーン3
+    Particle03 = new cc.ParticleSystem(res.kemuri);
+    Particle03.setPosition(1000,otomo03y );
+    this.addChild(Particle03, 20);
+    Particle03.setAutoRemoveOnFinish(true);
+
+    //エフェクト追加レーン4
+    Particle04 = new cc.ParticleSystem(res.kemuri);
+    Particle04.setPosition(1000,otomo04y );
+    this.addChild(Particle04, 20);
+    Particle04.setAutoRemoveOnFinish(true);
+
+    //エフェクト追加レーン5
+    Particle05 = new cc.ParticleSystem(res.kemuri);
+    Particle05.setPosition(1000,otomo05y );
+    this.addChild(Particle05, 20);
+    Particle05.setAutoRemoveOnFinish(true);
    },
 
   update:function(dt){
@@ -28,9 +70,46 @@ if(unitArray01.length > 0){
 
             moveP = true;
 
+            switch (enemyArray[n].getPositionY()) {
+              case 230:
+                Particle01.setPosition(enemyArray[n].getPositionX(),otomo01y );
+                break;
+              case 190:
+                Particle02.setPosition(enemyArray[n].getPositionX(),otomo02y );
+                break;
+              case 150:
+                Particle03.setPosition(enemyArray[n].getPositionX(),otomo03y );
+                break;
+              case 110:
+                Particle04.setPosition(enemyArray[n].getPositionX(),otomo04y );
+                break;
+              case 70:
+                Particle05.setPosition(enemyArray[n].getPositionX(),otomo05y );
+                break;
+            }
+
               if(unitArray01[i].hpP <= 0){
                 //ユニットHPが0の(ユニットが負けた)場合
                 //console.log("ユニット負け" + i);
+                if(unitArray01[i].deth == false){
+                switch (enemyArray[n].getPositionY()) {
+                  case 230:
+                    Particle01.setPosition(1000,otomo01y );
+                    break;
+                  case 190:
+                    Particle02.setPosition(1000,otomo02y );
+                    break;
+                  case 150:
+                    Particle03.setPosition(1000,otomo03y );
+                    break;
+                  case 110:
+                    Particle04.setPosition(1000,otomo04y );
+                    break;
+                  case 70:
+                    Particle05.setPosition(1000,otomo05y );
+                    break;
+                }
+              }
                 unitArray01[i].removeFromParentAndCleanup(true);
                 //unitArray01[i] = null;
                 enemyArray[n].attack = false;
@@ -62,6 +141,25 @@ if(unitArray01.length > 0){
 
                   break;
                 }
+                if(enemyArray[n].deth == false){
+                switch (enemyArray[n].getPositionY()) {
+                  case 230:
+                    Particle01.setPosition(1000,otomo01y );
+                    break;
+                  case 190:
+                    Particle02.setPosition(1000,otomo02y );
+                    break;
+                  case 150:
+                    Particle03.setPosition(1000,otomo03y );
+                    break;
+                  case 110:
+                    Particle04.setPosition(1000,otomo04y );
+                    break;
+                  case 70:
+                    Particle05.setPosition(1000,otomo05y );
+                    break;
+                }
+              }
                 gekiha++;
                 cost02.setString("所持コスト:" + copoint);
                 enemyArray[n].removeFromParentAndCleanup(true);

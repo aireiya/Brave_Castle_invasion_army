@@ -40,7 +40,7 @@ var title = cc.Layer.extend({
         this.addChild(backgroundLayer);
 
         //ゲームオーバー
-        label01 = cc.LabelTTF.create("勇者城侵攻軍！モックアップ", "Arial", 35);
+        label01 = cc.LabelTTF.create("勇者城侵攻軍！", "Arial", 35);
         label01.setColor(color04);
         this.addChild(label01); //文字つける時はこっち*/
         label01.setPosition(size.width / 2,size.height * 0.8, 15);
@@ -52,13 +52,13 @@ var title = cc.Layer.extend({
         label02.setPosition(size.width / 2,size.height * 0.6, 15);
 
         //スタート
-        label03 = cc.LabelTTF.create("<クリックでスタート", "Arial", 30);
+        label03 = cc.LabelTTF.create("クリックでスタート", "Arial", 30);
         label03.setColor(color05);
         this.addChild(label03); //文字つける時はこっち*/
         label03.setPosition(size.width / 2,size.height * 0.3, 15);
 
         var drop01 = cc.Sprite.create(res.kodomo_png);　
-        drop01.setPosition(size.width / 5, size.height * 0.25);
+        drop01.setPosition(size.width * 0.15, size.height * 0.25);
         this.addChild(drop01);
 
         /*var drop02 = cc.Sprite.create(res.replay_png);　
