@@ -17,10 +17,10 @@ var result = cc.Layer.extend({
         //音楽再生エンジン
         audioEngine = cc.audioEngine;
 
-        if (!audioEngine.isMusicPlaying()) {
+        //if (!audioEngine.isMusicPlaying()) {
           //audioEngine.playMusic("res/bgm_main.mp3", true);
           audioEngine.playMusic(res.result_mp3 , true);
-        }
+        //}
 
         //背景
         var background = new cc.Sprite(res.background08_png);

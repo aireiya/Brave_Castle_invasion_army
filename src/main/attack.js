@@ -8,6 +8,9 @@ var Particle03;
 var Particle04;
 var Particle05;
 
+var U_se = 0;
+var E_se = 0;
+
 attack = cc.Layer.extend({
  ctor: function(){
     this._super();
@@ -67,6 +70,20 @@ if(unitArray01.length > 0){
             //衝突フラグ立て、その場で停止
             unitArray01[i].hpP--;
             enemyArray[n].hp -= unitArray01[i].atk;
+
+            U_se++;
+            E_se++;
+
+            if(U_se > 5){
+              //エフェクト
+              audioEngine.playEffect(res.se05_mp3);
+              U_se = 0;
+            }
+            if(E_se > 7){
+              //エフェクト
+              audioEngine.playEffect(res.se06_mp3);
+              E_se = 0;
+            }
 
             moveP = true;
 

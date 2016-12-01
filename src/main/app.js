@@ -28,6 +28,8 @@ var array01i = -1; //ユニット配列回し変数
 var raneY = 0;  //レーン位置保存1~5
 var arraytrue = 0;  //出撃許可変数
 var scene_Un = false;
+var rane_Un = false;
+var box_Un = false;
 //◆----------◆
 
 var addunit;
@@ -104,6 +106,8 @@ var game = cc.Layer.extend({
     ENBpos = 0;
     raneY = 0;
     scene_Un = false;
+    rane_Un = false;
+    box_Un = true;
     //敵ユニット系
     playerCS = 100;
     enemyArray = [];
@@ -122,7 +126,7 @@ var game = cc.Layer.extend({
     this.addChild(unitLayer);
 
     //BGM
-    //audioEngine.stopMusic();//前BGMの停止(このプログラムが最初に読まれば場合は消す)
+    audioEngine.stopMusic();//前BGMの停止(このプログラムが最初に読まれば場合は消す)
     //音楽再生エンジン
     audioEngine = cc.audioEngine;
 
@@ -327,7 +331,7 @@ ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
 onTouchBegan: function(touch, event) {
   //ヒントのクリック判定
   //--------------レーンリスト------------------
-  if(touch.getLocation().x < 100 && touch.getLocation().x > 50 && scene_Un == false){
+  if(touch.getLocation().x < 100 && touch.getLocation().x > 50 && scene_Un == false && rane_Un == true){
     if(touch.getLocation().y > 220 && touch.getLocation().y < 240){
       raneY = otomo01y;
       //console.log("レーン1");
@@ -353,8 +357,7 @@ onTouchBegan: function(touch, event) {
       //console.log("レーン5");
       arraytrue = 1;
     }
-    //エフェクト
-    audioEngine.playEffect(res.se07_mp3);
+
     //console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
     if(arraytrue == 1){
     switch(unitup){
@@ -388,45 +391,47 @@ onTouchBegan: function(touch, event) {
     otomounit.addItem();
     unitup = 0;
     arraytrue = 0;
+    rane_Un = false;
+    box_Un = true;
+    //エフェクト
+    audioEngine.playEffect(res.se07_mp3);
   }
   }
 //-------------------ユニットリスト-------------------
 //y軸固定
-    if( touch.getLocation().y < 37 &&  touch.getLocation().y > 0){
+    if( touch.getLocation().y < 37 &&  touch.getLocation().y > 0 && box_Un == true){
 
 
       //--------------ユニット1--------------
       if(touch.getLocation().x < 99 && touch.getLocation().x > 5 && copoint >= 10 ){
         //console.log("たっちセカンド1ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
         unitup = 1;
-        go.setVisible(true);
       }
       //--------------ユニット2--------------
       if(touch.getLocation().x < 193 && touch.getLocation().x > 100 && copoint >= 20 ){
         //console.log("たっちセカンド2ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
         unitup = 2;
-        go.setVisible(true);
       }
       //--------------ユニット3--------------
       if(touch.getLocation().x < 285 && touch.getLocation().x > 194 && copoint >= 30 ){
         //console.log("たっちセカンド3ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
         unitup = 3;
-        go.setVisible(true);
       }
       //--------------ユニット4--------------
       if(touch.getLocation().x < 380 && touch.getLocation().x > 286 && copoint >= 40 ){
         //console.log("たっちセカンド4ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
         unitup = 4;
-        go.setVisible(true);
       }
       //--------------ユニット5--------------
       if(touch.getLocation().x < 475 && touch.getLocation().x > 381 && copoint >= 50 ){
         //console.log("たっちセカンド5ユニ" + touch.getLocation().x +" " + touch.getLocation().y);
         unitup = 5;
-        go.setVisible(true);
       }
+      go.setVisible(true);
       //エフェクト
       audioEngine.playEffect(res.se08_mp3);
+      rane_Un = true;
+      box_Un = false;
     }
 
     //cc.director.runScene(new ResultScene());
@@ -549,6 +554,8 @@ var Unit = cc.Sprite.extend({
          var frame2 = cache.getSpriteFrame("maou_otomo01_03");
          sprite_p.hpP = hp_U01;
          sprite_p.atk = pow_U01;
+         sprite_p.attackP = false;
+         sprite_p.deth = false;
        break;
 
      case 2:
@@ -558,6 +565,8 @@ var Unit = cc.Sprite.extend({
          var frame2 = cache.getSpriteFrame("maou_otomo02_03");
          sprite_p.hpP = hp_U02;
          sprite_p.atk = pow_U02;
+         sprite_p.attackP = false;
+         sprite_p.deth = false;
        break;
 
      case 3:
@@ -567,6 +576,8 @@ var Unit = cc.Sprite.extend({
          var frame2 = cache.getSpriteFrame("maou_otomo03_03");
          sprite_p.hpP = hp_U03;
          sprite_p.atk = pow_U03;
+         sprite_p.attackP = false;
+         sprite_p.deth = false;
        break;
 
      case 4:
@@ -576,6 +587,8 @@ var Unit = cc.Sprite.extend({
          var frame2 = cache.getSpriteFrame("maou_otomo04_03");
          sprite_p.hpP = hp_U04;
          sprite_p.atk = pow_U04;
+         sprite_p.attackP = false;
+         sprite_p.deth = false;
        break;
 
      case 5:
@@ -585,14 +598,16 @@ var Unit = cc.Sprite.extend({
          var frame2 = cache.getSpriteFrame("maou_otomo05_03");
          sprite_p.hpP = hp_U05;
          sprite_p.atk = pow_U05;
+         sprite_p.attackP = false;
+         sprite_p.deth = false;
        break;
 }
 
    //var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
    //console.log("Y座標" + raneY);
    //sprite_p.numberP = array01;
-   sprite_p.attackP = false;
-   sprite_p.deth = false;
+   //sprite_p.attackP = false;
+   //sprite_p.deth = false;
 
    //------アニメーションの追加
        var animationframe = [];

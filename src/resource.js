@@ -66,7 +66,7 @@ var res = {
     se05_mp3 : "res/se/battle16.mp3",   //味方攻撃
     se06_mp3 : "res/se/battle17.mp3",   //敵攻撃
     se07_mp3 : "res/se/drop.mp3",   //出撃
-    se08_mp3 : "res/se/pop.mp3",   //ユニット選択
+    se08_mp3 : "res/se/pop02.mp3",   //ユニット選択
 
     kemuri : "res/new/particle_kemuri.plist",
     fire : "res/new/fire_particle.plist",
