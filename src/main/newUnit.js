@@ -70,7 +70,7 @@ var Unit = cc.Sprite.extend({
 
    //var sprite = cc.Sprite.create(cache.getSpriteFrame("maou_otomo01_01"));
    //console.log("Y座標" + raneY);
-   sprite_p.numberP = array01;
+   //sprite_p.numberP = array01;
    sprite_p.attackP = false;
    sprite_p.deth = false;
 
@@ -142,7 +142,7 @@ if(unitArray01.length > 0){
              //アンカーポイント0,0でやる
              //イグノリアフォアアンカーポジション 常にtrue アンカーポイントを無効化 falseで治るかも
 
-             switch (enemyArray[n].getPositionY()) {
+             switch (unitArray01[array01i].getPositionY()) {
                case 230:
                  Particle01.setPosition(unitArray01[array01i].getPositionX(),otomo01y );
                  break;

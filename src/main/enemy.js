@@ -11,9 +11,6 @@ var enemyup = 0;
 var playerDM = 0;
 var change_E = 0;
 var playerCS = 100;
-var playerDM = 0;
-
-var PLBpos = 0;
 
 var enraneY;
 
@@ -157,7 +154,6 @@ var enUnit = cc.Sprite.extend({
 
                       playerCS--;
                       playerDM = 0;
-                      PLBpos++;
                       var size = PLbar.getContentSize();
                       PLbar.setScaleX(playerCS / 100);
                       PLbar.setContentSize(cc.size(PLbar.width, size.height));
