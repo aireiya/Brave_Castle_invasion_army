@@ -179,12 +179,10 @@ var result = cc.Layer.extend({
       onTouchBegan: function(touch, event) {
         if(touch.getLocation().x < 460 && touch.getLocation().y < 30 && touch.getLocation().x > 310 && touch.getLocation().y > 10 ){
           //console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+          //エフェクト
+          audioEngine.playEffect(res.se02_mp3);
           var a = cc.TransitionFade.create(2.0, new StageSelectScene());
           cc.director.runScene(a);
-        }
-        if(touch.getLocation().x < 330 && touch.getLocation().y < 320 && touch.getLocation().x > 150 && touch.getLocation().y > 100 ){
-          //console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
-          //cc.director.runScene(new GameOverScene());
         }
       },
       onTouchMoved: function(touch, event) {},

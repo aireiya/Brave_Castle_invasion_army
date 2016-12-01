@@ -39,26 +39,43 @@ var title = cc.Layer.extend({
         background.setScale(1);
         this.addChild(backgroundLayer);
 
+        //コメント枠
+        back03 = cc.Layer.create();
+        this.addChild(back03);
+        bg03 = cc.Sprite.create(res.background15_png);
+        back03.addChild(bg03, 0);
+        bg03.setPosition(size.width * 0.5,size.height * 0.3, 15);
+
+/*
         //ゲームオーバー
         label01 = cc.LabelTTF.create("勇者城侵攻軍！", "Arial", 35);
         label01.setColor(color04);
-        this.addChild(label01); //文字つける時はこっち*/
-        label01.setPosition(size.width / 2,size.height * 0.8, 15);
-
+        this.addChild(label01); //文字つける時はこっち
+        label01.setPosition(size.width / 2,size.height * 0.8, 15);*/
+/*
         //リトライ？
         label02 = cc.LabelTTF.create("～魔王の息子のウサ晴らし～", "Arial", 35);
         label02.setColor(color04);
-        this.addChild(label02); //文字つける時はこっち*/
-        label02.setPosition(size.width / 2,size.height * 0.6, 15);
+        this.addChild(label02); //文字つける時はこっち
+        label02.setPosition(size.width / 2,size.height * 0.6, 15);*/
+
+        var title02 = cc.Sprite.create(res.flow_png);　
+        title02.setPosition(size.width * 0.5, size.height * 0.7);
+        this.addChild(title02);
+
+        var title = cc.Sprite.create(res.title_png);　
+        title.setPosition(size.width * 0.515, size.height * 0.68);
+        this.addChild(title);
+
 
         //スタート
-        label03 = cc.LabelTTF.create("クリックでスタート", "Arial", 30);
+        label03 = cc.LabelTTF.create("クリックでスタート!", "Arial", 30);
         label03.setColor(color05);
         this.addChild(label03); //文字つける時はこっち*/
-        label03.setPosition(size.width / 2,size.height * 0.3, 15);
+        label03.setPosition(size.width * 0.5,size.height * 0.3, 15);
 
         var drop01 = cc.Sprite.create(res.kodomo_png);　
-        drop01.setPosition(size.width * 0.15, size.height * 0.25);
+        drop01.setPosition(size.width * 0.18, size.height * 0.18);
         this.addChild(drop01);
 
         /*var drop02 = cc.Sprite.create(res.replay_png);　
@@ -81,6 +98,8 @@ var title = cc.Layer.extend({
       },
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {
+        //エフェクト
+        audioEngine.playEffect(res.se02_mp3);
         // 次のシーンに切り替える
         var a = cc.TransitionFade.create(2.0, new StageSelectScene());
         cc.director.runScene(a);

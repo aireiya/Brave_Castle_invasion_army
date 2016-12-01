@@ -65,12 +65,6 @@ var power = cc.Layer.extend({
         this.addChild(label01); //文字つける時はこっち*/
         label01.setPosition(size.width * 0.5,size.height * 0.92, 15);
 
-        //説明
-        label02 = cc.LabelTTF.create("攻撃力\n体力", "Arial", 20);
-        label02.setColor(color);
-        this.addChild(label02, 1); //文字つける時はこっち*/
-        label02.setPosition(size.width * 0.48,size.height * 0.74, 15);
-
         //ユニット枠
         waku01 = cc.Layer.create();
         this.addChild(waku01);
@@ -251,6 +245,14 @@ var power = cc.Layer.extend({
         //hp05.setScale(0.7);
         bg03.setPosition(size.width * 0.8,size.height * 0.1, 15);
 
+        //ヘルプ
+        help03 = cc.Layer.create();
+        this.addChild(help03);
+        hel03 = cc.Sprite.create(res.help04 );
+        help03.addChild(hel03, 0);
+        //hp05.setScale(0.7);
+        hel03.setPosition(size.width * 0.5,size.height * 0.15, 15);
+
         //ステージ選択へ
         unit = cc.LabelTTF.create("ステージ選択へ", "Arial", 25);
         unit.setColor(255,255,255);
@@ -328,6 +330,14 @@ var power = cc.Layer.extend({
                     ma05.setSpriteFrame(cache.getSpriteFrame("akuma04"));
                     break;
         }
+
+        //ステージ画面チュートリアル
+        helpmode02 = cc.Layer.create();
+        this.addChild(helpmode02);
+        mode02 = cc.Sprite.create(res.tuto02);
+        helpmode02.addChild(mode02, 10);
+        mode02.setPosition(cc.p(size.width / 2.0, size.height / 2.0));
+        mode02.setVisible(false);
     },
 
 });

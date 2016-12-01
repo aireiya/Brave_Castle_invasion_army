@@ -4,7 +4,6 @@ addunit = cc.Layer.extend({
      this._super();
      //unit = new Unit();
      //this.addChild(unit);
-
     },
    addItem:function(){
 
@@ -15,8 +14,10 @@ addunit = cc.Layer.extend({
 });
 
 var Unit = cc.Sprite.extend({
+  winsize: null,
  ctor: function() {
    this._super();
+   this.winsize = cc.director.getWinSize();
    //this.initWithFile(cache.getSpriteFrame("maou_otomo01_01"));
    //this.initWithFile(cache.getSpriteFrame("maou_otomo01_01"));
    switch (unitup) {
@@ -122,17 +123,11 @@ if(unitArray01.length > 0){
          unitArray01[array01i].setPositionX(380);
          emargency = unitArray01[array01i].getPositionY();
 
-         //敵城ポジション400で止まる
-         kemu.setVisible(true);
-         kemu02.setVisible(true);
-         kemu03.setVisible(true);
-
          enemyDM++;
            if(enemyDM > 10){
-             sept++;
-             if(change == 0 && sept == 2){
-               audioEngine.playEffect(res.at01_mp3);
-               sept = 0;
+             if(change == false){
+               //エフェクト
+               audioEngine.playEffect(res.se05_mp3);
            }
 
              enemyCS--;
@@ -146,6 +141,35 @@ if(unitArray01.length > 0){
              //コンテンツサイズで画像更新
              //アンカーポイント0,0でやる
              //イグノリアフォアアンカーポジション 常にtrue アンカーポイントを無効化 falseで治るかも
+
+             switch (enemyArray[n].getPositionY()) {
+               case 230:
+                 Particle01.setPosition(unitArray01[array01i].getPositionX(),otomo01y );
+                 break;
+               case 190:
+                 Particle02.setPosition(unitArray01[array01i].getPositionX(),otomo02y );
+                 break;
+               case 150:
+                 Particle03.setPosition(unitArray01[array01i].getPositionX(),otomo03y );
+                 break;
+               case 110:
+                 Particle04.setPosition(unitArray01[array01i].getPositionX(),otomo04y );
+                 break;
+               case 70:
+                 Particle05.setPosition(unitArray01[array01i].getPositionX(),otomo05y );
+                 break;
+             }
+
+             if(enemyCS < 99){
+               E_efect01.setPosition(this.winsize.width * 0.9,this.winsize.height * 0.5 );
+             }
+             if(enemyCS < 70){
+               E_efect02.setPosition(this.winsize.width * 0.95,this.winsize.height * 0.6 );
+             }
+             if(enemyCS < 50){
+               E_efect03.setPosition(this.winsize.width * 0.95,this.winsize.height * 0.45 );
+             }
+
              if(enemyCS < 20){
                switch (stage) {
                  case 1:
@@ -158,10 +182,11 @@ if(unitArray01.length > 0){
                }
                scene_Un = true;
                var a = cc.TransitionFade.create(2.0, new ResultScene());
-               change = 1;
+               change = true;
                cc.director.runScene(a);
              }
            }
+       }else{
        }
      }
      array01i --;

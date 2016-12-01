@@ -5,6 +5,8 @@ var stage = 1;
 var stage_S02 = false;
 var stage_S03 = false;
 
+var T_tuto = false;
+
 var select = cc.Layer.extend({
     ctor: function() {
         this._super();
@@ -40,12 +42,28 @@ var select = cc.Layer.extend({
         back.addChild(bg, 0);
         bg.setPosition(size.width * 0.5,size.height * 0.6, 15);
 
+        //ヘルプ赤
+        help01 = cc.Layer.create();
+        this.addChild(help01);
+        hel01 = cc.Sprite.create(res.help02);
+        help01.addChild(hel01, 0);
+        hel01.setPosition(size.width * 0.15,size.height * 0.15, 15);
+
+        //ヘルプ青
+        help02 = cc.Layer.create();
+        this.addChild(help02);
+        hel02 = cc.Sprite.create(res.help03);
+        help02.addChild(hel02, 0);
+        hel02.setPosition(size.width * 0.45,size.height * 0.15, 15);
+
+
+
         //コメント枠
         back02 = cc.Layer.create();
         this.addChild(back02);
         bg02 = cc.Sprite.create(res.background15_png);
         back.addChild(bg02, 0);
-        bg02.setPosition(size.width * 0.5,size.height * 0.3, 15);
+        bg02.setPosition(size.width * 0.5,size.height * 0.4, 15);
 
         //タイトル枠
         back03 = cc.Layer.create();
@@ -103,10 +121,10 @@ var select = cc.Layer.extend({
         label03 = cc.LabelTTF.create("ステージを選んで下さい。\n枠内をクリックすると戦闘が始まります。\nユニット強化は右下をクリックして下さい。", "Arial", 15);
         label03.setColor(255,255,255);
         this.addChild(label03); //文字つける時はこっち*/
-        label03.setPosition(size.width * 0.515,size.height * 0.3, 15);
+        label03.setPosition(size.width * 0.515,size.height * 0.4, 15);
 
         var drop01 = cc.Sprite.create(res.kodomo_png);　
-        drop01.setPosition(size.width * 0.15, size.height * 0.2);
+        drop01.setPosition(size.width * 0.12, size.height * 0.4);
         this.addChild(drop01);
 
         //ユニット強化
@@ -114,6 +132,14 @@ var select = cc.Layer.extend({
         unit.setColor(color02);
         this.addChild(unit); //文字つける時はこっち*/
         unit.setPosition(size.width * 0.8,size.height * 0.1, 15);
+
+        //ステージ画面チュートリアル
+        helpmode = cc.Layer.create();
+        this.addChild(helpmode);
+        mode = cc.Sprite.create(res.tuto01);
+        helpmode.addChild(mode, 5);
+        mode.setPosition(cc.p(size.width / 2.0, size.height / 2.0));
+        mode.setVisible(false);
 
         //■■■■■ステージの文字色変更■■■■■■■■■■■■■■■■■■■■■■■■■■
 
@@ -141,7 +167,7 @@ var select = cc.Layer.extend({
       onTouchBegan: function(touch, event) {
 
         //■■■■■ステージ選択■■■■■■■■■■■■■■■■■■■■■■■■■■
-        if(touch.getLocation().y < 200 && touch.getLocation().y > 180 ){
+        if(touch.getLocation().y < 200 && touch.getLocation().y > 180 && T_tuto == false){
           //console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
           //■■■■■ステージ1■■■■■■■■■■■■■■■■■■■■■■■■■■
           if(touch.getLocation().x < 160 && touch.getLocation().x > 30  ){
@@ -152,7 +178,7 @@ var select = cc.Layer.extend({
           }
 
           //■■■■■ステージ2■■■■■■■■■■■■■■■■■■■■■■■■■■
-          if(touch.getLocation().x < 300 && touch.getLocation().x > 175 && stage_S02 == true){
+          if(touch.getLocation().x < 300 && touch.getLocation().x > 175 && stage_S02 == true ){
             stage = 2;
             console.log("ステージ2選択");
           var a = cc.TransitionFade.create(2.0, new gameScene());
@@ -160,22 +186,54 @@ var select = cc.Layer.extend({
           }
 
           //■■■■■ステージ3■■■■■■■■■■■■■■■■■■■■■■■■■■
-          if(touch.getLocation().x < 450 && touch.getLocation().x > 320 && stage_S03 == true){
+          if(touch.getLocation().x < 450 && touch.getLocation().x > 320 && stage_S03 == true ){
             stage = 3;
             console.log("ステージ3選択");
           var a = cc.TransitionFade.create(2.0, new gameScene());
           cc.director.runScene(a);
         }
-
+        //エフェクト
+        audioEngine.playEffect(res.se02_mp3);
       }
 
         //■■■■■強化画面へ■■■■■■■■■■■■■■■■■■■■■■■■■■
 
-        if(touch.getLocation().x < 500 && touch.getLocation().y < 50 && touch.getLocation().x > 290 && touch.getLocation().y > 20 ){
+        if(touch.getLocation().x < 500 && touch.getLocation().y < 50 &&  touch.getLocation().x > 290 && touch.getLocation().y > 20 && T_tuto == false){
           //console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+          //エフェクト
+          audioEngine.playEffect(res.se02_mp3);
           var a = cc.TransitionFade.create(2.0, new PowerSelectScene());
           cc.director.runScene(a);
         }
+
+        //■■■■■ヘルプへ■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+        if(touch.getLocation().y < 85  && touch.getLocation().y > 10){
+          if(touch.getLocation().x < 130 && touch.getLocation().x > 15 ){
+            console.log("たっちへるぷ" + touch.getLocation().x +" " + touch.getLocation().y);
+            T_tuto = !T_tuto;
+
+            if(T_tuto == false){
+              mode.setVisible(false);
+              console.log("インビジブル起動");
+            }
+            if(T_tuto == true){
+              mode.setVisible(true);
+              console.log("インビジブル解除");
+            }
+            //エフェクト
+            audioEngine.playEffect(res.se02_mp3);
+
+        }
+          if(touch.getLocation().x < 270 && touch.getLocation().x > 130 && T_tuto == false){
+            console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+            //エフェクト
+            audioEngine.playEffect(res.se02_mp3);
+            var a = cc.TransitionFade.create(2.0, new tutoScene());
+            cc.director.runScene(a);
+          }
+      }
+
       },
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {

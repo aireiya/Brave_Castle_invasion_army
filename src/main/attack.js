@@ -109,6 +109,8 @@ if(unitArray01.length > 0){
                     Particle05.setPosition(1000,otomo05y );
                     break;
                 }
+                //エフェクト
+                audioEngine.playEffect(res.se03_mp3);
               }
                 unitArray01[i].removeFromParentAndCleanup(true);
                 //unitArray01[i] = null;
@@ -170,6 +172,9 @@ if(unitArray01.length > 0){
                 //ensuu--;
                 //array01i --;
                 //n--;
+
+                //エフェクト
+                audioEngine.playEffect(res.se03_mp3);
               }
             }
           }

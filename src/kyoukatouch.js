@@ -1,15 +1,18 @@
+var K_tuto = false;
 
 var kyoukaTouch = cc.EventListener.create({
 event: cc.EventListener.TOUCH_ONE_BY_ONE, //一回だけ反応
 //swallowTouches: true,
   onTouchBegan: function(touch, event) {
-    if(touch.getLocation().x < 470 && touch.getLocation().y < 50 && touch.getLocation().x > 300 && touch.getLocation().y > 20 ){
+    if(touch.getLocation().x < 470 && touch.getLocation().y < 50 && touch.getLocation().x > 300 && touch.getLocation().y > 20 && K_tuto == false){
       console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
+      //エフェクト
+      audioEngine.playEffect(res.se02_mp3);
       var a = cc.TransitionFade.create(2.0, new StageSelectScene());
       cc.director.runScene(a);
     }
     //タッチ強化
-    if(touch.getLocation().x < 230 && touch.getLocation().x > 35 ){
+    if(touch.getLocation().x < 230 && touch.getLocation().x > 35 && K_tuto == false){
       //■■■■■ユニット1■■■■■■■■■■■■■■■■■■■■■■■■■■
       if(touch.getLocation().y < 260 && touch.getLocation().y > 220 && point >= 30){
       console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
@@ -130,9 +133,27 @@ event: cc.EventListener.TOUCH_ONE_BY_ONE, //一回だけ反応
                     break;
         }
       }
-
+      //エフェクト
+      audioEngine.playEffect(res.se01_mp3);
     }
     //タッチ強化おわり
+
+    //■■■■■ヘルプへ■■■■■■■■■■■■■■■■■■■■■■■■■■
+    if(touch.getLocation().y < 85 && touch.getLocation().y > 10 && touch.getLocation().x < 275 && touch.getLocation().x > 200){
+        console.log("たっちへるぷ" + touch.getLocation().x +" " + touch.getLocation().y);
+        K_tuto = !K_tuto;
+
+        if(K_tuto == false){
+          mode02.setVisible(false);
+          console.log("インビジブル起動");
+        }
+        if(K_tuto == true){
+          mode02.setVisible(true);
+          console.log("インビジブル解除");
+        }
+        //エフェクト
+        audioEngine.playEffect(res.se02_mp3);
+    }
   },
   onTouchMoved: function(touch, event) {},
   onTouchEnded: function(touch, event) {},

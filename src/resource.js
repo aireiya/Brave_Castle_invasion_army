@@ -59,14 +59,32 @@ var res = {
     title_mp3 : "res/bgm/title10.mp3",
     kyouka_mp3 : "res/bgm/kyouka07.mp3",
 
-    at01_mp3 : "res/se/battle16.mp3",
-
-    se01_mp3 : "res/se/point17.mp3",
+    se01_mp3 : "res/se/point17.mp3",  //強化
+    se02_mp3 : "res/se/system49.mp3", //メニュー決定
+    se03_mp3 : "res/se/Death.mp3",    //ユニット死亡
+    se04_mp3 : "res/se/explosion08.mp3",  //城炎上
+    se05_mp3 : "res/se/battle16.mp3",   //味方攻撃
+    se06_mp3 : "res/se/battle17.mp3",   //敵攻撃
+    se07_mp3 : "res/se/drop.mp3",   //出撃
+    se08_mp3 : "res/se/pop.mp3",   //ユニット選択
 
     kemuri : "res/new/particle_kemuri.plist",
+    fire : "res/new/fire_particle.plist",
 
     help : "res/help.png",
+    help02 : "res/help02.png",
+    help03 : "res/help03.png",
+    help04 : "res/help04.png",
 
+    tuto01 : "res/tutorial/tutorial01.png",
+    tuto02 : "res/tutorial/tutorial02.png",
+    tuto03 : "res/tutorial/tutorial03.png",
+    tuto04 : "res/tutorial/tutorial04.png",
+    tuto05 : "res/tutorial/tutorial05.png",
+    tuto06 : "res/tutorial/tutorial06.png",
+
+    title_png : "res/title.png",
+    flow_png : "res/flower.png",
 };
 
 var g_resources = [];

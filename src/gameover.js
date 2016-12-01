@@ -61,16 +61,20 @@ var gameover = cc.Layer.extend({
         return true;
     },
       onTouchBegan: function(touch, event) {
-        if(touch.getLocation().x < 210 && touch.getLocation().y < 150 && touch.getLocation().x > 120 && touch.getLocation().y > 110 ){
+        if(touch.getLocation().y > 110 && touch.getLocation().y < 150){
+          if(touch.getLocation().x > 120 && touch.getLocation().y > 110 ){
           //console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
           var a = cc.TransitionFade.create(2.0, new gameScene());
           cc.director.runScene(a);
         }
-        if(touch.getLocation().x < 350 && touch.getLocation().y < 150 && touch.getLocation().x > 290 && touch.getLocation().y > 110 ){
+        if(touch.getLocation().x < 350 && touch.getLocation().y < 150) {
           //console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
           var a = cc.TransitionFade.create(2.0, new StageSelectScene());
           cc.director.runScene(a);
         }
+        //エフェクト
+        audioEngine.playEffect(res.se02_mp3);
+      }
       },
       onTouchMoved: function(touch, event) {},
       onTouchEnded: function(touch, event) {

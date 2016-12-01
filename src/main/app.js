@@ -40,13 +40,24 @@ var timer = 0;
 var timerm = 0;
 
 var change = 0;
-var sept = 0; //敵城への攻撃頻度
 
 var color = cc.color(255, 0, 0, 128);
 var color02 = cc.color(255, 0, 255, 128);
 var color03 = cc.color(0, 255, 0, 128);
 
 var enemyunit;
+
+//エフェクト
+var E_efect01;
+var E_efect02;
+var E_efect03;
+
+var U_efect01;
+var U_efect02;
+var U_efect03;
+
+//SE
+var change = false;
 
 var gameScene = cc.Scene.extend({
   onEnter: function() {
@@ -82,6 +93,7 @@ var game = cc.Layer.extend({
 
     copoint = 100;
     timer = 0;
+    change = false;
     //味方ユニット系
     enemyCS = 100;
     unitArray01 = [];
@@ -119,9 +131,6 @@ var game = cc.Layer.extend({
       //audioEngine.playMusic("res/bgm_main.mp3", true);
       audioEngine.playMusic(res.main_mp3 , true);
     }
-
-    //SE登録
-    //audioEngine.preloadEffect(res.at01_mp3);
 
     //森の背景
     switch (stage) {
@@ -271,28 +280,6 @@ var game = cc.Layer.extend({
     no05.setPosition(420, 20);
     no05.setVisible(false);
 
-//----------戦闘エフェクト
-    kemuri = cc.Layer.create();
-    this.addChild(kemuri);
-    kemu = cc.Sprite.create(res.kemuri_png );
-    kemuri.addChild(kemu, 7);
-    kemu.setPosition(430, 200);
-    kemu.setVisible(false);
-
-    kemuri02 = cc.Layer.create();
-    this.addChild(kemuri02);
-    kemu02 = cc.Sprite.create(res.kemuri_png );
-    kemuri02.addChild(kemu02, 7);
-    kemu02.setPosition(400, 120);
-    kemu02.setVisible(false);
-
-    kemuri03 = cc.Layer.create();
-    this.addChild(kemuri03);
-    kemu03 = cc.Sprite.create(res.kemuri_png );
-    kemuri03.addChild(kemu03, 7);
-    kemu03.setPosition(460, 160);
-    kemu03.setVisible(false);
-
 
 //-----------コスト
 cost02 = cc.LabelTTF.create("所持コスト:" + copoint, "Arial", 25);
@@ -311,8 +298,21 @@ ovtime.setColor(color02);
 this.addChild(ovtime); //文字つける時はこっち*/
 ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
 
-    //return true;
-    //cc.eventManager.addListener(listener, this);
+      ////■■■■■城エフェクト追加■■■■■■■■■■■■■■■■■■■■■■■■■■
+      E_efect01 = new cc.ParticleSystem(res.fire);
+      E_efect01.setPosition(1000,size.height * 0.9 );
+      this.addChild(E_efect01, 20);
+      E_efect01.setAutoRemoveOnFinish(true);
+
+      E_efect02 = new cc.ParticleSystem(res.fire);
+      E_efect02.setPosition(1000,size.height * 0.8 );
+      this.addChild(E_efect02, 20);
+      E_efect02.setAutoRemoveOnFinish(true);
+
+      E_efect03 = new cc.ParticleSystem(res.fire);
+      E_efect03.setPosition(1000,size.height * 0.7 );
+      this.addChild(E_efect03, 20);
+      E_efect03.setAutoRemoveOnFinish(true);
 
     // タップイベントリスナーを登録する
             cc.eventManager.addListener({
@@ -354,6 +354,8 @@ onTouchBegan: function(touch, event) {
       //console.log("レーン5");
       arraytrue = 1;
     }
+    //エフェクト
+    audioEngine.playEffect(res.se07_mp3);
     //console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
     if(arraytrue == 1){
     switch(unitup){
@@ -424,6 +426,8 @@ onTouchBegan: function(touch, event) {
         unitup = 5;
         go.setVisible(true);
       }
+      //エフェクト
+      audioEngine.playEffect(res.se08_mp3);
     }
 
     //cc.director.runScene(new ResultScene());
