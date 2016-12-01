@@ -28,8 +28,7 @@ var array01i = -1; //ユニット配列回し変数
 var raneY = 0;  //レーン位置保存1~5
 var arraytrue = 0;  //出撃許可変数
 var scene_Un = false;
-var rane_Un = false;
-var box_Un = false;
+
 //◆----------◆
 
 var addunit;
@@ -106,8 +105,6 @@ var game = cc.Layer.extend({
     ENBpos = 0;
     raneY = 0;
     scene_Un = false;
-    rane_Un = false;
-    box_Un = true;
     //敵ユニット系
     playerCS = 100;
     enemyArray = [];
@@ -115,6 +112,7 @@ var game = cc.Layer.extend({
     enarrayI = -1;
     enemyup = 0;
     change_E = 0;
+    poptime = 0;
 
     //スプライトシート読み込み
     cache = cc.spriteFrameCache;
@@ -331,7 +329,7 @@ ovtime.setPosition(size.width * 0.5,size.height * 0.87, 15);
 onTouchBegan: function(touch, event) {
   //ヒントのクリック判定
   //--------------レーンリスト------------------
-  if(touch.getLocation().x < 100 && touch.getLocation().x > 50 && scene_Un == false && rane_Un == true){
+  if(touch.getLocation().x < 100 && touch.getLocation().x > 50 && scene_Un == false){
     if(touch.getLocation().y > 220 && touch.getLocation().y < 240){
       raneY = otomo01y;
       //console.log("レーン1");
@@ -391,15 +389,13 @@ onTouchBegan: function(touch, event) {
     otomounit.addItem();
     unitup = 0;
     arraytrue = 0;
-    rane_Un = false;
-    box_Un = true;
     //エフェクト
     audioEngine.playEffect(res.se07_mp3);
   }
   }
 //-------------------ユニットリスト-------------------
 //y軸固定
-    if( touch.getLocation().y < 37 &&  touch.getLocation().y > 0 && box_Un == true){
+    if( touch.getLocation().y < 37 &&  touch.getLocation().y > 0){
 
 
       //--------------ユニット1--------------
@@ -430,8 +426,6 @@ onTouchBegan: function(touch, event) {
       go.setVisible(true);
       //エフェクト
       audioEngine.playEffect(res.se08_mp3);
-      rane_Un = true;
-      box_Un = false;
     }
 
     //cc.director.runScene(new ResultScene());
@@ -481,7 +475,7 @@ onTouchEnded: function(touch, event) {},
     //■■■■■■敵出しランダム■■■■■■■■■■■■■■■
     poptime++;
     //出現頻度変更、数値はschedule依存
-    if(poptime == stagepop){
+    if(poptime >= stagepop){
     var rand = Math.floor( Math.random() * 5+ 1 ) ;
     var rand2 = Math.floor( Math.random() * 5 + 1 ) ;
     console.log("敵出現");
