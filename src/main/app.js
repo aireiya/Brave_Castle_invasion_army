@@ -26,7 +26,7 @@ var array01 = 0;  //ユニット配列保存変数
 var unitLayer;    //ユニット召喚レイヤー
 var array01i = -1; //ユニット配列回し変数
 var raneY = 0;  //レーン位置保存1~5
-var arraytrue = 0;  //出撃許可変数
+var arraytrue = false;  //出撃許可変数
 var scene_Un = false;
 
 //◆----------◆
@@ -101,7 +101,7 @@ var game = cc.Layer.extend({
     array01 = 0;
     unitup = 0;
     array01i = -1;
-    arraytrue = 0;
+    arraytrue = false;
     ENBpos = 0;
     raneY = 0;
     scene_Un = false;
@@ -333,31 +333,31 @@ onTouchBegan: function(touch, event) {
     if(touch.getLocation().y > 220 && touch.getLocation().y < 240){
       raneY = otomo01y;
       //console.log("レーン1");
-      arraytrue = 1;
+      arraytrue = true;
     }
     if(touch.getLocation().y > 180 && touch.getLocation().y < 200){
       raneY = otomo02y;
       //console.log("レーン2");
-      arraytrue = 1;
+      arraytrue = true;
     }
     if(touch.getLocation().y > 140 && touch.getLocation().y < 160){
       raneY = otomo03y;
       //console.log("レーン3");
-      arraytrue = 1;
+      arraytrue = true;
     }
     if(touch.getLocation().y > 100 && touch.getLocation().y < 120){
       raneY = otomo04y;
       //console.log("レーン4");
-      arraytrue = 1;
+      arraytrue = true;
     }
     if(touch.getLocation().y > 60 && touch.getLocation().y < 80){
       raneY = otomo05y;
       //console.log("レーン5");
-      arraytrue = 1;
+      arraytrue = true;
     }
 
     //console.log("たっち" + touch.getLocation().x +" " + touch.getLocation().y);
-    if(arraytrue == 1){
+    if(arraytrue == true){
     switch(unitup){
       case 1:
       //console.log("しょーかん1ユニ");
@@ -388,7 +388,7 @@ onTouchBegan: function(touch, event) {
     cost02.setString("所持コスト:" + copoint);
     otomounit.addItem();
     unitup = 0;
-    arraytrue = 0;
+    arraytrue = false;
     //エフェクト
     audioEngine.playEffect(res.se07_mp3);
   }
