@@ -337,6 +337,7 @@ var power = cc.Layer.extend({
         mode02 = cc.Sprite.create(res.tuto02);
         helpmode02.addChild(mode02, 10);
         mode02.setPosition(cc.p(size.width / 2.0, size.height / 2.0));
+        mode02.setScale(0.9);
         mode02.setVisible(false);
     },
 
